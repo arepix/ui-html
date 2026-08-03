@@ -1,0 +1,32 @@
+@layer components {
+  /* Contenedor base: crea contexto de apilamiento limpio */
+  .layered-text-bg {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  /* Cada capa: absoluta, centrada, transformable */
+  .layered-text-bg__layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--tw-rotate, 0deg));
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* Variantes de capa por posición */
+  .layered-text-bg__layer--back {
+    z-index: var(--z-bg);
+    opacity: 0.15;
+  }
+  .layered-text-bg__layer--mid {
+    z-index: var(--z-content);
+    opacity: 0.6;
+  }
+  .layered-text-bg__layer--front {
+    z-index: var(--z-overlay);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,12 @@
+@layer base {
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  img, svg { display: block; max-width: 100%; }
+}

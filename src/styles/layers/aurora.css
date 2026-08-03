@@ -1,0 +1,8 @@
+@layer components {
+  .bg-aurora {
+    background-image:
+      radial-gradient(at 20% 20%, var(--color-aurora-1) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, var(--color-aurora-2) 0px, transparent 50%),
+      radial-gradient(at 0% 80%, var(--color-aurora-3) 0px, transparent 50%);
+  }
+}

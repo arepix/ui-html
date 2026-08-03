@@ -1,0 +1,20 @@
+:root {
+  /* Z-index scale: backgrounds -10, content 10, overlay 20, modal 30 */
+  --z-bg-deep:    -20;
+  --z-bg:         -10;
+  --z-content:     10;
+  --z-overlay:     20;
+  --z-modal:       30;
+  --z-toast:       40;
+
+  /* Paleta (ajusta a tu diseño) */
+  --color-bg:      #0b0f17;
+  --color-surface: #121826;
+  --color-text:    #e6e9ef;
+  --color-accent:  #7c5cff;
+
+  /* Aurora layers */
+  --color-aurora-1: #7c5cff;
+  --color-aurora-2: #ff5c8a;
+  --color-aurora-3: #5cf0ff;
+}

@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "ritwickdey.LiveServer",
+    "ms-vscode.live-server",
+    "stivo.tailwind-fold",
+    "formulahendry.auto-rename-tag",
+    "cipchk.cssrem",
+    "christian-kohler.path-intellisense",
+    "pranaygp.vscode-css-peek",
+    "usernamehw.errorlens",
+    "ecmel.vscode-html-css"
+  ]
+}

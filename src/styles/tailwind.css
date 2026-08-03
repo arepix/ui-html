@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Tokens y capas base */
+@import "./tokens.css";
+@import "./base.css";
+
+/* Backgrounds compuestos reutilizables */
+@import "./layers/aurora.css";
+@import "./layers/grid-overlay.css";
+@import "./layers/noise.css";

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layered Text BG — Preview</title>
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+  </head>
+  <body class="flex min-h-screen flex-col gap-8 bg-(--color-bg) p-8">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-bold text-(--color-text)">Layered Text BG</h1>
+      <p class="text-sm text-white/60">
+        3 capas tipográficas. Edita el organismo y guarda para ver cambios en vivo.
+      </p>
+    </header>
+
+    <!-- Preview del organismo -->
+    <div class="overflow-hidden rounded-xl border border-white/10">
+      <section
+        class="layered-text-bg flex h-[60vh] w-full items-center justify-between md:h-[80vh]"
+      >
+        <span
+          class="layered-text-bg__layer layered-text-bg__layer--back -rotate-5 text-[18vw] leading-none font-light tracking-tighter text-(--color-aurora-1) mix-blend-screen select-none md:text-[22vw]"
+        >
+          x
+        
+        </span>
+
+        <span
+          class="layered-text-bg__layer layered-text-bg__layer--mid rotate-6 font-serif text-[10vw] leading-tight font-medium tracking-wide text-(--color-aurora-2) italic mix-blend-overlay select-none md:text-[14vw]"
+        >
+          typography
+        </span>
+
+        <span
+          class="layered-text-bg__layer layered-text-bg__layer--front rotate-0 font-mono text-[3vw] leading-none font-bold tracking-[0.2em] text-(--color-text) uppercase mix-blend-normal select-none md:text-[4vw]"
+        >
+          composition
+        </span>
+      </section>
+    </div>
+
+    <!-- Checklist de atributos para probar -->
+    <section class="space-y-4 text-sm text-white/80">
+      <h2 class="text-lg font-semibold">Atributos por capa para iterar</h2>
+      <ul class="grid grid-cols-2 gap-2 md:grid-cols-3">
+        <li>font-family (sans/serif/mono)</li>
+        <li>font-size (text-[Nvw])</li>
+        <li>font-weight (font-light → font-black)</li>
+        <li>letter-spacing (tracking-*)</li>
+        <li>line-height (leading-*)</li>
+        <li>color (text-[var(--color-*)])</li>
+        <li>rotate (rotate-12, -rotate-6)</li>
+        <li>skew (skew-x-12)</li>
+        <li>opacity (opacity-50)</li>
+        <li>mix-blend-mode (mix-blend-screen)</li>
+        <li>text-transform (uppercase/lowercase)</li>
+        <li>font-style (italic)</li>
+      </ul>
+    </section>
+  </body>
+</html>
