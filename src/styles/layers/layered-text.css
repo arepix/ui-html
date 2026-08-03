@@ -11,22 +11,22 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(var(--tw-rotate, 0deg));
+    transform: translate(-50%, -50%) rotate(var(--tw-rotate, 0deg)) ;
     white-space: nowrap;
     pointer-events: none;
   }
 
   /* Variantes de capa por posición */
   .layered-text-bg__layer--back {
-    z-index: var(--z-bg);
+    z-index: 0;
     opacity: 0.15;
   }
   .layered-text-bg__layer--mid {
-    z-index: var(--z-content);
+    z-index: 10;
     opacity: 0.6;
   }
   .layered-text-bg__layer--front {
-    z-index: var(--z-overlay);
+    z-index: 20;
     opacity: 1;
   }
 }
