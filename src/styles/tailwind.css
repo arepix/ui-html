@@ -12,12 +12,12 @@
 
 /* fonts */
 @theme {
-  --font-5cent: '5cent', sans-serif;
+  --font-f5cent: 'f5cent', sans-serif;
   --font-captions: 'captions', sans-serif;
   --font-magikMarker: 'magikMarker', sans-serif;
   --font-scrawler3rd: 'scrawler3rd', cursive;
   --font-seaFont: 'seaFont', sans-serif;
-  --font-Writers_Bold: 'Writers_Bold', sans-serif;
+  --font-WritersBold: 'Writers_Bold', sans-serif;
   --font-Writers_Condensed: 'Writers_Condensed', sans-serif;
   --font-Writers_Original: 'Writers_Original', sans-serif;
   --font-Writers2: 'Writers2', sans-serif;
