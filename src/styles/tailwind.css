@@ -1,10 +1,9 @@
-@import './fonts.css';
 @import 'tailwindcss';
-
+@import './fonts.css';
 /* Tokens y capas base */
 @import './tokens.css';
 @import './base.css';
-@import './layers/typography.css';
+@import './layers/layered-text.css';
 
 /* Backgrounds compuestos reutilizables */
 @import './layers/aurora.css';
@@ -13,14 +12,14 @@
 
 /* fonts */
 @theme {
-  --font-family-5cent: '5cent', 5cent;
-  --font-family-captions: 'captions', captions;
-  --font-family-magikMarker: 'magikMarker', magikMarker;
-  --font-family-scrawler3rd: 'scrawler3rd', scrawler3rd;
-  --font-family-seaFont: 'seaFont', seaFont;
-  --font-family-Writers_Bold: 'Writers_Bold', Writers_Bold;
-  --font-family-Writers_Condensed: 'Writers_Condensed', Writers_Condensed;
-  --font-family-Writers_Original: 'Writers_Original', Writers_Original;
-  --font-family-Writers2: 'Writers2', Writers2;
-  --font-family-Writers3: 'Writers3', Writers3;
+  --font-5cent: '5cent', sans-serif;
+  --font-captions: 'captions', sans-serif;
+  --font-magikMarker: 'magikMarker', sans-serif;
+  --font-scrawler3rd: 'scrawler3rd', cursive;
+  --font-seaFont: 'seaFont', sans-serif;
+  --font-Writers_Bold: 'Writers_Bold', sans-serif;
+  --font-Writers_Condensed: 'Writers_Condensed', sans-serif;
+  --font-Writers_Original: 'Writers_Original', sans-serif;
+  --font-Writers2: 'Writers2', sans-serif;
+  --font-Writers3: 'Writers3', sans-serif;
 }
