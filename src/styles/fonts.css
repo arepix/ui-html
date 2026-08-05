@@ -1,0 +1,82 @@
+/* ===== Familia: 5cent ===== */
+@font-face {
+  font-family: '5cent';
+  src: url('/fonts/5cent/5cent.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: captions ===== */
+@font-face {
+  font-family: 'captions';
+  src: url('/fonts/Captions/Captions.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: magikMarker ===== */
+@font-face {
+  font-family: 'magikMarker';
+  src: url('/fonts/MagikMarker/MagikMarker.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: scrawler3rd ===== */
+@font-face {
+  font-family: 'scrawler3rd';
+  src: url('/fonts/Scrawler3rd/Scrawler3rd.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: seaFont ===== */
+@font-face {
+  font-family: 'seaFont';
+  src: url('/fonts/SeaFont/SeaFont.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: Writers_Bold ===== */
+@font-face {
+  font-family: 'Writers_Bold';
+  src: url('/fonts/WritersFamily/Writers_Bold.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: Writers_Condensed ===== */
+@font-face {
+  font-family: 'Writers_Condensed';
+  src: url('/fonts/WritersFamily/Writers_Condensed.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: Writers_Original ===== */
+@font-face {
+  font-family: 'Writers_Original';
+  src: url('/fonts/WritersFamily/Writers_Original.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: Writers2 ===== */
+@font-face {
+  font-family: 'Writers2';
+  src: url('/fonts/WritersFamily/Writers2.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: Writers3 ===== */
+@font-face {
+  font-family: 'Writers3';
+  src: url('/fonts/WritersFamily/Writers3.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Repite el mismo bloque para "Editorial" y "Mono" ===== */
+/* (mismo patrón: un @font-face por archivo, mismo font-family) */
