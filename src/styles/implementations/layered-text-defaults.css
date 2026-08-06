@@ -1,0 +1,142 @@
+@layer components {
+  /* ============================================================
+     DEFAULTS: layered-text-bg__layer
+     ============================================================
+     Valores por defecto para los slots del átomo tipográfico.
+     Una capa sin ningún style override usará estos valores.
+     Los presets sobrescriben subsets de estos defaults.
+     ============================================================ */
+
+  .layered-text-bg__layer {
+    /* Layout */
+    --ltb-position: absolute;
+    --ltb-inset-block-start: auto;
+    --ltb-inset-inline-start: auto;
+    --ltb-inset-block-end: auto;
+    --ltb-inset-inline-end: auto;
+    --ltb-z-index: 0;
+    --ltb-display: block;
+    --ltb-overflow: visible;
+    --ltb-overflow-x: visible;
+    --ltb-overflow-y: visible;
+
+    /* Flujo de texto */
+    --ltb-white-space: nowrap;
+    --ltb-word-break: normal;
+    --ltb-overflow-wrap: normal;
+    --ltb-text-align: center;
+    --ltb-text-align-last: auto;
+    --ltb-vertical-align: baseline;
+    --ltb-direction: ltr;
+    --ltb-writing-mode: horizontal-tb;
+    --ltb-text-orientation: mixed;
+
+    /* Tipografía */
+    --ltb-font: var(--font-5cent);
+    --ltb-size: 10cqi;
+    --ltb-weight: 400;
+    --ltb-style: normal;
+    --ltb-variant: normal;
+    --ltb-stretch: normal;
+    --ltb-tracking: 0em;
+    --ltb-leading: 1;
+    --ltb-transform: none;
+    --ltb-decoration-line: none;
+    --ltb-decoration-style: solid;
+    --ltb-decoration-color: currentColor;
+    --ltb-decoration-thickness: auto;
+    --ltb-underline-offset: auto;
+    --ltb-feature-settings: normal;
+
+    /* Color y composición */
+    --ltb-color: var(--token-color-accent);
+    --ltb-opacity: 1;
+    --ltb-blend: normal;
+    --ltb-isolation: auto;
+
+    /* Transformación */
+    --ltb-rotation: 0deg;
+    --ltb-skew-x: 0deg;
+    --ltb-skew-y: 0deg;
+    --ltb-scale-x: 1;
+    --ltb-scale-y: 1;
+    --ltb-translate-x: 0;
+    --ltb-translate-y: 0;
+    --ltb-transform-origin: center;
+
+    /* Efectos */
+    --ltb-text-shadow: none;
+
+    /* Comportamiento */
+    --ltb-pointer-events: none;
+    --ltb-user-select: none;
+    --ltb-cursor: none;
+  }
+
+  /* ============================================================
+     PRESETS
+     ============================================================
+     Combinaciones guardadas para iteración rápida.
+     Se activan con data-preset="nombre" en el HTML.
+     No son clases de utilidad; son configuraciones de slots.
+     ============================================================ */
+
+  /* Ghost: capa de fondo fantasma, textura pura */
+  .layered-text-bg__layer[data-preset="ghost"] {
+    --ltb-opacity: 0.15;
+    --ltb-blend: screen;
+    --ltb-size: 18cqi;
+    --ltb-tracking: -0.05em;
+    --ltb-color: var(--token-color-aurora-primary);
+  }
+
+  /* Neon: brillo intenso, contraste alto */
+  .layered-text-bg__layer[data-preset="neon"] {
+    --ltb-opacity: 0.9;
+    --ltb-blend: overlay;
+    --ltb-color: var(--token-color-aurora-tertiary);
+    --ltb-size: 12cqi;
+    --ltb-tracking: 0.15em;
+    --ltb-text-shadow: 0 0 20px var(--token-color-aurora-tertiary);
+  }
+
+  /* Mid: capa intermedia densa, decorativa */
+  .layered-text-bg__layer[data-preset="mid"] {
+    --ltb-opacity: 0.6;
+    --ltb-blend: screen;
+    --ltb-size: 4cqi;
+    --ltb-tracking: -0.02em;
+    --ltb-color: var(--token-color-aurora-secondary);
+  }
+
+  /* Front: capa frontal legible, autoridad tipográfica */
+  .layered-text-bg__layer[data-preset="front"] {
+    --ltb-opacity: 1;
+    --ltb-blend: normal;
+    --ltb-size: 10cqi;
+    --ltb-tracking: 0.2em;
+    --ltb-transform: uppercase;
+    --ltb-color: var(--token-color-aurora-tertiary);
+  }
+
+  /* Stamp: sello, bloque sólido, apretado */
+  .layered-text-bg__layer[data-preset="stamp"] {
+    --ltb-opacity: 0.8;
+    --ltb-blend: multiply;
+    --ltb-size: 8cqi;
+    --ltb-tracking: -0.1em;
+    --ltb-leading: 0.9;
+    --ltb-transform: uppercase;
+    --ltb-weight: 700;
+    --ltb-color: var(--token-color-text);
+  }
+
+  /* Whisper: casi invisible, sutil */
+  .layered-text-bg__layer[data-preset="whisper"] {
+    --ltb-opacity: 0.08;
+    --ltb-blend: screen;
+    --ltb-size: 22cqi;
+    --ltb-tracking: 0.3em;
+    --ltb-color: var(--token-color-text);
+  }
+}
