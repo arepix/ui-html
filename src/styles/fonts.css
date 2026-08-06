@@ -30,10 +30,10 @@
   font-style: normal;
   font-display: swap;
 }
-/* ===== Familia: seaFont ===== */
+/* ===== Familia: searFont ===== */
 @font-face {
-  font-family: 'seaFont';
-  src: url('/fonts/SeaFont/SeaFont.otf') format('opentype');
+  font-family: 'searFont';
+  src: url('/fonts/searFont/Searfont.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

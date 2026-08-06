@@ -1,12 +1,4 @@
 @layer components {
-  /* ============================================================
-     DEFAULTS: layered-text-bg__layer
-     ============================================================
-     Valores por defecto para los slots del átomo tipográfico.
-     Una capa sin ningún style override usará estos valores.
-     Los presets sobrescriben subsets de estos defaults.
-     ============================================================ */
-
   .layered-text-bg__layer {
     /* Layout */
     --ltb-position: absolute;
@@ -21,7 +13,7 @@
     --ltb-overflow-y: visible;
 
     /* Flujo de texto */
-    --ltb-white-space: nowrap;
+    --ltb-white-space: normal;
     --ltb-word-break: normal;
     --ltb-overflow-wrap: normal;
     --ltb-text-align: center;
@@ -32,7 +24,7 @@
     --ltb-text-orientation: mixed;
 
     /* Tipografía */
-    --ltb-font: var(--font-5cent);
+    --ltb-font: inherit;
     --ltb-size: 10cqi;
     --ltb-weight: 400;
     --ltb-style: normal;
@@ -73,15 +65,7 @@
     --ltb-cursor: none;
   }
 
-  /* ============================================================
-     PRESETS
-     ============================================================
-     Combinaciones guardadas para iteración rápida.
-     Se activan con data-preset="nombre" en el HTML.
-     No son clases de utilidad; son configuraciones de slots.
-     ============================================================ */
-
-  /* Ghost: capa de fondo fantasma, textura pura */
+  /* Presets */
   .layered-text-bg__layer[data-preset="ghost"] {
     --ltb-opacity: 0.15;
     --ltb-blend: screen;
@@ -90,17 +74,15 @@
     --ltb-color: var(--token-color-aurora-primary);
   }
 
-  /* Neon: brillo intenso, contraste alto */
-  .layered-text-bg__layer[data-preset="neon"] {
+  .layered-text-bg__layer[data-preset="neonSecondary"] {
     --ltb-opacity: 0.9;
     --ltb-blend: overlay;
-    --ltb-color: var(--token-color-aurora-tertiary);
+    --ltb-color: var(--token-color-aurora-secondary);
     --ltb-size: 12cqi;
     --ltb-tracking: 0.15em;
-    --ltb-text-shadow: 0 0 20px var(--token-color-aurora-tertiary);
+    --ltb-text-shadow: 0 0 20px var(--token-color-aurora-secondary);
   }
 
-  /* Mid: capa intermedia densa, decorativa */
   .layered-text-bg__layer[data-preset="mid"] {
     --ltb-opacity: 0.6;
     --ltb-blend: screen;
@@ -109,29 +91,26 @@
     --ltb-color: var(--token-color-aurora-secondary);
   }
 
-  /* Front: capa frontal legible, autoridad tipográfica */
   .layered-text-bg__layer[data-preset="front"] {
     --ltb-opacity: 1;
+    --ltb-white-space: nowrap;
     --ltb-blend: normal;
     --ltb-size: 10cqi;
     --ltb-tracking: 0.2em;
-    --ltb-transform: uppercase;
     --ltb-color: var(--token-color-aurora-tertiary);
   }
 
-  /* Stamp: sello, bloque sólido, apretado */
   .layered-text-bg__layer[data-preset="stamp"] {
     --ltb-opacity: 0.8;
     --ltb-blend: multiply;
     --ltb-size: 8cqi;
     --ltb-tracking: -0.1em;
     --ltb-leading: 0.9;
-    --ltb-transform: uppercase;
+    --ltb-transform: lowercase;
     --ltb-weight: 700;
     --ltb-color: var(--token-color-text);
   }
 
-  /* Whisper: casi invisible, sutil */
   .layered-text-bg__layer[data-preset="whisper"] {
     --ltb-opacity: 0.08;
     --ltb-blend: screen;

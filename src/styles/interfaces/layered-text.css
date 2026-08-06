@@ -1,468 +1,85 @@
 @layer components {
   /* ============================================================
-     COMPONENTE: layered-text-bg__layer
+     INTERFAZ: layered-text-bg__layer
      ============================================================
-     Átomo tipográfico mínimo. Una sola capa de texto que vive
-     dentro de una molécula layered-text-bg.
-     
-     CONSUME: tokens semánticos de color, tipografía, motion.
-     EXPONE: slots CSS para cada propiedad CSS que pueda variar
-     entre instancias. Ningún valor está hardcodeado.
+     Solo mapeo de propiedades CSS a slots con fallback.
+     Ningún valor por defecto visual aquí. Los defaults viven en
+     implementations/layered-text-defaults.css.
      ============================================================ */
 
   .layered-text-bg__layer {
-    /* =========================================================
-       1. LAYOUT Y CAJA
-       =========================================================
-       Controlan dónde y cómo ocupa espacio la capa.
-       ========================================================= */
+    /* Layout */
+    position:               var(--ltb-position, absolute);
+    inset-block-start:      var(--ltb-inset-block-start, auto);
+    inset-inline-start:     var(--ltb-inset-inline-start, auto);
+    inset-block-end:        var(--ltb-inset-block-end, auto);
+    inset-inline-end:       var(--ltb-inset-inline-end, auto);
+    z-index:                var(--ltb-z-index, 0);
+    display:                var(--ltb-display, block);
+    overflow:               var(--ltb-overflow, visible);
+    overflow-x:             var(--ltb-overflow-x, visible);
+    overflow-y:             var(--ltb-overflow-y, visible);
 
-    /* --ltb-position
-       Qué hace: Define el esquema de posicionamiento del elemento.
-       Dominio: CERRADO
-       Valores: absolute | fixed | relative | static
-       Default: absolute */
-    --ltb-position: absolute;
+    /* Flujo de texto */
+    white-space:            var(--ltb-white-space, nowrap);
+    word-break:             var(--ltb-word-break, normal);
+    overflow-wrap:          var(--ltb-overflow-wrap, normal);
+    text-align:             var(--ltb-text-align, center);
+    text-align-last:        var(--ltb-text-align-last, auto);
+    
+    direction:              var(--ltb-direction, ltr);
+    writing-mode:           var(--ltb-writing-mode, horizontal-tb);
+    text-orientation:       var(--ltb-text-orientation, mixed);
 
-    /* --ltb-inset-block-start, --ltb-inset-inline-start
-       Qué hace: Desplazamiento desde el borde del ancestro posicionado.
-       Dominio: LIBRE
-       Valores: <length> | <percentage> | auto
-       Default: auto (el centrado se hace vía transform) */
-    --ltb-inset-block-start: auto;
-    --ltb-inset-inline-start: auto;
-    --ltb-inset-block-end: auto;
-    --ltb-inset-inline-end: auto;
-
-    /* --ltb-z-index
-       Qué hace: Profundidad en el contexto de apilamiento.
-       Dominio: LIBRE
-       Valores: <integer> | auto
-       Default: 0 (la molécula asigna back/mid/front vía clases) */
-    --ltb-z-index: 0;
-
-    /* --ltb-display
-       Qué hace: Tipo de caja que genera el elemento.
-       Dominio: CERRADO
-       Valores: block | inline | inline-block | none
-       Default: block */
-    --ltb-display: block;
-
-    /* --ltb-overflow
-       Qué hace: Qué pasa si el contenido desborda la caja.
-       Dominio: CERRADO
-       Valores: visible | hidden | clip | scroll | auto
-       Default: visible */
-    --ltb-overflow: visible;
-
-    /* --ltb-overflow-x, --ltb-overflow-y
-       Qué hace: Control de desbordamiento por eje.
-       Dominio: CERRADO
-       Valores: visible | hidden | clip | scroll | auto
-       Default: visible */
-    --ltb-overflow-x: visible;
-    --ltb-overflow-y: visible;
-
-    /* =========================================================
-       2. FLUJO Y ROMPIMIENTO DE TEXTO
-       =========================================================
-       Controlan cómo el texto fluye, se corta o se ajusta.
-       ========================================================= */
-
-    /* --ltb-white-space
-       Qué hace: Cómo se manejan los espacios en blanco y saltos.
-       Dominio: CERRADO
-       Valores: normal | nowrap | pre | pre-wrap | pre-line | break-spaces
-       Default: nowrap (una sola línea, ideal para capas decorativas) */
-    --ltb-white-space: nowrap;
-
-    /* --ltb-word-break
-       Qué hace: Dónde se permite romper palabras que no caben.
-       Dominio: CERRADO
-       Valores: normal | break-all | keep-all
-       Default: normal
-       Nota: break-all rompe en cualquier carácter (efecto "mosaico"). */
-    --ltb-word-break: normal;
-
-    /* --ltb-overflow-wrap
-       Qué hace: Si una palabra larga puede romperse al final de línea.
-       Dominio: CERRADO
-       Valores: normal | break-word | anywhere
-       Default: normal */
-    --ltb-overflow-wrap: normal;
-
-    /* --ltb-text-align
-       Qué hace: Alineación horizontal del texto dentro de la caja.
-       Dominio: CERRADO
-       Valores: left | right | center | justify | start | end
-       Default: center */
-    --ltb-text-align: center;
-
-    /* --ltb-text-align-last
-       Qué hace: Alineación de la última línea (útil con justify).
-       Dominio: CERRADO
-       Valores: auto | left | right | center | justify | start | end
-       Default: auto */
-    --ltb-text-align-last: auto;
-
-    /* --ltb-vertical-align
-       Qué hace: Alineación vertical (solo si display es inline-level).
-       Dominio: LIBRE
-       Valores: baseline | sub | super | text-top | text-bottom | middle | top | bottom | <length> | <percentage>
-       Default: baseline */
-    --ltb-vertical-align: baseline;
-
-    /* --ltb-direction
-       Qué hace: Dirección del texto (LTR o RTL).
-       Dominio: CERRADO
-       Valores: ltr | rtl
-       Default: ltr */
-    --ltb-direction: ltr;
-
-    /* --ltb-writing-mode
-       Qué hace: Orientación del texto (horizontal o vertical).
-       Dominio: CERRADO
-       Valores: horizontal-tb | vertical-rl | vertical-lr
-       Default: horizontal-tb */
-    --ltb-writing-mode: horizontal-tb;
-
-    /* --ltb-text-orientation
-       Qué hace: Orientación de los glifos en modo vertical.
-       Dominio: CERRADO
-       Valores: mixed | upright | sideways
-       Default: mixed */
-    --ltb-text-orientation: mixed;
-
-    /* =========================================================
-       3. TIPOGRAFÍA
-       =========================================================
-       Controlan la apariencia de los glifos.
-       ========================================================= */
-
-    /* --ltb-font
-       Qué hace: Familia tipográfica.
-       Dominio: CERRADO (debe apuntar a un token de fuente)
-       Valores: var(--font-5cent) | var(--font-captions) | var(--font-magikMarker) | var(--font-scrawler3rd) | var(--font-seaFont) | var(--font-Writers_Bold) | var(--font-Writers_Condensed) | var(--font-Writers_Original) | var(--font-Writers2) | var(--font-Writers3)
-       Default: var(--font-5cent) */
-    --ltb-font: var(--font-5cent);
-
-    /* --ltb-size
-       Qué hace: Tamaño del texto.
-       Dominio: LIBRE
-       Valores: <length> (recomendado: cqi para escalar con container)
-       Default: 10cqi */
-    --ltb-size: 10cqi;
-
-    /* --ltb-weight
-       Qué hace: Grosor del trazo.
-       Dominio: CERRADO
-       Valores: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-       Default: 400 */
-    --ltb-weight: 400;
-
-    /* --ltb-style
-       Qué hace: Inclinación de la fuente.
-       Dominio: CERRADO
-       Valores: normal | italic | oblique
-       Default: normal */
-    --ltb-style: normal;
-
-    /* --ltb-variant
-       Qué hace: Variantes tipográficas (small-caps, etc.).
-       Dominio: CERRADO
-       Valores: normal | small-caps
-       Default: normal */
-    --ltb-variant: normal;
-
-    /* --ltb-stretch
-       Qué hace: Ancho condensado o expandido de la fuente.
-       Dominio: CERRADO
-       Valores: normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded
-       Default: normal */
-    --ltb-stretch: normal;
-
-    /* --ltb-tracking
-       Qué hace: Espaciado entre letras (letter-spacing).
-       Dominio: LIBRE
-       Valores: <length> (em recomendado)
-       Default: 0em */
-    --ltb-tracking: 0em;
-
-    /* --ltb-leading
-       Qué hace: Altura de línea.
-       Dominio: LIBRE
-       Valores: <number> | <length> | <percentage>
-       Default: 1 */
-    --ltb-leading: 1;
-
-    /* --ltb-transform
-       Qué hace: Transformación de casing del texto.
-       Dominio: CERRADO
-       Valores: none | uppercase | lowercase | capitalize | full-width
-       Default: none */
-    --ltb-transform: none;
-
-    /* --ltb-decoration-line
-       Qué hace: Líneas decorativas sobre el texto.
-       Dominio: CERRADO
-       Valores: none | underline | overline | line-through
-       Default: none */
-    --ltb-decoration-line: none;
-
-    /* --ltb-decoration-style
-       Qué hace: Estilo de la línea decorativa.
-       Dominio: CERRADO
-       Valores: solid | double | dotted | dashed | wavy
-       Default: solid */
-    --ltb-decoration-style: solid;
-
-    /* --ltb-decoration-color
-       Qué hace: Color de la línea decorativa.
-       Dominio: CERRADO (token de color)
-       Valores: var(--token-color-*) | currentColor | transparent
-       Default: currentColor */
-    --ltb-decoration-color: currentColor;
-
-    /* --ltb-decoration-thickness
-       Qué hace: Grosor de la línea decorativa.
-       Dominio: LIBRE
-       Valores: auto | <length>
-       Default: auto */
-    --ltb-decoration-thickness: auto;
-
-    /* --ltb-underline-offset
-       Qué hace: Distancia del subrayado respecto al texto.
-       Dominio: LIBRE
-       Valores: auto | <length>
-       Default: auto */
-    --ltb-underline-offset: auto;
-
-    /* --ltb-feature-settings
-       Qué hace: Características OpenType (ligaduras, numeradores, etc.).
-       Dominio: LIBRE
-       Valores: normal | <string> (ej: "liga" 0, "tnum" 1)
-       Default: normal */
-    --ltb-feature-settings: normal;
-
-    /* =========================================================
-       4. COLOR Y COMPOSICIÓN
-       =========================================================
-       Controlan cómo el texto se ve y se mezcla con capas inferiores.
-       ========================================================= */
-
-    /* --ltb-color
-       Qué hace: Color del texto.
-       Dominio: CERRADO (token semántico)
-       Valores: var(--token-color-*) | var(--token-color-aurora-*)
-       Default: var(--token-color-accent) */
-    --ltb-color: var(--token-color-accent);
-
-    /* --ltb-opacity
-       Qué hace: Transparencia de la capa entera.
-       Dominio: LIBRE
-       Valores: <number> (0 a 1)
-       Default: 1 */
-    --ltb-opacity: 1;
-
-    /* --ltb-blend
-       Qué hace: Modo de mezcla con las capas detrás.
-       Dominio: CERRADO
-       Valores: normal | multiply | screen | overlay | darken | lighten | color-dodge | color-burn | difference | exclusion | hue | saturation | color | luminosity
-       Default: normal */
-    --ltb-blend: normal;
-
-    /* --ltb-isolation
-       Qué hace: Si la capa crea su propio contexto de apilamiento para blend.
-       Dominio: CERRADO
-       Valores: auto | isolate
-       Default: auto */
-    --ltb-isolation: auto;
-
-    /* =========================================================
-       5. TRANSFORMACIÓN
-       =========================================================
-       Controlan la deformación espacial de la capa.
-       El centrado base (translate -50%, -50%) es comportamiento
-       fijo del componente; estos slots añaden transformaciones
-       adicionales sobre ese origen.
-       ========================================================= */
-
-    /* --ltb-rotation
-       Qué hace: Giro alrededor del centro de la capa.
-       Dominio: LIBRE
-       Valores: <angle> (deg, rad, turn)
-       Default: 0deg */
-    --ltb-rotation: 0deg;
-
-    /* --ltb-skew-x
-       Qué hace: Inclinación horizontal (efecto italico mecánico).
-       Dominio: LIBRE
-       Valores: <angle>
-       Default: 0deg */
-    --ltb-skew-x: 0deg;
-
-    /* --ltb-skew-y
-       Qué hace: Inclinación vertical (perspectiva forzada).
-       Dominio: LIBRE
-       Valores: <angle>
-       Default: 0deg */
-    --ltb-skew-y: 0deg;
-
-    /* --ltb-scale-x
-       Qué hace: Escala horizontal.
-       Dominio: LIBRE
-       Valores: <number> (1 = normal, 2 = doble)
-       Default: 1 */
-    --ltb-scale-x: 1;
-
-    /* --ltb-scale-y
-       Qué hace: Escala vertical.
-       Dominio: LIBRE
-       Valores: <number>
-       Default: 1 */
-    --ltb-scale-y: 1;
-
-    /* --ltb-translate-x
-       Qué hace: Desplazamiento horizontal desde el centro.
-       Dominio: LIBRE
-       Valores: <length> | <percentage>
-       Default: 0 */
-    --ltb-translate-x: 0;
-
-    /* --ltb-translate-y
-       Qué hace: Desplazamiento vertical desde el centro.
-       Dominio: LIBRE
-       Valores: <length> | <percentage>
-       Default: 0 */
-    --ltb-translate-y: 0;
-
-    /* --ltb-transform-origin
-       Qué hace: Punto de anclaje para las transformaciones.
-       Dominio: LIBRE
-       Valores: <keyword> (center, top, left, etc.) | <length>
-       Default: center */
-    --ltb-transform-origin: center;
-
-    /* =========================================================
-       6. EFECTOS VISUALES
-       ========================================================= */
-
-    /* --ltb-text-shadow
-       Qué hace: Sombra proyectada del texto.
-       Dominio: LIBRE
-       Valores: none | <offset-x> <offset-y> <blur-radius> <color>
-       Default: none */
-    --ltb-text-shadow: none;
-
-    /* =========================================================
-       7. COMPORTAMIENTO E INTERACCIÓN
-       =========================================================
-       Controlan si el texto es seleccionable, clickeable, etc.
-       ========================================================= */
-
-    /* --ltb-pointer-events
-       Qué hace: Si la capa recibe eventos del ratón.
-       Dominio: CERRADO
-       Valores: none | auto
-       Default: none (las capas decorativas no son interactivas) */
-    --ltb-pointer-events: none;
-
-    /* --ltb-user-select
-       Qué hace: Si el texto puede ser seleccionado.
-       Dominio: CERRADO
-       Valores: none | text | all | auto
-       Default: none */
-    --ltb-user-select: none;
-
-    /* --ltb-cursor
-       Qué hace: Cursor del ratón al pasar sobre la capa.
-       Dominio: CERRADO
-       Valores: none | default | text | pointer
-       Default: none */
-    --ltb-cursor: none;
-
-    /* =========================================================
-       MAPEO A PROPIEDADES CSS
-       =========================================================
-       A continuación, la regla que aplica todos los slots.
-       Ningún valor hardcodeado debajo de esta línea.
-       ========================================================= */
-
-    position:               var(--ltb-position);
-    inset-block-start:      var(--ltb-inset-block-start);
-    inset-inline-start:     var(--ltb-inset-inline-start);
-    inset-block-end:        var(--ltb-inset-block-end);
-    inset-inline-end:       var(--ltb-inset-inline-end);
-    z-index:                var(--ltb-z-index);
-    display:                var(--ltb-display);
-    overflow:               var(--ltb-overflow);
-    overflow-x:             var(--ltb-overflow-x);
-    overflow-y:             var(--ltb-overflow-y);
-
-    white-space:            var(--ltb-white-space);
-    word-break:             var(--ltb-word-break);
-    overflow-wrap:          var(--ltb-overflow-wrap);
-    text-align:             var(--ltb-text-align);
-    text-align-last:        var(--ltb-text-align-last);
-    vertical-align:         var(--ltb-vertical-align);
-    direction:              var(--ltb-direction);
-    writing-mode:           var(--ltb-writing-mode);
-    text-orientation:       var(--ltb-text-orientation);
-
+    /* Tipografía */
     font-family:            var(--ltb-font);
-    font-size:              var(--ltb-size);
-    font-weight:            var(--ltb-weight);
-    font-style:             var(--ltb-style);
-    font-variant:           var(--ltb-variant);
-    font-stretch:           var(--ltb-stretch);
-    letter-spacing:         var(--ltb-tracking);
-    line-height:            var(--ltb-leading);
-    text-transform:         var(--ltb-transform);
-    text-decoration-line:   var(--ltb-decoration-line);
-    text-decoration-style:  var(--ltb-decoration-style);
-    text-decoration-color:  var(--ltb-decoration-color);
-    text-decoration-thickness: var(--ltb-decoration-thickness);
-    text-underline-offset:  var(--ltb-underline-offset);
-    font-feature-settings:  var(--ltb-feature-settings);
+    font-size:              var(--ltb-size, 10cqi);
+    font-weight:            var(--ltb-weight, 400);
+    font-style:             var(--ltb-style, normal);
+    font-variant:           var(--ltb-variant, normal);
+    font-stretch:           var(--ltb-stretch, normal);
+    letter-spacing:         var(--ltb-tracking, 0em);
+    line-height:            var(--ltb-leading, 1);
+    text-transform:         var(--ltb-transform, none);
+    text-decoration-line:   var(--ltb-decoration-line, none);
+    text-decoration-style:  var(--ltb-decoration-style, solid);
+    text-decoration-color:  var(--ltb-decoration-color, currentColor);
+    text-decoration-thickness: var(--ltb-decoration-thickness, auto);
+    text-underline-offset:  var(--ltb-underline-offset, auto);
+    font-feature-settings:  var(--ltb-feature-settings, normal);
 
-    color:                  var(--ltb-color);
-    opacity:                var(--ltb-opacity);
-    mix-blend-mode:         var(--ltb-blend);
-    isolation:              var(--ltb-isolation);
+    /* Color y composición */
+    color:                  var(--ltb-color, var(--token-color-accent));
+    opacity:                var(--ltb-opacity, 1);
+    mix-blend-mode:         var(--ltb-blend, normal);
+    isolation:              var(--ltb-isolation, auto);
 
+    /* Transformación */
     transform:
       translate(-50%, -50%)
-      translate(var(--ltb-translate-x), var(--ltb-translate-y))
-      rotate(var(--ltb-rotation))
-      skew(var(--ltb-skew-x), var(--ltb-skew-y))
-      scale(var(--ltb-scale-x), var(--ltb-scale-y));
-    transform-origin:       var(--ltb-transform-origin);
+      translate(var(--ltb-translate-x, 0), var(--ltb-translate-y, 0))
+      rotate(var(--ltb-rotation, 0deg))
+      skew(var(--ltb-skew-x, 0deg), var(--ltb-skew-y, 0deg))
+      scale(var(--ltb-scale-x, 1), var(--ltb-scale-y, 1));
+    transform-origin:       var(--ltb-transform-origin, center);
 
-    text-shadow:            var(--ltb-text-shadow);
+    /* Efectos */
+    text-shadow:            var(--ltb-text-shadow, none);
 
-    pointer-events:         var(--ltb-pointer-events);
-    user-select:            var(--ltb-user-select);
-    cursor:                 var(--ltb-cursor);
+    /* Comportamiento */
+    pointer-events:         var(--ltb-pointer-events, none);
+    user-select:            var(--ltb-user-select, none);
+    cursor:                 var(--ltb-cursor, none);
   }
 
-  /* ============================================================
-     CONTENEDOR: layered-text-bg
-     ============================================================
-     La molécula que aloja las capas. No expone slots visuales;
-     solo crea el contexto de apilamiento y overflow.
-     ============================================================ */
+  /* Contenedor */
   .layered-text-bg {
     position: relative;
     isolation: isolate;
     overflow: hidden;
   }
 
-  /* ============================================================
-     VARIANTES DE PROFUNDIDAD
-     ============================================================
-     Clases que asignan z-index sin tocar estilo visual.
-     El estilo visual de cada capa se controla 100% desde slots.
-     ============================================================ */
+  /* Profundidad */
   .layered-text-bg__layer--back {
     --ltb-z-index: var(--token-layer-background-deep, -20);
   }

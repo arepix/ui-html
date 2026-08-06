@@ -45,14 +45,14 @@
    THEME: registro de fuentes para Tailwind v4
    ============================================================ */
 @theme {
-  --font-5cent: '5cent', sans-serif;
-  --font-captions: 'captions', sans-serif;
-  --font-magikMarker: 'magikMarker', sans-serif;
-  --font-scrawler3rd: 'scrawler3rd', cursive;
-  --font-seaFont: 'seaFont', sans-serif;
-  --font-Writers_Bold: 'Writers_Bold', sans-serif;
-  --font-Writers_Condensed: 'Writers_Condensed', sans-serif;
-  --font-Writers_Original: 'Writers_Original', sans-serif;
-  --font-Writers2: 'Writers2', sans-serif;
-  --font-Writers3: 'Writers3', sans-serif;
+  --font-5cent: var(--font-family-5cent);
+  --font-captions: var(--font-family-captions);
+  --font-magikMarker: var(--font-family-magikMarker);
+  --font-scrawler3rd: var(--font-family-scrawler3rd), cursive;
+  --font-searFont: var(--font-family-searFont), sans-serif;
+  --font-Writers_Bold: var(--font-family-Writers_Bold), sans-serif;
+  --font-Writers_Condensed: var(--font-family-Writers_Condensed), sans-serif;
+  --font-Writers_Original: var(--font-family-Writers_Original), sans-serif;
+  --font-Writers2: var(--font-family-Writers2), sans-serif;
+  --font-Writers3: var(--font-family-Writers3), sans-serif;
 }
