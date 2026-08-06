@@ -1,0 +1,32 @@
+/* ============================================================
+   TOKENS DE MOTION
+   ============================================================
+   Duraciones y curvas de aceleración. Valores brutos de tiempo.
+   Los componentes los consumen directamente o mediante
+   tokens semánticos de interacción (hover, focus, reveal).
+   Unidades: milisegundos para duración, función cúbica para easing.
+   ============================================================ */
+
+:root {
+  /* ─── Duraciones ────────────────────────────────────────────
+     Escala logarítmica perceptual. Cada paso es ~1.5× el anterior.
+     Micro:  estados instantáneos (toggle, checkbox)
+     Fast:   hover, focus, active
+     Normal: aperturas, cierres, reveals
+     Slow:   transiciones de página, cambios de modo
+  ─────────────────────────────────────────────────────────── */
+  --duration-micro:  60ms;
+  --duration-fast:   150ms;
+  --duration-normal: 250ms;
+  --duration-slow:   400ms;
+
+  /* ─── Easings ───────────────────────────────────────────────
+     Curvas de aceleración con intención semántica implícita.
+     out:    entra rápido, frena suave (reveal, apertura)
+     in:     acelera suave, frena brusco (cierre, salida)
+     standard: equilibrado, el default seguro
+  ─────────────────────────────────────────────────────────── */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:      cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}

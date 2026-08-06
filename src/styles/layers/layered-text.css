@@ -138,6 +138,10 @@
     pointer-events:     none;
     user-select:        none;
     cursor:             var(--ltb-cursor);
+
+    
+    overflow-wrap:       break-word;
+    text-align:           justify;
   }
 
   /* ============================================================

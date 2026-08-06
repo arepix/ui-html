@@ -1,23 +1,56 @@
 @import 'tailwindcss';
 @import './fonts.css';
-/* Tokens y capas base */
-@import './tokens.css';
+
+/* ============================================================
+   TOKENS: fuente de verdad
+   ============================================================ */
+@import './tokens/primitives.css';
+@import './tokens/semantic.css';
+@import './tokens/motion.css';
+
+/* ============================================================
+   BASE: reset y reglas fundamentales
+   ============================================================ */
 @import './base.css';
-@import './layers/layered-text.css';
 
-/* Backgrounds compuestos reutilizables */
-@import './layers/aurora.css';
-@import './layers/grid-overlay.css';
-@import './layers/noise.css';
+/* ============================================================
+   UTILITIES: helpers transversales (máscaras, paths, grids)
+   ============================================================ */
+@import './utilities/masks.css';
+@import './utilities/paths.css';
+@import './utilities/grids.css';
 
-/* fonts */
+/* ============================================================
+   INTERFACES: contratos de slots por componente
+   ============================================================ */
+@import './interfaces/container.css';
+@import './interfaces/position-system.css';
+@import './interfaces/layered-text.css';
+
+/* ============================================================
+   IMPLEMENTATIONS: valores por defecto de los slots
+   ============================================================ */
+@import './implementations/container-defaults.css';
+@import './implementations/position-defaults.css';
+@import './implementations/layered-text-defaults.css';
+
+/* ============================================================
+   SURFACES: backgrounds puros (texturas, no componentes)
+   ============================================================ */
+@import './surfaces/aurora.css';
+@import './surfaces/noise.css';
+@import './surfaces/grid-overlay.css';
+
+/* ============================================================
+   THEME: registro de fuentes para Tailwind v4
+   ============================================================ */
 @theme {
-  --font-f5cent: 'f5cent', sans-serif;
+  --font-5cent: '5cent', sans-serif;
   --font-captions: 'captions', sans-serif;
   --font-magikMarker: 'magikMarker', sans-serif;
   --font-scrawler3rd: 'scrawler3rd', cursive;
   --font-seaFont: 'seaFont', sans-serif;
-  --font-WritersBold: 'Writers_Bold', sans-serif;
+  --font-Writers_Bold: 'Writers_Bold', sans-serif;
   --font-Writers_Condensed: 'Writers_Condensed', sans-serif;
   --font-Writers_Original: 'Writers_Original', sans-serif;
   --font-Writers2: 'Writers2', sans-serif;

@@ -11,89 +11,125 @@
       <h1 class="text-2xl font-bold text-(--color-text)">Layered Text BG</h1>
       <p class="text-sm text-white/60">
         3 capas tipográficas. Cada capa se configura exclusivamente mediante
-        <code class="rounded bg-white/10 px-1 py-0.5 text-xs">style="--slot: valor;"</code>.
-        Edita los slots y guarda para ver cambios en vivo.
+        <code class="rounded bg-white/10 px-1 py-0.5 text-xs">style="--slot: valor;"</code>. Edita
+        los slots y guarda para ver cambios en vivo.
       </p>
     </header>
 
-    <!-- Preview del organismo -->
     <div class="overflow-hidden rounded-xl border border-white/10">
-      <section class="layered-text-bg relative isolate h-[60vh] w-full overflow-hidden md:h-[80vh]">
-
+    <!-- Preview del organismo -->
+    <div class="mx-auto w-full max-w-90 aspect-9/16">
+      <section class="layered-text-bg flex h-full w-full items-center justify-center">
         <!-- Capa 1: Ghost (fondo) -->
         <span
           class="layered-text-bg__layer layered-text-bg__layer--back"
           style="
-            
-            --ltb-size: 18vw;
-            --ltb-color: var(--color-aurora-1);
-            --ltb-opacity: 0.2;
+            --ltb-size: 3cqw;
+            --ltb-color: var(--color-aurora-2);
+            --ltb-opacity: 0.5;
             --ltb-blend: screen;
             --ltb-font: var(--font-f5cent);
             --ltb-tracking: -0.1em;
+            --ltb-whitespace: pre-line;
           "
         >
-          qwerty
-          </span>
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+        </span>
 
         <!-- Capa 2: Mid -->
         <span
           class="layered-text-bg__layer layered-text-bg__layer--mid"
           style="
-            
-            --ltb-size: 4vw;
-            --ltb-color: var(--color-aurora-2);
+            --ltb-rotation: 180deg;
+            --ltb-size: 5cqw;
+            --ltb-color: var(--color-aurora-1);
             --ltb-opacity: 0.7;
-            --ltb-blend: screen;
+            --ltb-blend: overlay;
             --ltb-font: var(--font-captions);
-            --ltb-tracking: -0.02em;
+            --ltb-tracking: -0.04em;
+            --ltb-leading: 0.55em;
+            --ltb-whitespace: pre-line;
+            --ltb-skew-x: 0deg;
+            --ltb-skew-y: 0deg;
           "
         >
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
-          LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
+          qwertyqwertyqwerty
         </span>
 
         <!-- Capa 3: Front -->
         <span
           class="layered-text-bg__layer layered-text-bg__layer--front"
           style="
-            --ltb-size: 10vw;
+            --ltb-size: 5cqw;
             --ltb-color: var(--color-aurora-3);
             --ltb-opacity: 1;
             --ltb-blend: normal;
             --ltb-font: var(--font-magikMarker);
             --ltb-tracking: 0.2em;
+            --ltb-whitespace: normal;
             --ltb-transform: uppercase;
           "
         >
           composition
+          composition
+          composition
         </span>
       </section>
+    </div>
     </div>
 
     <!-- Checklist de slots para iterar -->
     <section class="space-y-4 text-sm text-white/80">
       <h2 class="text-lg font-semibold">Slots disponibles por capa</h2>
       <p class="text-white/50">
-        Los slots marcados con <span class="text-emerald-400">● libre</span> aceptan cualquier valor CSS.
-        Los marcados con <span class="text-amber-400">● cerrado</span> deben apuntar a un token del catálogo.
+        Los slots marcados con <span class="text-emerald-400">● libre</span> aceptan cualquier valor
+        CSS. Los marcados con <span class="text-amber-400">● cerrado</span> deben apuntar a un token
+        del catálogo.
       </p>
 
       <ul class="grid grid-cols-2 gap-2 md:grid-cols-3">
         <li><code class="text-emerald-400">●</code> <code>--ltb-rotation</code> (deg)</li>
         <li><code class="text-emerald-400">●</code> <code>--ltb-skew-x</code> (deg)</li>
         <li><code class="text-emerald-400">●</code> <code>--ltb-skew-y</code> (deg)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-size</code> (vw, rem, px)</li>
+        <li><code class="text-emerald-400">●</code> <code>--ltb-size</code> (cqw, rem, px)</li>
         <li><code class="text-amber-400">●</code> <code>--ltb-color</code> (token de color)</li>
         <li><code class="text-emerald-400">●</code> <code>--ltb-opacity</code> (0–1)</li>
         <li><code class="text-amber-400">●</code> <code>--ltb-blend</code> (blend-mode)</li>
@@ -101,10 +137,16 @@
         <li><code class="text-amber-400">●</code> <code>--ltb-weight</code> (100–900)</li>
         <li><code class="text-emerald-400">●</code> <code>--ltb-tracking</code> (em)</li>
         <li><code class="text-emerald-400">●</code> <code>--ltb-leading</code> (unitless)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-transform</code> (uppercase, etc.)</li>
+        <li>
+          <code class="text-amber-400">●</code> <code>--ltb-transform</code> (uppercase, etc.)
+        </li>
         <li><code class="text-amber-400">●</code> <code>--ltb-style</code> (normal, italic)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-variant</code> (normal, small-caps)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-decoration</code> (none, underline)</li>
+        <li>
+          <code class="text-amber-400">●</code> <code>--ltb-variant</code> (normal, small-caps)
+        </li>
+        <li>
+          <code class="text-amber-400">●</code> <code>--ltb-decoration</code> (none, underline)
+        </li>
         <li><code class="text-amber-400">●</code> <code>--ltb-whitespace</code> (nowrap, pre)</li>
       </ul>
     </section>

@@ -1,0 +1,46 @@
+/* ============================================================
+   TOKENS SEMÁNTICOS
+   ============================================================
+   Mapeo de primitivos a significados de diseño.
+   Los componentes consumen estos tokens, nunca los primitivos.
+   Si cambia la marca, solo se retocan estos mapeos.
+   ============================================================ */
+
+:root {
+  /* ─── Superficies ───────────────────────────────────────────
+     Roles: fondo de página, tarjetas, elevaciones.
+  ─────────────────────────────────────────────────────────── */
+  --token-color-bg:      var(--color-neutral-900);  /* #0b0f17 */
+  --token-color-surface: var(--color-neutral-800);  /* #121826 */
+
+  /* ─── Texto ─────────────────────────────────────────────────
+     Roles: contenido legible, jerarquías de lectura.
+  ─────────────────────────────────────────────────────────── */
+  --token-color-text:    var(--color-neutral-100);  /* #e6e9ef */
+
+  /* ─── Acento ────────────────────────────────────────────────
+     Rol: llamadas de atención, estados activos, énfasis.
+     En este tema, el acento es el púrpura de aurora.
+  ─────────────────────────────────────────────────────────── */
+  --token-color-accent:  var(--color-aurora-1);     /* #7c5cff */
+
+  /* ─── Aurora (roles cromáticos) ─────────────────────────────
+     Estos no son "acentos genéricos", son capas de color
+     con identidad propia. Los componentes de fondo los usan
+     para construir atmósferas, no para UI interactiva.
+  ─────────────────────────────────────────────────────────── */
+  --token-color-aurora-primary:   var(--color-aurora-1); /* #7c5cff */
+  --token-color-aurora-secondary: var(--color-aurora-2); /* #ff5c8a */
+  --token-color-aurora-tertiary:  var(--color-aurora-3); /* #5cf0ff */
+
+  /* ─── Jerarquía Z (roles espaciales) ──────────────────────
+     Los componentes no usan --z-bg-deep directamente.
+     Usan estos roles para declarar su intención de profundidad.
+  ─────────────────────────────────────────────────────────── */
+  --token-layer-background-deep: var(--z-bg-deep);
+  --token-layer-background:      var(--z-bg);
+  --token-layer-content:         var(--z-content);
+  --token-layer-overlay:         var(--z-overlay);
+  --token-layer-modal:           var(--z-modal);
+  --token-layer-toast:           var(--z-toast);
+}
