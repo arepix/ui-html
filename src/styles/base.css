@@ -3,8 +3,8 @@
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--color-bg);
-    color: var(--color-text);
+    background: var(--token-color-bg);
+    color: var(--token-color-text);
     font-family: system-ui, sans-serif;
     line-height: 1.5;
   }

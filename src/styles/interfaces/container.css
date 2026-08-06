@@ -1,0 +1,835 @@
+@layer components {
+  /* ============================================================
+     COMPONENTE: design-container
+     ============================================================
+     Marco, lienzo o celda que aloja componentes y establece
+     contexto de container query. Es el "viewport local" de
+     cualquier composición.
+     ============================================================ */
+
+  .design-container {
+    /* =========================================================
+       1. CONTAINER QUERY CONTEXT
+       ========================================================= */
+
+    /* --container-type
+       Qué hace: Declara este elemento como contexto de container query.
+       Dominio: CERRADO
+       Valores: inline-size | size | normal
+       Default: inline-size */
+    --container-type: inline-size;
+
+    /* --container-name
+       Qué hace: Nombre para container queries con @container (nombre).
+       Dominio: LIBRE
+       Valores: <custom-ident> | none
+       Default: none */
+    --container-name: none;
+
+    /* =========================================================
+       2. BOX MODEL & SIZING
+       ========================================================= */
+
+    /* --container-box-sizing
+       Qué hace: Si width/height incluyen padding y border.
+       Dominio: CERRADO
+       Valores: content-box | border-box
+       Default: border-box */
+    --container-box-sizing: border-box;
+
+    /* --container-inline-size
+       Qué hace: Ancho del container (eje de escritura).
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --container-inline-size: auto;
+
+    /* --container-block-size
+       Qué hace: Alto del container (eje de bloque).
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --container-block-size: auto;
+
+    /* --container-min-inline-size
+       Qué hace: Ancho mínimo.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 0 */
+    --container-min-inline-size: 0;
+
+    /* --container-min-block-size
+       Qué hace: Alto mínimo.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 0 */
+    --container-min-block-size: 0;
+
+    /* --container-max-inline-size
+       Qué hace: Ancho máximo.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | none
+       Default: none */
+    --container-max-inline-size: none;
+
+    /* --container-max-block-size
+       Qué hace: Alto máximo.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | none
+       Default: none */
+    --container-max-block-size: none;
+
+    /* --container-ratio
+       Qué hace: Relación de aspecto forzada (celular 9/16, cuadrado 1, etc.).
+       Dominio: LIBRE
+       Valores: auto | <ratio> (ej: 9/16, 1, 4/3)
+       Default: auto */
+    --container-ratio: auto;
+
+    /* =========================================================
+       3. SPACING
+       ========================================================= */
+
+    /* --container-margin-block-start
+       Qué hace: Margen superior (en modo de escritura horizontal).
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 0 */
+    --container-margin-block-start: 0;
+
+    /* --container-margin-block-end
+       Qué hace: Margen inferior.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 0 */
+    --container-margin-block-end: 0;
+
+    /* --container-margin-inline-start
+       Qué hace: Margen izquierdo (LTR).
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 0 */
+    --container-margin-inline-start: 0;
+
+    /* --container-margin-inline-end
+       Qué hace: Margen derecho (LTR).
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 0 */
+    --container-margin-inline-end: 0;
+
+    /* --container-padding-block-start
+       Qué hace: Relleno superior interno.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --container-padding-block-start: 0;
+
+    /* --container-padding-block-end
+       Qué hace: Relleno inferior interno.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --container-padding-block-end: 0;
+
+    /* --container-padding-inline-start
+       Qué hace: Relleno izquierdo interno (LTR).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --container-padding-inline-start: 0;
+
+    /* --container-padding-inline-end
+       Qué hace: Relleno derecho interno (LTR).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --container-padding-inline-end: 0;
+
+    /* =========================================================
+       4. BORDES
+       ========================================================= */
+
+    /* --container-border-width
+       Qué hace: Grosor del borde.
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --container-border-width: 0;
+
+    /* --container-border-style
+       Qué hace: Estilo del borde.
+       Dominio: CERRADO
+       Valores: none | solid | dashed | dotted | double | groove | ridge | inset | outset
+       Default: solid */
+    --container-border-style: solid;
+
+    /* --container-border-color
+       Qué hace: Color del borde.
+       Dominio: CERRADO (token de color)
+       Valores: var(--token-color-*) | transparent | currentColor
+       Default: transparent */
+    --container-border-color: transparent;
+
+    /* --container-radius
+       Qué hace: Redondeo de esquinas (shorthand).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --container-radius: 0;
+
+    /* --container-radius-block-start-inline-start
+       Qué hace: Esquina superior-izquierda (LTR, horizontal-tb).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: var(--container-radius) */
+    --container-radius-block-start-inline-start: var(--container-radius);
+
+    /* --container-radius-block-start-inline-end
+       Qué hace: Esquina superior-derecha.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: var(--container-radius) */
+    --container-radius-block-start-inline-end: var(--container-radius);
+
+    /* --container-radius-block-end-inline-start
+       Qué hace: Esquina inferior-izquierda.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: var(--container-radius) */
+    --container-radius-block-end-inline-start: var(--container-radius);
+
+    /* --container-radius-block-end-inline-end
+       Qué hace: Esquina inferior-derecha.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: var(--container-radius) */
+    --container-radius-block-end-inline-end: var(--container-radius);
+
+    /* --container-outline-width
+       Qué hace: Grosor del outline (no ocupa espacio en layout).
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --container-outline-width: 0;
+
+    /* --container-outline-style
+       Qué hace: Estilo del outline.
+       Dominio: CERRADO
+       Valores: none | solid | dashed | dotted | double | groove | ridge
+       Default: none */
+    --container-outline-style: none;
+
+    /* --container-outline-color
+       Qué hace: Color del outline.
+       Dominio: CERRADO (token de color)
+       Valores: var(--token-color-*) | invert | currentColor
+       Default: currentColor */
+    --container-outline-color: currentColor;
+
+    /* --container-outline-offset
+       Qué hace: Distancia del outline respecto al borde.
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --container-outline-offset: 0;
+
+    /* =========================================================
+       5. BACKGROUND & FILL
+       ========================================================= */
+
+    /* --container-background-color
+       Qué hace: Color de fondo sólido.
+       Dominio: CERRADO (token de color)
+       Valores: var(--token-color-*) | transparent
+       Default: transparent */
+    --container-background-color: transparent;
+
+    /* --container-background-image
+       Qué hace: Imagen o gradiente de fondo.
+       Dominio: LIBRE
+       Valores: none | <image> | <gradient>
+       Default: none */
+    --container-background-image: none;
+
+    /* --container-background-size
+       Qué hace: Tamaño de la imagen de fondo.
+       Dominio: LIBRE
+       Valores: auto | cover | contain | <length> | <percentage>
+       Default: auto */
+    --container-background-size: auto;
+
+    /* --container-background-position-x
+       Qué hace: Posición horizontal del fondo.
+       Dominio: LIBRE
+       Valores: left | center | right | <length> | <percentage>
+       Default: center */
+    --container-background-position-x: center;
+
+    /* --container-background-position-y
+       Qué hace: Posición vertical del fondo.
+       Dominio: LIBRE
+       Valores: top | center | bottom | <length> | <percentage>
+       Default: center */
+    --container-background-position-y: center;
+
+    /* --container-background-repeat
+       Qué hace: Si el fondo se repite.
+       Dominio: CERRADO
+       Valores: repeat | no-repeat | repeat-x | repeat-y | space | round
+       Default: no-repeat */
+    --container-background-repeat: no-repeat;
+
+    /* --container-background-clip
+       Qué hace: Hasta dónde se extiende el fondo.
+       Dominio: CERRADO
+       Valores: border-box | padding-box | content-box
+       Default: border-box */
+    --container-background-clip: border-box;
+
+    /* --container-background-attachment
+       Qué hace: Si el fondo se desplaza con el scroll.
+       Dominio: CERRADO
+       Valores: scroll | fixed | local
+       Default: scroll */
+    --container-background-attachment: scroll;
+
+    /* =========================================================
+       6. LAYOUT & POSITIONING
+       ========================================================= */
+
+    /* --container-display
+       Qué hace: Tipo de caja y contexto de formato.
+       Dominio: CERRADO
+       Valores: block | inline | inline-block | flex | grid | none | contents
+       Default: block */
+    --container-display: block;
+
+    /* --container-position
+       Qué hace: Esquema de posicionamiento.
+       Dominio: CERRADO
+       Valores: static | relative | absolute | fixed | sticky
+       Default: relative */
+    --container-position: relative;
+
+    /* --container-inset-block-start
+       Qué hace: Desplazamiento desde el borde superior (si position ≠ static).
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --container-inset-block-start: auto;
+
+    /* --container-inset-block-end
+       Qué hace: Desplazamiento desde el borde inferior.
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --container-inset-block-end: auto;
+
+    /* --container-inset-inline-start
+       Qué hace: Desplazamiento desde el borde izquierdo (LTR).
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --container-inset-inline-start: auto;
+
+    /* --container-inset-inline-end
+       Qué hace: Desplazamiento desde el borde derecho (LTR).
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --container-inset-inline-end: auto;
+
+    /* --container-z-index
+       Qué hace: Profundidad en el contexto de apilamiento.
+       Dominio: LIBRE
+       Valores: auto | <integer>
+       Default: auto */
+    --container-z-index: auto;
+
+    /* --container-isolation
+       Qué hace: Crea contexto de apilamiento limpio para blend modes.
+       Dominio: CERRADO
+       Valores: auto | isolate
+       Default: isolate */
+    --container-isolation: isolate;
+
+    /* =========================================================
+       7. OVERFLOW & SCROLL
+       ========================================================= */
+
+    /* --container-overflow
+       Qué hace: Qué pasa si el contenido desborda.
+       Dominio: CERRADO
+       Valores: visible | hidden | clip | scroll | auto
+       Default: visible */
+    --container-overflow: visible;
+
+    /* --container-overflow-x
+       Qué hace: Desbordamiento horizontal específico.
+       Dominio: CERRADO
+       Valores: visible | hidden | clip | scroll | auto
+       Default: visible */
+    --container-overflow-x: visible;
+
+    /* --container-overflow-y
+       Qué hace: Desbordamiento vertical específico.
+       Dominio: CERRADO
+       Valores: visible | hidden | clip | scroll | auto
+       Default: visible */
+    --container-overflow-y: visible;
+
+    /* --container-scroll-behavior
+       Qué hace: Tipo de scroll (suave o instantáneo).
+       Dominio: CERRADO
+       Valores: auto | smooth
+       Default: auto */
+    --container-scroll-behavior: auto;
+
+    /* --container-scrollbar-width
+       Qué hace: Grosor de la barra de scroll (Firefox).
+       Dominio: CERRADO
+       Valores: auto | thin | none
+       Default: auto */
+    --container-scrollbar-width: auto;
+
+    /* --container-scrollbar-color
+       Qué hace: Colores del thumb y track del scroll (Firefox).
+       Dominio: CERRADO (tokens)
+       Valores: auto | <color> <color>
+       Default: auto */
+    --container-scrollbar-color: auto;
+
+    /* =========================================================
+       8. FLEX LAYOUT
+       =========================================================
+       Solo aplican si --container-display: flex
+       ========================================================= */
+
+    /* --container-flex-direction
+       Qué hace: Dirección del eje principal.
+       Dominio: CERRADO
+       Valores: row | row-reverse | column | column-reverse
+       Default: row */
+    --container-flex-direction: row;
+
+    /* --container-flex-wrap
+       Qué hace: Si los items saltan de línea.
+       Dominio: CERRADO
+       Valores: nowrap | wrap | wrap-reverse
+       Default: nowrap */
+    --container-flex-wrap: nowrap;
+
+    /* --container-justify-content
+       Qué hace: Alineación en el eje principal.
+       Dominio: CERRADO
+       Valores: normal | flex-start | flex-end | center | space-between | space-around | space-evenly | stretch
+       Default: normal */
+    --container-justify-content: normal;
+
+    /* --container-align-items
+       Qué hace: Alineación en el eje transversal (por item).
+       Dominio: CERRADO
+       Valores: normal | stretch | flex-start | flex-end | center | baseline | first baseline | last baseline
+       Default: normal */
+    --container-align-items: normal;
+
+    /* --container-align-content
+       Qué hace: Alineación de líneas cuando hay espacio extra.
+       Dominio: CERRADO
+       Valores: normal | flex-start | flex-end | center | space-between | space-around | space-evenly | stretch
+       Default: normal */
+    --container-align-content: normal;
+
+    /* --container-gap
+       Qué hace: Espacio entre items (flex y grid).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --container-gap: 0;
+
+    /* --container-gap-row
+       Qué hace: Espacio entre filas (override de gap).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: var(--container-gap) */
+    --container-gap-row: var(--container-gap);
+
+    /* --container-gap-column
+       Qué hace: Espacio entre columnas (override de gap).
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: var(--container-gap) */
+    --container-gap-column: var(--container-gap);
+
+    /* =========================================================
+       9. GRID LAYOUT
+       =========================================================
+       Solo aplican si --container-display: grid
+       ========================================================= */
+
+    /* --container-grid-template-columns
+       Qué hace: Definición de columnas.
+       Dominio: LIBRE
+       Valores: none | <track-list> (ej: repeat(3, 1fr))
+       Default: none */
+    --container-grid-template-columns: none;
+
+    /* --container-grid-template-rows
+       Qué hace: Definición de filas.
+       Dominio: LIBRE
+       Valores: none | <track-list>
+       Default: none */
+    --container-grid-template-rows: none;
+
+    /* --container-grid-auto-flow
+       Qué hace: Dirección del auto-colocamiento.
+       Dominio: CERRADO
+       Valores: row | column | row dense | column dense
+       Default: row */
+    --container-grid-auto-flow: row;
+
+    /* --container-grid-auto-columns
+       Qué hace: Tamaño de columnas implícitas.
+       Dominio: LIBRE
+       Valores: auto | <track-size>
+       Default: auto */
+    --container-grid-auto-columns: auto;
+
+    /* --container-grid-auto-rows
+       Qué hace: Tamaño de filas implícitas.
+       Dominio: LIBRE
+       Valores: auto | <track-size>
+       Default: auto */
+    --container-grid-auto-rows: auto;
+
+    /* --container-grid-justify-items
+       Qué hace: Alineación horizontal de items en su celda.
+       Dominio: CERRADO
+       Valores: normal | stretch | flex-start | flex-end | center | baseline | first baseline | last baseline
+       Default: normal */
+    --container-grid-justify-items: normal;
+
+    /* --container-grid-align-items
+       Qué hace: Alineación vertical de items en su celda.
+       Dominio: CERRADO
+       Valores: normal | stretch | flex-start | flex-end | center | baseline | first baseline | last baseline
+       Default: normal */
+    --container-grid-align-items: normal;
+
+    /* =========================================================
+       10. MASK SYSTEM (máscara de recorte)
+       =========================================================
+       Para limpiar el centro del container (vignette radial)
+       o crear áreas de transparencia controladas.
+       ========================================================= */
+
+    /* --container-mask-type
+       Qué hace: Tipo semántico de máscara (documentación).
+       El valor real se construye en --container-mask-image.
+       Dominio: CERRADO
+       Valores: none | radial | linear
+       Default: none */
+    --container-mask-type: none;
+
+    /* --container-mask-clear
+       Qué hace: Dónde empieza a ser transparente la máscara.
+       Usado para construir gradientes radiales.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 30% */
+    --container-mask-clear: 30%;
+
+    /* --container-mask-fade
+       Qué hace: Dónde termina la transición y es totalmente opaco.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 70% */
+    --container-mask-fade: 70%;
+
+    /* --container-mask-shape
+       Qué hace: Forma geométrica de la máscara radial.
+       Dominio: CERRADO
+       Valores: circle | ellipse
+       Default: ellipse */
+    --container-mask-shape: ellipse;
+
+    /* --container-mask-position-x
+       Qué hace: Centro horizontal de la máscara.
+       Dominio: LIBRE
+       Valores: left | center | right | <length> | <percentage>
+       Default: 50% */
+    --container-mask-position-x: 50%;
+
+    /* --container-mask-position-y
+       Qué hace: Centro vertical de la máscara.
+       Dominio: LIBRE
+       Valores: top | center | bottom | <length> | <percentage>
+       Default: 50% */
+    --container-mask-position-y: 50%;
+
+    /* --container-mask-size-x
+       Qué hace: Ancho de la máscara.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 60% */
+    --container-mask-size-x: 60%;
+
+    /* --container-mask-size-y
+       Qué hace: Alto de la máscara.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 60% */
+    --container-mask-size-y: 60%;
+
+    /* --container-mask-image
+       Qué hace: Imagen o gradiente de máscara final.
+       Se construye con los slots semánticos o se sobreescribe.
+       Dominio: LIBRE
+       Valores: none | <image> | <gradient>
+       Default: none
+       Ejemplo de construcción:
+       radial-gradient(
+         var(--container-mask-shape)
+         at var(--container-mask-position-x) var(--container-mask-position-y),
+         transparent var(--container-mask-clear),
+         black var(--container-mask-fade)
+       )
+    */
+    --container-mask-image: none;
+
+    /* --container-mask-repeat
+       Qué hace: Si la máscara se repite.
+       Dominio: CERRADO
+       Valores: repeat | no-repeat | space | round
+       Default: no-repeat */
+    --container-mask-repeat: no-repeat;
+
+    /* --container-mask-mode
+       Qué hace: Modo de composición de la máscara (alpha, luminance).
+       Dominio: CERRADO
+       Valores: match-source | alpha | luminance
+       Default: match-source */
+    --container-mask-mode: match-source;
+
+    /* =========================================================
+       11. VISUAL EFFECTS
+       ========================================================= */
+
+    /* --container-box-shadow
+       Qué hace: Sombra proyectada del container.
+       Dominio: LIBRE
+       Valores: none | <shadow-list>
+       Default: none */
+    --container-box-shadow: none;
+
+    /* --container-backdrop-filter
+       Qué hace: Filtro aplicado al fondo visible detrás del container.
+       Dominio: LIBRE
+       Valores: none | <filter-function-list> (blur, brightness, contrast, etc.)
+       Default: none */
+    --container-backdrop-filter: none;
+
+    /* --container-opacity
+       Qué hace: Transparencia del container entero.
+       Dominio: LIBRE
+       Valores: <number> (0 a 1)
+       Default: 1 */
+    --container-opacity: 1;
+
+    /* --container-transform
+       Qué hace: Transformación espacial del container.
+       Dominio: LIBRE
+       Valores: none | <transform-list>
+       Default: none */
+    --container-transform: none;
+
+    /* --container-transform-origin
+       Qué hace: Punto de anclaje para transformaciones.
+       Dominio: LIBRE
+       Valores: <position> (center, top left, 50% 50%, etc.)
+       Default: center */
+    --container-transform-origin: center;
+
+    /* --container-filter
+       Qué hace: Filtros visuales aplicados al container.
+       Dominio: LIBRE
+       Valores: none | <filter-function-list> (blur, brightness, contrast, grayscale, hue-rotate, invert, saturate, sepia)
+       Default: none */
+    --container-filter: none;
+
+    /* --container-clip-path
+       Qué hace: Recorte geométrico del container (alternativa a mask).
+       Dominio: LIBRE
+       Valores: none | <clip-path>
+       Default: none */
+    --container-clip-path: none;
+
+    /* =========================================================
+       12. 3D CONTEXT
+       ========================================================= */
+
+    /* --container-perspective
+       Qué hace: Distancia de perspectiva para hijos 3D.
+       Dominio: LIBRE
+       Valores: none | <length>
+       Default: none */
+    --container-perspective: none;
+
+    /* --container-perspective-origin
+       Qué hace: Origen de la perspectiva 3D.
+       Dominio: LIBRE
+       Valores: <position>
+       Default: center */
+    --container-perspective-origin: center;
+
+    /* --container-transform-style
+       Qué hace: Si los hijos preservan su contexto 3D.
+       Dominio: CERRADO
+       Valores: flat | preserve-3d
+       Default: flat */
+    --container-transform-style: flat;
+
+    /* =========================================================
+       13. INTERACTION
+       ========================================================= */
+
+    /* --container-pointer-events
+       Qué hace: Si el container recibe eventos del ratón.
+       Dominio: CERRADO
+       Valores: auto | none
+       Default: auto */
+    --container-pointer-events: auto;
+
+    /* --container-user-select
+       Qué hace: Si el contenido puede ser seleccionado.
+       Dominio: CERRADO
+       Valores: auto | none | text | all
+       Default: auto */
+    --container-user-select: auto;
+
+    /* --container-cursor
+       Qué hace: Cursor del ratón al pasar sobre el container.
+       Dominio: CERRADO
+       Valores: auto | default | pointer | text | grab | grabbing | move | not-allowed | wait | crosshair | help | zoom-in | zoom-out
+       Default: auto */
+    --container-cursor: auto;
+
+    /* --container-touch-action
+       Qué hace: Cómo el navegador maneja gestos táctiles.
+       Dominio: CERRADO
+       Valores: auto | none | pan-x | pan-y | pan-left | pan-right | pan-up | pan-down | pinch-zoom | manipulation
+       Default: auto */
+    --container-touch-action: auto;
+
+    /* --container-resize
+       Qué hace: Si el container es redimensionable por el usuario.
+       Dominio: CERRADO
+       Valores: none | both | horizontal | vertical | block | inline
+       Default: none */
+    --container-resize: none;
+
+    /* =========================================================
+       MAPEO A PROPIEDADES CSS
+       =========================================================
+       Ningún valor hardcodeado debajo de esta línea.
+       ========================================================= */
+
+    container-type: var(--container-type);
+    container-name: var(--container-name);
+
+    box-sizing: var(--container-box-sizing);
+    inline-size: var(--container-inline-size);
+    block-size: var(--container-block-size);
+    min-inline-size: var(--container-min-inline-size);
+    min-block-size: var(--container-min-block-size);
+    max-inline-size: var(--container-max-inline-size);
+    max-block-size: var(--container-max-block-size);
+    aspect-ratio: var(--container-ratio);
+
+    margin-block-start: var(--container-margin-block-start);
+    margin-block-end: var(--container-margin-block-end);
+    margin-inline-start: var(--container-margin-inline-start);
+    margin-inline-end: var(--container-margin-inline-end);
+    padding-block-start: var(--container-padding-block-start);
+    padding-block-end: var(--container-padding-block-end);
+    padding-inline-start: var(--container-padding-inline-start);
+    padding-inline-end: var(--container-padding-inline-end);
+
+    border-width: var(--container-border-width);
+    border-style: var(--container-border-style);
+    border-color: var(--container-border-color);
+    border-start-start-radius: var(--container-radius-block-start-inline-start);
+    border-start-end-radius: var(--container-radius-block-start-inline-end);
+    border-end-start-radius: var(--container-radius-block-end-inline-start);
+    border-end-end-radius: var(--container-radius-block-end-inline-end);
+
+    outline-width: var(--container-outline-width);
+    outline-style: var(--container-outline-style);
+    outline-color: var(--container-outline-color);
+    outline-offset: var(--container-outline-offset);
+
+    background-color: var(--container-background-color);
+    background-image: var(--container-background-image);
+    background-size: var(--container-background-size);
+    background-position: var(--container-background-position-x) var(--container-background-position-y);
+    background-repeat: var(--container-background-repeat);
+    background-clip: var(--container-background-clip);
+    background-attachment: var(--container-background-attachment);
+
+    display: var(--container-display);
+    position: var(--container-position);
+    inset-block-start: var(--container-inset-block-start);
+    inset-block-end: var(--container-inset-block-end);
+    inset-inline-start: var(--container-inset-inline-start);
+    inset-inline-end: var(--container-inset-inline-end);
+    z-index: var(--container-z-index);
+    isolation: var(--container-isolation);
+
+    overflow: var(--container-overflow);
+    overflow-x: var(--container-overflow-x);
+    overflow-y: var(--container-overflow-y);
+    scroll-behavior: var(--container-scroll-behavior);
+    scrollbar-width: var(--container-scrollbar-width);
+    scrollbar-color: var(--container-scrollbar-color);
+
+    flex-direction: var(--container-flex-direction);
+    flex-wrap: var(--container-flex-wrap);
+    justify-content: var(--container-justify-content);
+    align-items: var(--container-align-items);
+    align-content: var(--container-align-content);
+    gap: var(--container-gap-row) var(--container-gap-column);
+
+    grid-template-columns: var(--container-grid-template-columns);
+    grid-template-rows: var(--container-grid-template-rows);
+    grid-auto-flow: var(--container-grid-auto-flow);
+    grid-auto-columns: var(--container-grid-auto-columns);
+    grid-auto-rows: var(--container-grid-auto-rows);
+    justify-items: var(--container-grid-justify-items);
+    align-items: var(--container-grid-align-items);
+
+    mask-image: var(--container-mask-image);
+    mask-position: var(--container-mask-position-x) var(--container-mask-position-y);
+    mask-size: var(--container-mask-size-x) var(--container-mask-size-y);
+    mask-repeat: var(--container-mask-repeat);
+    mask-mode: var(--container-mask-mode);
+
+    box-shadow: var(--container-box-shadow);
+    backdrop-filter: var(--container-backdrop-filter);
+    opacity: var(--container-opacity);
+    transform: var(--container-transform);
+    transform-origin: var(--container-transform-origin);
+    filter: var(--container-filter);
+    clip-path: var(--container-clip-path);
+
+    perspective: var(--container-perspective);
+    perspective-origin: var(--container-perspective-origin);
+    transform-style: var(--container-transform-style);
+
+    pointer-events: var(--container-pointer-events);
+    user-select: var(--container-user-select);
+    cursor: var(--container-cursor);
+    touch-action: var(--container-touch-action);
+    resize: var(--container-resize);
+  }
+}

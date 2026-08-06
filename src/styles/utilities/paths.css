@@ -1,0 +1,54 @@
+@layer utilities {
+  /* ============================================================
+     UTILIDADES DE PATH / CURVAS
+     ============================================================
+     Definiciones de clip-path con curvas para recortes
+     decorativos. Los paths para <textPath> en SVG se definen
+     inline en el markup; estos son recortes geométricos.
+     ============================================================ */
+
+  /* ─── Arco superior: sonrisa invertida ───────────────────── */
+  .clip-arc-up {
+    clip-path: path("M 0 100 Q 50 0 100 100 L 100 100 L 0 100 Z");
+  }
+
+  /* ─── Arco inferior: sonrisa ──────────────────────────────── */
+  .clip-arc-down {
+    clip-path: path("M 0 0 Q 50 100 100 0 L 100 0 L 0 0 Z");
+  }
+
+  /* ─── Onda suave horizontal ──────────────────────────────── */
+  .clip-wave-gentle {
+    clip-path: path("M 0 20 Q 25 0 50 20 T 100 20 L 100 100 L 0 100 Z");
+  }
+
+  /* ─── Onda pronunciada ───────────────────────────────────── */
+  .clip-wave-steep {
+    clip-path: path("M 0 40 Q 25 -10 50 40 T 100 40 L 100 100 L 0 100 Z");
+  }
+
+  /* ─── Círculo perfecto (recorte circular) ───────────────── */
+  .clip-circle {
+    clip-path: circle(50% at 50% 50%);
+  }
+
+  /* ─── Elipse ────────────────────────────────────────────── */
+  .clip-ellipse {
+    clip-path: ellipse(50% 40% at 50% 50%);
+  }
+
+  /* ─── Diamante / rombo ──────────────────────────────────── */
+  .clip-diamond {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  /* ─── Hexágono ─────────────────────────────────────────── */
+  .clip-hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+
+  /* ─── Sin recorte ────────────────────────────────────────── */
+  .clip-none {
+    clip-path: none;
+  }
+}

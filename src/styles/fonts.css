@@ -1,7 +1,7 @@
 /* ===== Familia: 5cent ===== */
 @font-face {
-  font-family: 'f5cent';
-  src: url('/fonts/5cent/5cent.otf') format('opentype');
+  font-family: '5cent';  /* ← antes decía 'f5cent' */
+  src: url('/fonts/5cent/5cent.otf');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 /* ===== Familia: captions ===== */
 @font-face {
   font-family: 'captions';
-  src: url('/fonts/Captions/Captions.otf') format('opentype');
+  src: url('/fonts/Captions/Captions.otf');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -78,5 +78,3 @@
   font-style: normal;
   font-display: swap;
 }
-/* ===== Repite el mismo bloque para "Editorial" y "Mono" ===== */
-/* (mismo patrón: un @font-face por archivo, mismo font-family) */

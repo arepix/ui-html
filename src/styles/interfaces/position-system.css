@@ -1,0 +1,328 @@
+@layer components {
+  /* ============================================================
+     SISTEMA DE POSICIONAMIENTO RELATIVO
+     ============================================================
+     Transversal. Cualquier componente (átomo, molécula, organismo)
+     puede consumir estos slots para declarar dónde vive dentro de
+     su ancestro posicionado.
+     
+     Unidades recomendadas:
+     • cqi / cqb para coordenadas dentro de un container query
+     • % para proporciones del padre
+     • px solo para offsets microscópicos (evitar)
+     ============================================================ */
+
+  .pos-relative {
+    /* =========================================================
+       1. ESQUEMA DE POSICIONAMIENTO
+       ========================================================= */
+
+    /* --pos-type
+       Qué hace: Qué esquema de posicionamiento usa el elemento.
+       Dominio: CERRADO
+       Valores: static | relative | absolute | fixed | sticky
+       Default: absolute */
+    --pos-type: absolute;
+
+    /* --pos-x
+       Qué hace: Coordenada horizontal del punto de referencia.
+       En modo LTR: desplazamiento desde la izquierda.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 50% */
+    --pos-x: 50%;
+
+    /* --pos-y
+       Qué hace: Coordenada vertical del punto de referencia.
+       Desplazamiento desde la parte superior.
+       Dominio: LIBRE
+       Valores: <length> | <percentage> | auto
+       Default: 50% */
+    --pos-y: 50%;
+
+    /* --pos-z
+       Qué hace: Profundidad en el eje Z (3D).
+       Requiere que el padre tenga perspective.
+       Dominio: LIBRE
+       Valores: <length> (px, cqi, etc.)
+       Default: 0 */
+    --pos-z: 0;
+
+    /* --pos-z-index
+       Qué hace: Orden de apilamiento en el contexto 2D.
+       Dominio: LIBRE
+       Valores: auto | <integer>
+       Default: auto */
+    --pos-z-index: auto;
+
+    /* =========================================================
+       2. PIVOTE DE ORIGEN (transform-origin)
+       =========================================================
+       Define desde qué punto del elemento se miden las
+       coordenadas y se aplican transformaciones.
+       ========================================================= */
+
+    /* --pos-origin-x
+       Qué hace: Punto horizontal del elemento que se coloca en --pos-x.
+       Dominio: LIBRE
+       Valores: left | center | right | <length> | <percentage>
+       Default: center */
+    --pos-origin-x: center;
+
+    /* --pos-origin-y
+       Qué hace: Punto vertical del elemento que se coloca en --pos-y.
+       Dominio: LIBRE
+       Valores: top | center | bottom | <length> | <percentage>
+       Default: center */
+    --pos-origin-y: center;
+
+    /* --pos-origin-z
+       Qué hace: Punto de profundidad para transformaciones 3D.
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --pos-origin-z: 0;
+
+    /* =========================================================
+       3. INSETS LÓGICOS (alternativa a --pos-x / --pos-y)
+       =========================================================
+       Útil cuando el modo de escritura no es horizontal-tb LTR.
+       Si se especifican, anulan o complementan --pos-x/y.
+       ========================================================= */
+
+    /* --pos-inset-block-start
+       Qué hace: Desplazamiento desde el borde de inicio de bloque.
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --pos-inset-block-start: auto;
+
+    /* --pos-inset-block-end
+       Qué hace: Desplazamiento desde el borde final de bloque.
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --pos-inset-block-end: auto;
+
+    /* --pos-inset-inline-start
+       Qué hace: Desplazamiento desde el borde de inicio inline.
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --pos-inset-inline-start: auto;
+
+    /* --pos-inset-inline-end
+       Qué hace: Desplazamiento desde el borde final inline.
+       Dominio: LIBRE
+       Valores: auto | <length> | <percentage>
+       Default: auto */
+    --pos-inset-inline-end: auto;
+
+    /* =========================================================
+       4. TRANSFORMACIONES ADICIONALES
+       =========================================================
+       Aplicadas sobre la posición base. Permiten micro-ajustes
+       sin modificar --pos-x / --pos-y.
+       ========================================================= */
+
+    /* --pos-translate-x
+       Qué hace: Desplazamiento fino horizontal desde la posición base.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --pos-translate-x: 0;
+
+    /* --pos-translate-y
+       Qué hace: Desplazamiento fino vertical desde la posición base.
+       Dominio: LIBRE
+       Valores: <length> | <percentage>
+       Default: 0 */
+    --pos-translate-y: 0;
+
+    /* --pos-translate-z
+       Qué hace: Desplazamiento fino en profundidad.
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --pos-translate-z: 0;
+
+    /* --pos-rotate
+       Qué hace: Rotación en el plano 2D.
+       Dominio: LIBRE
+       Valores: <angle> (deg, rad, turn)
+       Default: 0deg */
+    --pos-rotate: 0deg;
+
+    /* --pos-rotate-x
+       Qué hace: Rotación en el eje X (3D).
+       Dominio: LIBRE
+       Valores: <angle>
+       Default: 0deg */
+    --pos-rotate-x: 0deg;
+
+    /* --pos-rotate-y
+       Qué hace: Rotación en el eje Y (3D).
+       Dominio: LIBRE
+       Valores: <angle>
+       Default: 0deg */
+    --pos-rotate-y: 0deg;
+
+    /* --pos-scale-x
+       Qué hace: Escala horizontal.
+       Dominio: LIBRE
+       Valores: <number> (1 = normal)
+       Default: 1 */
+    --pos-scale-x: 1;
+
+    /* --pos-scale-y
+       Qué hace: Escala vertical.
+       Dominio: LIBRE
+       Valores: <number>
+       Default: 1 */
+    --pos-scale-y: 1;
+
+    /* --pos-scale-z
+       Qué hace: Escala en profundidad (3D).
+       Dominio: LIBRE
+       Valores: <number>
+       Default: 1 */
+    --pos-scale-z: 1;
+
+    /* --pos-skew-x
+       Qué hace: Inclinación horizontal.
+       Dominio: LIBRE
+       Valores: <angle>
+       Default: 0deg */
+    --pos-skew-x: 0deg;
+
+    /* --pos-skew-y
+       Qué hace: Inclinación vertical.
+       Dominio: LIBRE
+       Valores: <angle>
+       Default: 0deg */
+    --pos-skew-y: 0deg;
+
+    /* --pos-perspective
+       Qué hace: Distancia de perspectiva para transformaciones 3D
+       del elemento mismo (no de sus hijos).
+       Dominio: LIBRE
+       Valores: none | <length>
+       Default: none */
+    --pos-perspective: none;
+
+    /* =========================================================
+       5. ANCLAJE CSS (Anchor Positioning - futuro)
+       =========================================================
+       Para cuando el navegador soporte anchor() nativamente.
+       Por ahora, documentación preventiva.
+       ========================================================= */
+
+    /* --pos-anchor-name
+       Qué hace: Nombre que otros elementos pueden usar para anclarse.
+       Dominio: LIBRE
+       Valores: none | --<custom-ident>
+       Default: none */
+    --pos-anchor-name: none;
+
+    /* --pos-anchor-target
+       Qué hace: A qué elemento se ancla este elemento.
+       Dominio: LIBRE
+       Valores: none | --<custom-ident>
+       Default: none */
+    --pos-anchor-target: none;
+
+    /* --pos-anchor-position
+       Qué hace: Qué borde del ancla usar como referencia.
+       Dominio: CERRADO
+       Valores: top | bottom | left | right | center | inside | outside
+       Default: center */
+    --pos-anchor-position: center;
+
+    /* =========================================================
+       6. COMPORTAMIENTO DE SCROLL
+       ========================================================= */
+
+    /* --pos-scroll-margin-block-start
+       Qué hace: Margen de scroll snapping (bloque inicio).
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --pos-scroll-margin-block-start: 0;
+
+    /* --pos-scroll-margin-block-end
+       Qué hace: Margen de scroll snapping (bloque fin).
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --pos-scroll-margin-block-end: 0;
+
+    /* --pos-scroll-margin-inline-start
+       Qué hace: Margen de scroll snapping (inline inicio).
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --pos-scroll-margin-inline-start: 0;
+
+    /* --pos-scroll-margin-inline-end
+       Qué hace: Margen de scroll snapping (inline fin).
+       Dominio: LIBRE
+       Valores: <length>
+       Default: 0 */
+    --pos-scroll-margin-inline-end: 0;
+
+    /* --pos-scroll-snap-align
+       Qué hace: A qué punto se alinea al hacer scroll snap.
+       Dominio: CERRADO
+       Valores: none | start | end | center
+       Default: none */
+    --pos-scroll-snap-align: none;
+
+    /* =========================================================
+       MAPEO A PROPIEDADES CSS
+       =========================================================
+       Ningún valor hardcodeado debajo de esta línea.
+       ========================================================= */
+
+    position: var(--pos-type);
+
+    /* Coordenadas físicas (LTR fallback) */
+    left: var(--pos-x);
+    top: var(--pos-y);
+
+    /* Insets lógicos (override cuando se especifican) */
+    inset-block-start: var(--pos-inset-block-start);
+    inset-block-end: var(--pos-inset-block-end);
+    inset-inline-start: var(--pos-inset-inline-start);
+    inset-inline-end: var(--pos-inset-inline-end);
+
+    z-index: var(--pos-z-index);
+
+    transform-origin: var(--pos-origin-x) var(--pos-origin-y) var(--pos-origin-z);
+
+    transform:
+      translate3d(
+        var(--pos-translate-x),
+        var(--pos-translate-y),
+        var(--pos-translate-z)
+      )
+      rotateX(var(--pos-rotate-x))
+      rotateY(var(--pos-rotate-y))
+      rotateZ(var(--pos-rotate))
+      scale3d(
+        var(--pos-scale-x),
+        var(--pos-scale-y),
+        var(--pos-scale-z)
+      )
+      skew(var(--pos-skew-x), var(--pos-skew-y));
+
+    perspective: var(--pos-perspective);
+
+    anchor-name: var(--pos-anchor-name);
+
+    scroll-margin-block-start: var(--pos-scroll-margin-block-start);
+    scroll-margin-block-end: var(--pos-scroll-margin-block-end);
+    scroll-margin-inline-start: var(--pos-scroll-margin-inline-start);
+    scroll-margin-inline-end: var(--pos-scroll-margin-inline-end);
+    scroll-snap-align: var(--pos-scroll-snap-align);
+  }
+}

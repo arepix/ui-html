@@ -3,152 +3,266 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Layered Text BG — Preview (Tokenizado)</title>
+    <title>Layered Text BG — Lienzo de Moléculas</title>
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <style>
+      /* ÚNICO hack aceptable: container query context para el lienzo */
+      .canvas-wrapper { container-type: inline-size; }
+    </style>
   </head>
-  <body class="flex min-h-screen flex-col gap-8 bg-(--color-bg) p-8">
-    <header class="space-y-2">
-      <h1 class="text-2xl font-bold text-(--color-text)">Layered Text BG</h1>
-      <p class="text-sm text-white/60">
-        3 capas tipográficas. Cada capa se configura exclusivamente mediante
-        <code class="rounded bg-white/10 px-1 py-0.5 text-xs">style="--slot: valor;"</code>. Edita
-        los slots y guarda para ver cambios en vivo.
-      </p>
-    </header>
+  <body class="min-h-screen">
+    <div class="relative isolate flex min-h-screen flex-col gap-8 p-6 md:p-10">
+      <div class="absolute inset-0 -z-20 bg-aurora"></div>
+      <div class="absolute inset-0 -z-10 bg-grid opacity-30"></div>
 
-    <div class="overflow-hidden rounded-xl border border-white/10">
-    <!-- Preview del organismo -->
-    <div class="mx-auto w-full max-w-90 aspect-9/16">
-      <section class="layered-text-bg flex h-full w-full items-center justify-center">
-        <!-- Capa 1: Ghost (fondo) -->
-        <span
-          class="layered-text-bg__layer layered-text-bg__layer--back"
-          style="
-            --ltb-size: 3cqw;
-            --ltb-color: var(--color-aurora-2);
-            --ltb-opacity: 0.5;
-            --ltb-blend: screen;
-            --ltb-font: var(--font-f5cent);
-            --ltb-tracking: -0.1em;
-            --ltb-whitespace: pre-line;
-          "
-        >
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-        </span>
+      <header class="relative z-10 flex flex-wrap items-center justify-between gap-4">
+        <div class="space-y-1">
+          <h1 class="text-2xl font-bold text-white">Layered Text BG</h1>
+          <p class="text-sm text-white/60">Lienzo de moléculas. Dos proporciones, mismos slots.</p>
+        </div>
+        <a href="/index.html" class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white">
+          ← Volver al inicio
+        </a>
+      </header>
 
-        <!-- Capa 2: Mid -->
-        <span
-          class="layered-text-bg__layer layered-text-bg__layer--mid"
-          style="
-            --ltb-rotation: 180deg;
-            --ltb-size: 5cqw;
-            --ltb-color: var(--color-aurora-1);
-            --ltb-opacity: 0.7;
-            --ltb-blend: overlay;
-            --ltb-font: var(--font-captions);
-            --ltb-tracking: -0.04em;
-            --ltb-leading: 0.55em;
-            --ltb-whitespace: pre-line;
-            --ltb-skew-x: 0deg;
-            --ltb-skew-y: 0deg;
-          "
-        >
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-          qwertyqwertyqwerty
-        </span>
+      <section class="relative 
+      z-10 
+      grid 
+      grid-cols-1 
+      gap-8 
+      xl:grid-cols-2">
+        
+        <!-- 9:16 -->
+        <article class="canvas-wrapper space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm 
+            font-medium 
+            text-white/80">Container 
+            <code class="rounded 
+            bg-white/
+            10 px-1.5 
+            py-0.5 
+            text-xs">9:16</code></h2>
+            <span class="text-xs 
+            text-white/40">data-preset="phone" + data-mask="vignette"</span>
+          </div>
+          <div class="design-container 
+          mx-auto 
+          w-full 
+          max-w-[320px] 
+          overflow-hidden 
+          rounded-xl 
+          border 
+          border-white/10 
+          bg-black/40" 
+          data-preset="phone" 
+          data-mask="" 
+          data-surface="dark">
+            <section class="layered-text-bg 
+            flex 
+            h-full 
+            w-full 
+            items-center 
+            justify-center">
+              <span class="layered-text-bg__layer 
+              layered-text-bg__layer--back" 
+              data-preset="" 
+              style="--ltb-size: 10cqi;
+                --ltb-color: var(--token-color-aurora-secondary);
+                --ltb-tracking: -0.1em;
+                --ltb-whitespace: pre-line;
+                --ltb-opacity: 0.9;
+                --ltb-text-align: center;
+                ">
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+              </span>
+              <span class="layered-text-bg__layer 
+              layered-text-bg__layer--mid" 
+              data-preset=" mid" 
+              style="--ltb-rotation: 180deg;
+               --ltb-size: 5cqi;
+               --ltb-color: var(--token-color-aurora-primary);
+               --ltb-tracking: -0.04em;
+               --ltb-leading: 0.55;
+               --ltb-whitespace: pre-line;
+               --ltb-text-align: center;">
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+              </span>
+              <span class="layered-text-bg__layer
+              layered-text-bg__layer--front" 
+              data-preset="front" 
+              style="--ltb-size: 5cqi; 
+                     --ltb-color: var(--token-color-aurora-tertiary); 
+                     --ltb-whitespace: normal; 
+                     --ltb-text-align: center; 
+                    ">
+composition
+composition
+composition
+              </span>
+            </section>
+          </div>
+        </article>
 
-        <!-- Capa 3: Front -->
-        <span
-          class="layered-text-bg__layer layered-text-bg__layer--front"
-          style="
-            --ltb-size: 5cqw;
-            --ltb-color: var(--color-aurora-3);
-            --ltb-opacity: 1;
-            --ltb-blend: normal;
-            --ltb-font: var(--font-magikMarker);
-            --ltb-tracking: 0.2em;
-            --ltb-whitespace: normal;
-            --ltb-transform: uppercase;
-          "
-        >
-          composition
-          composition
-          composition
-        </span>
+        <!-- 16:9 -->
+        <article class="canvas-wrapper space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-medium text-white/80">Container <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">16:9</code></h2>
+            <span class="text-xs text-white/40">data-preset="hero" + data-mask="vignette"</span>
+          </div>
+          <div class="design-container mx-auto w-full max-w-160 overflow-hidden rounded-xl border border-white/10 bg-black/40" data-preset="hero" data-mask="vignette" data-surface="dark">
+            <section class="layered-text-bg flex h-full w-full items-center justify-center">
+              <span class="layered-text-bg__layer layered-text-bg__layer--back" data-preset="ghost" style="--ltb-size: 2.5cqi; --ltb-color: var(--token-color-aurora-secondary); --ltb-tracking: -0.1em; --ltb-whitespace: pre-line; --ltb-text-align: center;">
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+              </span>
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid" data-preset="mid" style="--ltb-rotation: 180deg; --ltb-size: 4cqi; --ltb-color: var(--token-color-aurora-primary); --ltb-tracking: -0.04em; --ltb-leading: 0.55; --ltb-whitespace: pre-line; --ltb-text-align: center;">
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+qwertyqwertyqwerty
+              </span>
+              <span class="layered-text-bg__layer layered-text-bg__layer--front" data-preset="front" style="--ltb-size: 4cqi; --ltb-color: var(--token-color-aurora-tertiary); --ltb-whitespace: normal; --ltb-text-align: center;">
+composition
+composition
+composition
+              </span>
+            </section>
+          </div>
+        </article>
+
       </section>
-    </div>
-    </div>
 
-    <!-- Checklist de slots para iterar -->
-    <section class="space-y-4 text-sm text-white/80">
-      <h2 class="text-lg font-semibold">Slots disponibles por capa</h2>
-      <p class="text-white/50">
-        Los slots marcados con <span class="text-emerald-400">● libre</span> aceptan cualquier valor
-        CSS. Los marcados con <span class="text-amber-400">● cerrado</span> deben apuntar a un token
-        del catálogo.
-      </p>
+      <!-- checklist de slots -->
+      <section class="relative z-10 space-y-4 text-sm text-white/80">
+        <h2 class="text-lg font-semibold text-white">Slots activos en esta molécula</h2>
+        <p class="text-white/50">
+          Cada capa hereda defaults de <code class="rounded bg-white/10 px-1 py-0.5 text-xs">implementations/layered-text-defaults.css</code>.
+          Los <code class="rounded bg-white/10 px-1 py-0.5 text-xs">style=""</code> inline sobreescriben solo lo necesario.
+        </p>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-4">
+          <div class="space-y-1">
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Layout</h3>
+            <ul class="space-y-0.5 text-xs">
+              <li><code class="text-emerald-400">●</code> --ltb-position</li>
+              <li><code class="text-emerald-400">●</code> --ltb-z-index</li>
+              <li><code class="text-emerald-400">●</code> --ltb-display</li>
+              <li><code class="text-emerald-400">●</code> --ltb-overflow</li>
+            </ul>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Flujo de texto</h3>
+            <ul class="space-y-0.5 text-xs">
+              <li><code class="text-amber-400">●</code> --ltb-white-space</li>
+              <li><code class="text-amber-400">●</code> --ltb-word-break</li>
+              <li><code class="text-amber-400">●</code> --ltb-overflow-wrap</li>
+              <li><code class="text-amber-400">●</code> --ltb-text-align</li>
+            </ul>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Tipografía</h3>
+            <ul class="space-y-0.5 text-xs">
+              <li><code class="text-amber-400">●</code> --ltb-font</li>
+              <li><code class="text-emerald-400">●</code> --ltb-size</li>
+              <li><code class="text-amber-400">●</code> --ltb-weight</li>
+              <li><code class="text-amber-400">●</code> --ltb-style</li>
+              <li><code class="text-emerald-400">●</code> --ltb-tracking</li>
+              <li><code class="text-emerald-400">●</code> --ltb-leading</li>
+              <li><code class="text-amber-400">●</code> --ltb-transform</li>
+            </ul>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Color & Transform</h3>
+            <ul class="space-y-0.5 text-xs">
+              <li><code class="text-amber-400">●</code> --ltb-color</li>
+              <li><code class="text-emerald-400">●</code> --ltb-opacity</li>
+              <li><code class="text-amber-400">●</code> --ltb-blend</li>
+              <li><code class="text-emerald-400">●</code> --ltb-rotation</li>
+              <li><code class="text-emerald-400">●</code> --ltb-skew-x</li>
+              <li><code class="text-emerald-400">●</code> --ltb-skew-y</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <ul class="grid grid-cols-2 gap-2 md:grid-cols-3">
-        <li><code class="text-emerald-400">●</code> <code>--ltb-rotation</code> (deg)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-skew-x</code> (deg)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-skew-y</code> (deg)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-size</code> (cqw, rem, px)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-color</code> (token de color)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-opacity</code> (0–1)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-blend</code> (blend-mode)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-font</code> (token de fuente)</li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-weight</code> (100–900)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-tracking</code> (em)</li>
-        <li><code class="text-emerald-400">●</code> <code>--ltb-leading</code> (unitless)</li>
-        <li>
-          <code class="text-amber-400">●</code> <code>--ltb-transform</code> (uppercase, etc.)
-        </li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-style</code> (normal, italic)</li>
-        <li>
-          <code class="text-amber-400">●</code> <code>--ltb-variant</code> (normal, small-caps)
-        </li>
-        <li>
-          <code class="text-amber-400">●</code> <code>--ltb-decoration</code> (none, underline)
-        </li>
-        <li><code class="text-amber-400">●</code> <code>--ltb-whitespace</code> (nowrap, pre)</li>
-      </ul>
-    </section>
+      <footer class="relative z-10 mt-auto border-t border-white/10 pt-6 text-xs text-white/40">
+        <p>
+          Sistema: <code class="text-white/60">design-container</code> + <code class="text-white/60">layered-text-bg</code>.
+          Tokens: <code class="text-white/60">cqi</code> para escala, <code class="text-white/60">data-preset</code> para combinaciones.
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

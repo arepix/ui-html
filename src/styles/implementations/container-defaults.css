@@ -1,0 +1,240 @@
+@layer components {
+  /* ============================================================
+     DEFAULTS: design-container
+     ============================================================
+     Valores por defecto neutros. Un container sin overrides
+     es invisible: no impone tamaño, color ni posición.
+     ============================================================ */
+
+  .design-container {
+    /* Container query */
+    --container-type: inline-size;
+    --container-name: none;
+
+    /* Box model */
+    --container-box-sizing: border-box;
+    --container-inline-size: auto;
+    --container-block-size: auto;
+    --container-min-inline-size: 0;
+    --container-min-block-size: 0;
+    --container-max-inline-size: none;
+    --container-max-block-size: none;
+    --container-ratio: auto;
+
+    /* Spacing */
+    --container-margin-block-start: 0;
+    --container-margin-block-end: 0;
+    --container-margin-inline-start: 0;
+    --container-margin-inline-end: 0;
+    --container-padding-block-start: 0;
+    --container-padding-block-end: 0;
+    --container-padding-inline-start: 0;
+    --container-padding-inline-end: 0;
+
+    /* Borders */
+    --container-border-width: 0;
+    --container-border-style: solid;
+    --container-border-color: transparent;
+    --container-radius: 0;
+    --container-radius-block-start-inline-start: var(--container-radius);
+    --container-radius-block-start-inline-end: var(--container-radius);
+    --container-radius-block-end-inline-start: var(--container-radius);
+    --container-radius-block-end-inline-end: var(--container-radius);
+    --container-outline-width: 0;
+    --container-outline-style: none;
+    --container-outline-color: currentColor;
+    --container-outline-offset: 0;
+
+    /* Background */
+    --container-background-color: transparent;
+    --container-background-image: none;
+    --container-background-size: auto;
+    --container-background-position-x: center;
+    --container-background-position-y: center;
+    --container-background-repeat: no-repeat;
+    --container-background-clip: border-box;
+    --container-background-attachment: scroll;
+
+    /* Layout */
+    --container-display: block;
+    --container-position: relative;
+    --container-inset-block-start: auto;
+    --container-inset-block-end: auto;
+    --container-inset-inline-start: auto;
+    --container-inset-inline-end: auto;
+    --container-z-index: auto;
+    --container-isolation: isolate;
+
+    /* Overflow */
+    --container-overflow: visible;
+    --container-overflow-x: visible;
+    --container-overflow-y: visible;
+    --container-scroll-behavior: auto;
+    --container-scrollbar-width: auto;
+    --container-scrollbar-color: auto;
+
+    /* Flex */
+    --container-flex-direction: row;
+    --container-flex-wrap: nowrap;
+    --container-justify-content: normal;
+    --container-align-items: normal;
+    --container-align-content: normal;
+    --container-gap: 0;
+    --container-gap-row: var(--container-gap);
+    --container-gap-column: var(--container-gap);
+
+    /* Grid */
+    --container-grid-template-columns: none;
+    --container-grid-template-rows: none;
+    --container-grid-auto-flow: row;
+    --container-grid-auto-columns: auto;
+    --container-grid-auto-rows: auto;
+    --container-grid-justify-items: normal;
+    --container-grid-align-items: normal;
+
+    /* Mask */
+    --container-mask-type: none;
+    --container-mask-clear: 30%;
+    --container-mask-fade: 70%;
+    --container-mask-shape: ellipse;
+    --container-mask-position-x: 50%;
+    --container-mask-position-y: 50%;
+    --container-mask-size-x: 60%;
+    --container-mask-size-y: 60%;
+    --container-mask-image: none;
+    --container-mask-repeat: no-repeat;
+    --container-mask-mode: match-source;
+
+    /* Visual effects */
+    --container-box-shadow: none;
+    --container-backdrop-filter: none;
+    --container-opacity: 1;
+    --container-transform: none;
+    --container-transform-origin: center;
+    --container-filter: none;
+    --container-clip-path: none;
+
+    /* 3D */
+    --container-perspective: none;
+    --container-perspective-origin: center;
+    --container-transform-style: flat;
+
+    /* Interaction */
+    --container-pointer-events: auto;
+    --container-user-select: auto;
+    --container-cursor: auto;
+    --container-touch-action: auto;
+    --container-resize: none;
+  }
+
+  /* ============================================================
+     PRESETS DE FORMA
+     ============================================================ */
+
+  /* Celular portrait */
+  .design-container[data-preset="phone"] {
+    --container-ratio: 9/16;
+    --container-max-inline-size: 100%;
+    --container-overflow: hidden;
+    --container-radius: 12px;
+  }
+
+  /* Cuadrado */
+  .design-container[data-preset="square"] {
+    --container-ratio: 1;
+    --container-overflow: hidden;
+  }
+
+  /* Hero banner */
+  .design-container[data-preset="hero"] {
+    --container-ratio: 21/9;
+    --container-inline-size: 100%;
+    --container-overflow: hidden;
+  }
+
+  /* Tarjeta */
+  .design-container[data-preset="card"] {
+    --container-ratio: 4/5;
+    --container-overflow: hidden;
+    --container-radius: 10px;
+    --container-box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  /* Bento celda */
+  .design-container[data-preset="bento"] {
+    --container-overflow: hidden;
+    --container-radius: 8px;
+  }
+
+  /* ============================================================
+     PRESETS DE MÁSCARA
+     ============================================================ */
+
+  /* Máscara radial limpia en el centro (vignette) */
+  .design-container[data-mask="vignette"] {
+    --container-mask-type: radial;
+    --container-mask-clear: 25%;
+    --container-mask-fade: 60%;
+    --container-mask-shape: ellipse;
+    --container-mask-position-x: 50%;
+    --container-mask-position-y: 50%;
+    --container-mask-size-x: 80%;
+    --container-mask-size-y: 80%;
+    --container-mask-image: radial-gradient(
+      var(--container-mask-shape)
+      at var(--container-mask-position-x) var(--container-mask-position-y),
+      transparent var(--container-mask-clear),
+      black var(--container-mask-fade)
+    );
+  }
+
+  /* Máscara radial en la parte superior */
+  .design-container[data-mask="vignette-top"] {
+    --container-mask-type: radial;
+    --container-mask-clear: 20%;
+    --container-mask-fade: 55%;
+    --container-mask-position-y: 0%;
+    --container-mask-size-y: 70%;
+    --container-mask-image: radial-gradient(
+      var(--container-mask-shape)
+      at var(--container-mask-position-x) var(--container-mask-position-y),
+      transparent var(--container-mask-clear),
+      black var(--container-mask-fade)
+    );
+  }
+
+  /* Máscara radial en la parte inferior */
+  .design-container[data-mask="vignette-bottom"] {
+    --container-mask-type: radial;
+    --container-mask-clear: 20%;
+    --container-mask-fade: 55%;
+    --container-mask-position-y: 100%;
+    --container-mask-size-y: 70%;
+    --container-mask-image: radial-gradient(
+      var(--container-mask-shape)
+      at var(--container-mask-position-x) var(--container-mask-position-y),
+      transparent var(--container-mask-clear),
+      black var(--container-mask-fade)
+    );
+  }
+
+  /* Sin máscara */
+  .design-container[data-mask="none"] {
+    --container-mask-type: none;
+    --container-mask-image: none;
+  }
+
+  /* ============================================================
+     PRESETS DE FONDO
+     ============================================================ */
+
+  /* Fondo oscuro base */
+  .design-container[data-surface="dark"] {
+    --container-background-color: var(--token-color-bg);
+  }
+
+  /* Fondo elevado */
+  .design-container[data-surface="elevated"] {
+    --container-background-color: var(--token-color-surface);
+  }
+}

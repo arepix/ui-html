@@ -1,0 +1,93 @@
+@layer utilities {
+  /* ============================================================
+     UTILIDADES DE MÁSCARA
+     ============================================================
+     Helpers reutilizables para recortar, limpiar centros,
+     crear vignettes y transiciones de opacidad controladas.
+     Todos usan la API de mask-image/mask-mode de CSS.
+     ============================================================ */
+
+  /* ─── Máscara radial: limpia el centro ───────────────────── */
+  .mask-radial-center {
+    mask-image: radial-gradient(
+      ellipse at 50% 50%,
+      transparent 25%,
+      black 60%
+    );
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+  }
+
+  /* ─── Máscara radial: limpia el centro, ajustable por tokens ─ */
+  .mask-radial-token {
+    mask-image: radial-gradient(
+      var(--container-mask-shape, ellipse)
+      at var(--container-mask-position-x, 50%) var(--container-mask-position-y, 50%),
+      transparent var(--container-mask-clear, 25%),
+      black var(--container-mask-fade, 60%)
+    );
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+    mask-size: var(--container-mask-size-x, 100%) var(--container-mask-size-y, 100%);
+  }
+
+  /* ─── Máscara radial superior: limpia arriba ─────────────── */
+  .mask-radial-top {
+    mask-image: radial-gradient(
+      ellipse at 50% 0%,
+      transparent 20%,
+      black 55%
+    );
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+  }
+
+  /* ─── Máscara radial inferior: limpia abajo ──────────────── */
+  .mask-radial-bottom {
+    mask-image: radial-gradient(
+      ellipse at 50% 100%,
+      transparent 20%,
+      black 55%
+    );
+    mask-mode: alpha;
+    mask-repeat: no-repeat;
+  }
+
+  /* ─── Máscara lineal: desvanece desde arriba ─────────────── */
+  .mask-fade-top {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 40%
+    );
+    mask-mode: alpha;
+  }
+
+  /* ─── Máscara lineal: desvanece desde abajo ──────────────── */
+  .mask-fade-bottom {
+    mask-image: linear-gradient(
+      to top,
+      transparent 0%,
+      black 40%
+    );
+    mask-mode: alpha;
+  }
+
+  /* ─── Máscara lineal: desvanece desde los bordes laterales ─ */
+  .mask-fade-sides {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%
+    );
+    mask-mode: alpha;
+  }
+
+  /* ─── Sin máscara ────────────────────────────────────────── */
+  .mask-none {
+    mask-image: none;
+  }
+}
