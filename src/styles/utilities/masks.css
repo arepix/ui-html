@@ -5,14 +5,15 @@
      Helpers reutilizables para recortar, limpiar centros,
      crear vignettes y transiciones de opacidad controladas.
      Todos usan la API de mask-image/mask-mode de CSS.
+     Los porcentajes de transición consumen tokens de opacidad.
      ============================================================ */
 
   /* ─── Máscara radial: limpia el centro ───────────────────── */
   .mask-radial-center {
     mask-image: radial-gradient(
       ellipse at 50% 50%,
-      transparent 25%,
-      black 60%
+      transparent var(--token-opacity-faint, 20%),
+      black var(--token-opacity-visible, 60%)
     );
     mask-mode: alpha;
     mask-repeat: no-repeat;
@@ -24,8 +25,8 @@
     mask-image: radial-gradient(
       var(--container-mask-shape, ellipse)
       at var(--container-mask-position-x, 50%) var(--container-mask-position-y, 50%),
-      transparent var(--container-mask-clear, 25%),
-      black var(--container-mask-fade, 60%)
+      transparent var(--container-mask-clear, var(--token-opacity-faint, 20%)),
+      black var(--container-mask-fade, var(--token-opacity-visible, 60%))
     );
     mask-mode: alpha;
     mask-repeat: no-repeat;
@@ -36,8 +37,8 @@
   .mask-radial-top {
     mask-image: radial-gradient(
       ellipse at 50% 0%,
-      transparent 20%,
-      black 55%
+      transparent var(--token-opacity-subtle, 10%),
+      black var(--token-opacity-strong, 70%)
     );
     mask-mode: alpha;
     mask-repeat: no-repeat;
@@ -47,8 +48,8 @@
   .mask-radial-bottom {
     mask-image: radial-gradient(
       ellipse at 50% 100%,
-      transparent 20%,
-      black 55%
+      transparent var(--token-opacity-subtle, 10%),
+      black var(--token-opacity-strong, 70%)
     );
     mask-mode: alpha;
     mask-repeat: no-repeat;
@@ -59,7 +60,7 @@
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      black 40%
+      black var(--token-opacity-prominent, 80%)
     );
     mask-mode: alpha;
   }
@@ -69,7 +70,7 @@
     mask-image: linear-gradient(
       to top,
       transparent 0%,
-      black 40%
+      black var(--token-opacity-prominent, 80%)
     );
     mask-mode: alpha;
   }
@@ -79,8 +80,8 @@
     mask-image: linear-gradient(
       to right,
       transparent 0%,
-      black 15%,
-      black 85%,
+      black var(--token-opacity-faint, 20%),
+      black var(--token-opacity-faint, 80%),
       transparent 100%
     );
     mask-mode: alpha;

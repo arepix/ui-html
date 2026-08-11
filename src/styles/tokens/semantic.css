@@ -43,4 +43,48 @@
   --token-layer-overlay:         var(--z-overlay);
   --token-layer-modal:           var(--z-modal);
   --token-layer-toast:           var(--z-toast);
+
+  /* ─── Espaciado semántico ───────────────────────────────────
+     Roles: gaps, márgenes, paddings de componentes.
+     Los utilities de grid consumen estos tokens.
+  ─────────────────────────────────────────────────────────── */
+  --token-space-xs:  var(--space-1);   /* 4px  */
+  --token-space-sm:  var(--space-2);   /* 8px  */
+  --token-space-md:  var(--space-3);   /* 12px */
+  --token-space-lg:  var(--space-4);   /* 16px */
+  --token-space-xl:  var(--space-6);   /* 24px */
+  --token-space-2xl: var(--space-8);   /* 32px */
+  --token-space-3xl: var(--space-10);  /* 40px */
+  --token-space-4xl: var(--space-12);  /* 48px */
+  --token-space-5xl: var(--space-16);  /* 64px */
+  --token-space-6xl: var(--space-20);  /* 80px */
+  --token-space-7xl: var(--space-24);  /* 96px */
+  --token-space-8xl: var(--space-30);  /* 120px */
+  --token-space-9xl: var(--space-40);  /* 160px */
+  --token-space-10xl: var(--space-60); /* 240px */
+
+  /* ─── Radios semánticos ─────────────────────────────────────
+     Roles: redondeo de esquinas por componente.
+  ─────────────────────────────────────────────────────────── */
+  --token-radius-sm:   var(--radius-1);  /* 4px  */
+  --token-radius-md:   var(--radius-3);  /* 8px  */
+  --token-radius-lg:   var(--radius-5);  /* 12px */
+  --token-radius-xl:   var(--radius-6);  /* 16px */
+  --token-radius-full: var(--radius-full);
+
+  /* ─── Opacidad semántica ────────────────────────────────────
+     Roles: transparencia por intención, no por valor numérico.
+  ─────────────────────────────────────────────────────────── */
+  --token-opacity-none:    var(--opacity-0);   /* invisible   */
+  --token-opacity-ghost:   var(--opacity-5);   /* casi nada   */
+  --token-opacity-subtle:  var(--opacity-10);  /* sutil       */
+  --token-opacity-faint:   var(--opacity-20);  /* tenue       */
+  --token-opacity-dim:     var(--opacity-30);  /* atenuado    */
+  --token-opacity-muted:   var(--opacity-40);  /* apagado     */
+  --token-opacity-half:    var(--opacity-50);  /* medio       */
+  --token-opacity-visible: var(--opacity-60);  /* visible     */
+  --token-opacity-strong:  var(--opacity-70);  /* fuerte      */
+  --token-opacity-prominent: var(--opacity-80); /* prominente  */
+  --token-opacity-solid:   var(--opacity-90);  /* casi sólido */
+  --token-opacity-full:    var(--opacity-100); /* opaco       */
 }

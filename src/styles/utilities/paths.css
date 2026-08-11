@@ -5,6 +5,10 @@
      Definiciones de clip-path con curvas para recortes
      decorativos. Los paths para <textPath> en SVG se definen
      inline en el markup; estos son recortes geométricos.
+     
+     NOTA: Estas utilidades definen geometrías SVG fijas (0-100).
+     No consumen tokens de espaciado porque las coordenadas son
+     relativas al viewport del elemento (0% a 100%).
      ============================================================ */
 
   /* ─── Arco superior: sonrisa invertida ───────────────────── */

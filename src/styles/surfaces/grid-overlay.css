@@ -1,0 +1,16 @@
+@layer components {
+  /* ============================================================
+     SURFACE: Grid Overlay
+     ============================================================
+     Líneas de grid sutiles sobre el fondo.
+     Útil para previews y composiciones técnicas.
+     ============================================================ */
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--token-color-text) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--token-color-text) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+  }
+}

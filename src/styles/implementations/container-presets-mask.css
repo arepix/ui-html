@@ -1,0 +1,62 @@
+@layer components {
+  /* ============================================================
+     PRESETS DE MÁSCARA: design-container
+     ============================================================
+     Presets que aplican máscaras de recorte al container.
+     Se activan con data-mask="nombre" en el HTML.
+     ============================================================ */
+
+  /* Máscara radial limpia en el centro (vignette) */
+  .design-container[data-mask="vignette"] {
+    --container-mask-type: radial;
+    --container-mask-clear: 25%;
+    --container-mask-fade: 60%;
+    --container-mask-shape: ellipse;
+    --container-mask-position-x: 50%;
+    --container-mask-position-y: 50%;
+    --container-mask-size-x: 80%;
+    --container-mask-size-y: 80%;
+    --container-mask-image: radial-gradient(
+      var(--container-mask-shape)
+      at var(--container-mask-position-x) var(--container-mask-position-y),
+      transparent var(--container-mask-clear),
+      black var(--container-mask-fade)
+    );
+  }
+
+  /* Máscara radial en la parte superior */
+  .design-container[data-mask="vignette-top"] {
+    --container-mask-type: radial;
+    --container-mask-clear: 20%;
+    --container-mask-fade: 55%;
+    --container-mask-position-y: 0%;
+    --container-mask-size-y: 70%;
+    --container-mask-image: radial-gradient(
+      var(--container-mask-shape)
+      at var(--container-mask-position-x) var(--container-mask-position-y),
+      transparent var(--container-mask-clear),
+      black var(--container-mask-fade)
+    );
+  }
+
+  /* Máscara radial en la parte inferior */
+  .design-container[data-mask="vignette-bottom"] {
+    --container-mask-type: radial;
+    --container-mask-clear: 20%;
+    --container-mask-fade: 55%;
+    --container-mask-position-y: 100%;
+    --container-mask-size-y: 70%;
+    --container-mask-image: radial-gradient(
+      var(--container-mask-shape)
+      at var(--container-mask-position-x) var(--container-mask-position-y),
+      transparent var(--container-mask-clear),
+      black var(--container-mask-fade)
+    );
+  }
+
+  /* Sin máscara */
+  .design-container[data-mask="none"] {
+    --container-mask-type: none;
+    --container-mask-image: none;
+  }
+}

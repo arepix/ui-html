@@ -12,8 +12,8 @@
   </head>
   <body class="min-h-screen">
     <div class="relative isolate flex min-h-screen flex-col gap-8 p-6 md:p-10">
-      <div class="absolute inset-0 -z-20 bg-aurora"></div>
-      <div class="absolute inset-0 -z-10 bg-grid opacity-30"></div>
+      <div class="absolute inset-0 -z-20 "></div>
+      <div class="absolute inset-0 -z-10 "></div>
 
       <header class="relative z-10 flex flex-wrap items-center justify-between gap-4">
         <div class="space-y-1">
@@ -25,55 +25,27 @@
         </a>
       </header>
 
-      <section class="relative 
-      z-10 
-      grid 
-      grid-cols-1 
-      gap-8 
-      xl:grid-cols-2">
-        
+      <section class="relative z-10 grid grid-cols-1 gap-8 xl:grid-cols-2">
+
         <!-- 9:16 -->
         <article class="canvas-wrapper space-y-3">
           <div class="flex items-center justify-between">
-            <h2 class="text-sm 
-            font-medium 
-            text-white/80">Container 
-            <code class="rounded 
-            bg-white/
-            10 px-1.5 
-            py-0.5 
-            text-xs">9:16</code></h2>
-            <span class="text-xs 
-            text-white/40">data-preset="phone" + data-mask="vignette"</span>
+            <h2 class="text-sm font-medium text-white/80">
+              Container <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">9:16</code>
+            </h2>
+            <span class="text-xs text-white/40">data-preset="phone" + data-mask="vignette" + data-surface="dark"</span>
           </div>
-          <div class="design-container 
-          mx-auto 
-          w-full 
-          max-w-[320px] 
-          overflow-hidden 
-          rounded-xl 
-          border 
-          border-white/10 
-          bg-black/40" 
-          data-preset="phone" 
-          data-mask="" 
-          data-surface="dark">
-            <section class="layered-text-bg 
-            flex 
-            h-full 
-            w-full 
-            items-center 
-            justify-center">
-              <span class="layered-text-bg__layer 
-              layered-text-bg__layer--back font-5cent" 
-              data-preset="neonSecondary" 
-              style="--ltb-size: 10cqi;
-                --ltb-color: var(--token-color-aurora-secondary);
-                --ltb-tracking: -0.1em;
-                --ltb-whitespace: pre-line;
-                --ltb-opacity: 0.7;
-                --ltb-text-align: center;
-                ">
+          <div
+            class="design-container mx-auto w-full max-w-[320px] overflow-hidden rounded-xl border border-white/10 bg-black/40"
+            data-preset="phone"
+            data-mask="vignette"
+            data-surface="dark"
+          >
+            <section class="layered-text-bg flex h-full w-full items-center justify-center">
+              <span
+                class="layered-text-bg__layer layered-text-bg__layer--back font-5cent"
+                data-preset="grid-back-9-16"
+              >
 qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
@@ -95,16 +67,10 @@ qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
               </span>
-              <span class="layered-text-bg__layer 
-              layered-text-bg__layer--mid font-5cent" 
-              data-preset="mid" 
-              style="--ltb-rotation: 180deg;
-               --ltb-size: 5cqi;
-               --ltb-color: var(--token-color-aurora-primary);
-               --ltb-tracking: -0.04em;
-               --ltb-leading: 0.55;
-               --ltb-whitespace: pre-line;
-               --ltb-text-align: center;">
+              <span
+                class="layered-text-bg__layer layered-text-bg__layer--mid font-5cent"
+                data-preset="grid-mid-9-16"
+              >
 qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
@@ -126,19 +92,13 @@ qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
               </span>
-              <span class="layered-text-bg__layer
-              layered-text-bg__layer--front font-5cent " 
-              data-preset="front" 
-              style="--ltb-color: var(--token-color-aurora-tertiary);">
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
-compositioncompositioncompositioncomposition
+              <span
+                class="layered-text-bg__layer layered-text-bg__layer--front font-5cent"
+                data-preset="grid-front-9-16"
+              >
+composition
+composition
+composition
               </span>
             </section>
           </div>
@@ -147,12 +107,22 @@ compositioncompositioncompositioncomposition
         <!-- 16:9 -->
         <article class="canvas-wrapper space-y-3">
           <div class="flex items-center justify-between">
-            <h2 class="text-sm font-medium text-white/80">Container <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">16:9</code></h2>
-            <span class="text-xs text-white/40">data-preset="hero" + data-mask="vignette"</span>
+            <h2 class="text-sm font-medium text-white/80">
+              Container <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">16:9</code>
+            </h2>
+            <span class="text-xs text-white/40">data-preset="hero" + data-mask="vignette" + data-surface="dark"</span>
           </div>
-          <div class="design-container mx-auto w-full max-w-160 overflow-hidden rounded-xl border border-white/10 bg-black/40" data-preset="hero" data-mask="vignette" data-surface="dark">
+          <div
+            class="design-container mx-auto w-full max-w-160 overflow-hidden rounded-xl border border-white/10 bg-black/40"
+            data-preset="hero"
+            data-mask="vignette"
+            data-surface="dark"
+          >
             <section class="layered-text-bg flex h-full w-full items-center justify-center">
-              <span class="layered-text-bg__layer layered-text-bg__layer--back" data-preset="ghost" style="--ltb-size: 2.5cqi; --ltb-color: var(--token-color-aurora-secondary); --ltb-tracking: -0.1em; --ltb-whitespace: pre-line; --ltb-text-align: center;">
+              <span
+                class="layered-text-bg__layer layered-text-bg__layer--back font-5cent"
+                data-preset="grid-back-16-9"
+              >
 qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
@@ -174,7 +144,10 @@ qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
               </span>
-              <span class="layered-text-bg__layer layered-text-bg__layer--mid" data-preset="mid" style="--ltb-rotation: 180deg; --ltb-size: 4cqi; --ltb-color: var(--token-color-aurora-primary); --ltb-tracking: -0.04em; --ltb-leading: 0.55; --ltb-whitespace: pre-line; --ltb-text-align: center;">
+              <span
+                class="layered-text-bg__layer layered-text-bg__layer--mid font-5cent"
+                data-preset="grid-mid-16-9"
+              >
 qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
@@ -196,7 +169,10 @@ qwertyqwertyqwerty
 qwertyqwertyqwerty
 qwertyqwertyqwerty
               </span>
-              <span class="layered-text-bg__layer layered-text-bg__layer--front" data-preset="front" style="--ltb-size: 4cqi; --ltb-color: var(--token-color-aurora-tertiary); --ltb-whitespace: normal; --ltb-text-align: center;">
+              <span
+                class="layered-text-bg__layer layered-text-bg__layer--front font-5cent"
+                data-preset="grid-front-16-9"
+              >
 composition
 composition
 composition
@@ -209,51 +185,46 @@ composition
 
       <!-- checklist de slots -->
       <section class="relative z-10 space-y-4 text-sm text-white/80">
-        <h2 class="text-lg font-semibold text-white">Slots activos en esta molécula</h2>
+        <h2 class="text-lg font-semibold text-white">Arquitectura del sistema</h2>
         <p class="text-white/50">
-          Cada capa hereda defaults de <code class="rounded bg-white/10 px-1 py-0.5 text-xs">implementations/layered-text-defaults.css</code>.
-          Los <code class="rounded bg-white/10 px-1 py-0.5 text-xs">style=""</code> inline sobreescriben solo lo necesario.
+          Jerarquía de tokens: <code class="rounded bg-white/10 px-1 py-0.5 text-xs">primitives</code> →
+          <code class="rounded bg-white/10 px-1 py-0.5 text-xs">semantic</code> →
+          <code class="rounded bg-white/10 px-1 py-0.5 text-xs">slots</code> →
+          <code class="rounded bg-white/10 px-1 py-0.5 text-xs">presets</code>.
+          Interfaces declaran slots. Implementaciones asignan valores.
         </p>
         <div class="grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-4">
           <div class="space-y-1">
-            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Layout</h3>
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Tokens</h3>
             <ul class="space-y-0.5 text-xs">
-              <li><code class="text-emerald-400">●</code> --ltb-position</li>
-              <li><code class="text-emerald-400">●</code> --ltb-z-index</li>
-              <li><code class="text-emerald-400">●</code> --ltb-display</li>
-              <li><code class="text-emerald-400">●</code> --ltb-overflow</li>
+              <li><code class="text-emerald-400">●</code> primitives.css</li>
+              <li><code class="text-emerald-400">●</code> semantic.css</li>
+              <li><code class="text-emerald-400">●</code> motion.css</li>
             </ul>
           </div>
           <div class="space-y-1">
-            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Flujo de texto</h3>
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Interfaces</h3>
             <ul class="space-y-0.5 text-xs">
-              <li><code class="text-amber-400">●</code> --ltb-white-space</li>
-              <li><code class="text-amber-400">●</code> --ltb-word-break</li>
-              <li><code class="text-amber-400">●</code> --ltb-overflow-wrap</li>
-              <li><code class="text-amber-400">●</code> --ltb-text-align</li>
+              <li><code class="text-amber-400">●</code> container.css</li>
+              <li><code class="text-amber-400">●</code> position-system.css</li>
+              <li><code class="text-amber-400">●</code> layered-text.css</li>
             </ul>
           </div>
           <div class="space-y-1">
-            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Tipografía</h3>
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Implementations</h3>
             <ul class="space-y-0.5 text-xs">
-              <li><code class="text-amber-400">●</code> --ltb-font</li>
-              <li><code class="text-emerald-400">●</code> --ltb-size</li>
-              <li><code class="text-amber-400">●</code> --ltb-weight</li>
-              <li><code class="text-amber-400">●</code> --ltb-style</li>
-              <li><code class="text-emerald-400">●</code> --ltb-tracking</li>
-              <li><code class="text-emerald-400">●</code> --ltb-leading</li>
-              <li><code class="text-amber-400">●</code> --ltb-transform</li>
+              <li><code class="text-emerald-400">●</code> container-defaults.css</li>
+              <li><code class="text-emerald-400">●</code> container-presets-*.css</li>
+              <li><code class="text-emerald-400">●</code> position-defaults.css</li>
+              <li><code class="text-emerald-400">●</code> layered-text-defaults.css</li>
             </ul>
           </div>
           <div class="space-y-1">
-            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Color & Transform</h3>
+            <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Surfaces</h3>
             <ul class="space-y-0.5 text-xs">
-              <li><code class="text-amber-400">●</code> --ltb-color</li>
-              <li><code class="text-emerald-400">●</code> --ltb-opacity</li>
-              <li><code class="text-amber-400">●</code> --ltb-blend</li>
-              <li><code class="text-emerald-400">●</code> --ltb-rotation</li>
-              <li><code class="text-emerald-400">●</code> --ltb-skew-x</li>
-              <li><code class="text-emerald-400">●</code> --ltb-skew-y</li>
+              <li><code class="text-emerald-400">●</code> aurora.css</li>
+              <li><code class="text-emerald-400">●</code> noise.css</li>
+              <li><code class="text-emerald-400">●</code> grid-overlay.css</li>
             </ul>
           </div>
         </div>
@@ -263,6 +234,8 @@ composition
         <p>
           Sistema: <code class="text-white/60">design-container</code> + <code class="text-white/60">layered-text-bg</code>.
           Tokens: <code class="text-white/60">cqi</code> para escala, <code class="text-white/60">data-preset</code> para combinaciones.
+          Reglas: <code class="text-white/60">sin style inline</code>, <code class="text-white/60">fuentes por clase Tailwind</code>,
+          <code class="text-white/60">interfaces sin valores visuales</code>.
         </p>
       </footer>
     </div>
