@@ -1,0 +1,17 @@
+@layer components {
+  /* ============================================================
+     SURFACE: Aurora
+     ============================================================
+     Fondo degradado aurora usando tokens semánticos de color.
+     No contiene valores hardcodeados; consume la paleta aurora
+     definida en tokens/semantic.css.
+     ============================================================ */
+
+  .bg-aurora {
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 40%, var(--token-color-aurora-primary) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, var(--token-color-aurora-secondary) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 30% at 50% 80%, var(--token-color-aurora-tertiary) 0%, transparent 50%);
+    background-color: var(--token-color-bg);
+  }
+}

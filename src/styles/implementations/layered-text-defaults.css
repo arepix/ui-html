@@ -1,9 +1,24 @@
 @layer components {
   /* ============================================================
-     DEFAULTS: layered-text-bg__layer
+     IMPLEMENTATION: layered-text-bg__layer
+     ============================================================
+     Valores por defecto y presets para el átomo tipográfico.
+
+     Esta implementación asigna valores concretos a los slots
+     declarados en interfaces/layered-text.css.
+
+     Estructura:
+       1. Defaults neutros (fallback cuando no hay preset)
+       2. Presets declarativos (data-preset="nombre")
+       3. Presets de composición (combinaciones específicas de feature)
+       4. Mapeo a propiedades CSS
+     ============================================================ */
+
+  /* ============================================================
+     1. DEFAULTS
      ============================================================
      Valores por defecto para los slots del átomo tipográfico.
-     Una capa sin ningún style override usará estos valores.
+     Una capa sin ningún preset usará estos valores.
      Los presets sobrescriben subsets de estos defaults.
      ============================================================ */
 
@@ -32,7 +47,7 @@
     --ltb-text-orientation: mixed;
 
     /* Tipografía */
-    --ltb-font: var(--font-5cent);
+    --ltb-font: inherit;
     --ltb-size: 10cqi;
     --ltb-weight: 400;
     --ltb-style: normal;
@@ -71,10 +86,72 @@
     --ltb-pointer-events: none;
     --ltb-user-select: none;
     --ltb-cursor: none;
+
+    /* =========================================================
+       MAPEO A PROPIEDADES CSS
+       =========================================================
+       Ningún valor hardcodeado debajo de esta línea.
+       ========================================================= */
+
+    position:               var(--ltb-position);
+    inset-block-start:      var(--ltb-inset-block-start);
+    inset-inline-start:     var(--ltb-inset-inline-start);
+    inset-block-end:        var(--ltb-inset-block-end);
+    inset-inline-end:       var(--ltb-inset-inline-end);
+    z-index:                var(--ltb-z-index);
+    display:                var(--ltb-display);
+    overflow:               var(--ltb-overflow);
+    overflow-x:             var(--ltb-overflow-x);
+    overflow-y:             var(--ltb-overflow-y);
+
+    white-space:            var(--ltb-white-space);
+    word-break:             var(--ltb-word-break);
+    overflow-wrap:          var(--ltb-overflow-wrap);
+    text-align:             var(--ltb-text-align);
+    text-align-last:        var(--ltb-text-align-last);
+    vertical-align:         var(--ltb-vertical-align);
+    direction:              var(--ltb-direction);
+    writing-mode:           var(--ltb-writing-mode);
+    text-orientation:       var(--ltb-text-orientation);
+
+    font-family:            var(--ltb-font);
+    font-size:              var(--ltb-size);
+    font-weight:            var(--ltb-weight);
+    font-style:             var(--ltb-style);
+    font-variant:           var(--ltb-variant);
+    font-stretch:           var(--ltb-stretch);
+    letter-spacing:         var(--ltb-tracking);
+    line-height:            var(--ltb-leading);
+    text-transform:         var(--ltb-transform);
+    text-decoration-line:   var(--ltb-decoration-line);
+    text-decoration-style:  var(--ltb-decoration-style);
+    text-decoration-color:  var(--ltb-decoration-color);
+    text-decoration-thickness: var(--ltb-decoration-thickness);
+    text-underline-offset:  var(--ltb-underline-offset);
+    font-feature-settings:  var(--ltb-feature-settings);
+
+    color:                  var(--ltb-color);
+    opacity:                var(--ltb-opacity);
+    mix-blend-mode:         var(--ltb-blend);
+    isolation:              var(--ltb-isolation);
+
+    transform:
+      translate(-50%, -50%)
+      translate(var(--ltb-translate-x), var(--ltb-translate-y))
+      rotate(var(--ltb-rotation))
+      skew(var(--ltb-skew-x), var(--ltb-skew-y))
+      scale(var(--ltb-scale-x), var(--ltb-scale-y));
+    transform-origin:       var(--ltb-transform-origin);
+
+    text-shadow:            var(--ltb-text-shadow);
+
+    pointer-events:         var(--ltb-pointer-events);
+    user-select:            var(--ltb-user-select);
+    cursor:                 var(--ltb-cursor);
   }
 
   /* ============================================================
-     PRESETS
+     2. PRESETS GLOBALES
      ============================================================
      Combinaciones guardadas para iteración rápida.
      Se activan con data-preset="nombre" en el HTML.
@@ -138,5 +215,82 @@
     --ltb-size: 22cqi;
     --ltb-tracking: 0.3em;
     --ltb-color: var(--token-color-text);
+  }
+
+  /* ============================================================
+     3. PRESETS DE COMPOSICIÓN: Grid Textural 9:16
+     ============================================================
+     Presets específicos para la composición del preview 9:16.
+     Reemplazan los style="" inline del HTML original.
+     ============================================================ */
+
+  /* Capa back del grid 9:16 — textura densa, color secundario */
+  .layered-text-bg__layer[data-preset="grid-back-9-16"] {
+    --ltb-size: 10cqi;
+    --ltb-color: var(--token-color-aurora-secondary);
+    --ltb-tracking: -0.1em;
+    --ltb-white-space: pre-line;
+    --ltb-opacity: 0.9;
+    --ltb-text-align: center;
+    --ltb-font: var(--font-5cent);
+  }
+
+  /* Capa mid del grid 9:16 — rotada 180°, color primario, denso */
+  .layered-text-bg__layer[data-preset="grid-mid-9-16"] {
+    --ltb-rotation: 180deg;
+    --ltb-size: 5cqi;
+    --ltb-color: var(--token-color-aurora-primary);
+    --ltb-tracking: -0.04em;
+    --ltb-leading: 0.55;
+    --ltb-white-space: pre-line;
+    --ltb-text-align: center;
+    --ltb-font: var(--font-5cent);
+  }
+
+  /* Capa front del grid 9:16 — texto legible, color terciario */
+  .layered-text-bg__layer[data-preset="grid-front-9-16"] {
+    --ltb-size: 5cqi;
+    --ltb-color: var(--token-color-aurora-tertiary);
+    --ltb-white-space: normal;
+    --ltb-text-align: center;
+    --ltb-font: var(--font-5cent);
+  }
+
+  /* ============================================================
+     4. PRESETS DE COMPOSICIÓN: Grid Textural 16:9
+     ============================================================
+     Presets específicos para la composición del preview 16:9.
+     Reemplazan los style="" inline del HTML original.
+     ============================================================ */
+
+  /* Capa back del grid 16:9 — textura fantasma, tamaño reducido */
+  .layered-text-bg__layer[data-preset="grid-back-16-9"] {
+    --ltb-size: 2.5cqi;
+    --ltb-color: var(--token-color-aurora-secondary);
+    --ltb-tracking: -0.1em;
+    --ltb-white-space: pre-line;
+    --ltb-text-align: center;
+    --ltb-font: var(--font-5cent);
+  }
+
+  /* Capa mid del grid 16:9 — rotada 180°, color primario */
+  .layered-text-bg__layer[data-preset="grid-mid-16-9"] {
+    --ltb-rotation: 180deg;
+    --ltb-size: 4cqi;
+    --ltb-color: var(--token-color-aurora-primary);
+    --ltb-tracking: -0.04em;
+    --ltb-leading: 0.55;
+    --ltb-white-space: pre-line;
+    --ltb-text-align: center;
+    --ltb-font: var(--font-5cent);
+  }
+
+  /* Capa front del grid 16:9 — texto legible, color terciario */
+  .layered-text-bg__layer[data-preset="grid-front-16-9"] {
+    --ltb-size: 4cqi;
+    --ltb-color: var(--token-color-aurora-tertiary);
+    --ltb-white-space: normal;
+    --ltb-text-align: center;
+    --ltb-font: var(--font-5cent);
   }
 }

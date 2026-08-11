@@ -1,0 +1,18 @@
+@layer components {
+  /* ============================================================
+     PRESETS DE SUPERFICIE: design-container
+     ============================================================
+     Presets que definen el fondo del container.
+     Se activan con data-surface="nombre" en el HTML.
+     ============================================================ */
+
+  /* Fondo oscuro base */
+  .design-container[data-surface="dark"] {
+    --container-background-color: var(--token-color-bg);
+  }
+
+  /* Fondo elevado */
+  .design-container[data-surface="elevated"] {
+    --container-background-color: var(--token-color-surface);
+  }
+}

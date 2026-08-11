@@ -31,6 +31,9 @@
    IMPLEMENTATIONS: valores por defecto de los slots
    ============================================================ */
 @import './implementations/container-defaults.css';
+@import './implementations/container-presets-shape.css';
+@import './implementations/container-presets-mask.css';
+@import './implementations/container-presets-surface.css';
 @import './implementations/position-defaults.css';
 @import './implementations/layered-text-defaults.css';
 

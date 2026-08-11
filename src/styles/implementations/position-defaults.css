@@ -1,197 +1,103 @@
 @layer components {
   /* ============================================================
-     DEFAULTS: pos-relative
+     IMPLEMENTATION: position-defaults
      ============================================================
-     Posición centrada, sin transformaciones. Punto neutro.
+     Valores por defecto para el sistema de posicionamiento relativo.
+     Los presets de posicionamiento específicos viven en features/
+     o se declaran inline vía data-preset en el HTML.
      ============================================================ */
 
   .pos-relative {
+    /* Esquema de posicionamiento */
     --pos-type: absolute;
+
+    /* Coordenadas base */
     --pos-x: 50%;
     --pos-y: 50%;
     --pos-z: 0;
     --pos-z-index: auto;
 
+    /* Origen de transformación */
     --pos-origin-x: center;
     --pos-origin-y: center;
     --pos-origin-z: 0;
 
+    /* Insets lógicos */
     --pos-inset-block-start: auto;
     --pos-inset-block-end: auto;
     --pos-inset-inline-start: auto;
     --pos-inset-inline-end: auto;
 
+    /* Transformaciones adicionales */
     --pos-translate-x: 0;
     --pos-translate-y: 0;
     --pos-translate-z: 0;
-
     --pos-rotate: 0deg;
     --pos-rotate-x: 0deg;
     --pos-rotate-y: 0deg;
-
     --pos-scale-x: 1;
     --pos-scale-y: 1;
     --pos-scale-z: 1;
-
     --pos-skew-x: 0deg;
     --pos-skew-y: 0deg;
-
     --pos-perspective: none;
 
+    /* Anchor positioning (futuro) */
     --pos-anchor-name: none;
     --pos-anchor-target: none;
     --pos-anchor-position: center;
 
+    /* Scroll snapping */
     --pos-scroll-margin-block-start: 0;
     --pos-scroll-margin-block-end: 0;
     --pos-scroll-margin-inline-start: 0;
     --pos-scroll-margin-inline-end: 0;
     --pos-scroll-snap-align: none;
-  }
 
-  /* ============================================================
-     PRESETS DE POSICIÓN (anclaje en 9 puntos)
-     ============================================================ */
+    /* =========================================================
+       MAPEO A PROPIEDADES CSS
+       ========================================================= */
 
-  /* Esquinas */
-  .pos-relative[data-preset="top-left"] {
-    --pos-x: 0%;
-    --pos-y: 0%;
-    --pos-origin-x: left;
-    --pos-origin-y: top;
-  }
+    position: var(--pos-type);
 
-  .pos-relative[data-preset="top-right"] {
-    --pos-x: 100%;
-    --pos-y: 0%;
-    --pos-origin-x: right;
-    --pos-origin-y: top;
-  }
+    /* Coordenadas físicas (LTR fallback) */
+    left: var(--pos-x);
+    top: var(--pos-y);
 
-  .pos-relative[data-preset="bottom-left"] {
-    --pos-x: 0%;
-    --pos-y: 100%;
-    --pos-origin-x: left;
-    --pos-origin-y: bottom;
-  }
+    /* Insets lógicos (override cuando se especifican) */
+    inset-block-start: var(--pos-inset-block-start);
+    inset-block-end: var(--pos-inset-block-end);
+    inset-inline-start: var(--pos-inset-inline-start);
+    inset-inline-end: var(--pos-inset-inline-end);
 
-  .pos-relative[data-preset="bottom-right"] {
-    --pos-x: 100%;
-    --pos-y: 100%;
-    --pos-origin-x: right;
-    --pos-origin-y: bottom;
-  }
+    z-index: var(--pos-z-index);
 
-  /* Bordes medios */
-  .pos-relative[data-preset="top-center"] {
-    --pos-x: 50%;
-    --pos-y: 0%;
-    --pos-origin-x: center;
-    --pos-origin-y: top;
-  }
+    transform-origin: var(--pos-origin-x) var(--pos-origin-y) var(--pos-origin-z);
 
-  .pos-relative[data-preset="bottom-center"] {
-    --pos-x: 50%;
-    --pos-y: 100%;
-    --pos-origin-x: center;
-    --pos-origin-y: bottom;
-  }
+    transform:
+      translate3d(
+        var(--pos-translate-x),
+        var(--pos-translate-y),
+        var(--pos-translate-z)
+      )
+      rotateX(var(--pos-rotate-x))
+      rotateY(var(--pos-rotate-y))
+      rotateZ(var(--pos-rotate))
+      scale3d(
+        var(--pos-scale-x),
+        var(--pos-scale-y),
+        var(--pos-scale-z)
+      )
+      skew(var(--pos-skew-x), var(--pos-skew-y));
 
-  .pos-relative[data-preset="left-center"] {
-    --pos-x: 0%;
-    --pos-y: 50%;
-    --pos-origin-x: left;
-    --pos-origin-y: center;
-  }
+    perspective: var(--pos-perspective);
 
-  .pos-relative[data-preset="right-center"] {
-    --pos-x: 100%;
-    --pos-y: 50%;
-    --pos-origin-x: right;
-    --pos-origin-y: center;
-  }
+    anchor-name: var(--pos-anchor-name);
 
-  /* Centro (default implícito, explícito para claridad) */
-  .pos-relative[data-preset="center"] {
-    --pos-x: 50%;
-    --pos-y: 50%;
-    --pos-origin-x: center;
-    --pos-origin-y: center;
-  }
-
-  /* ============================================================
-     PRESETS DE TRANSFORMACIÓN
-     ============================================================ */
-
-  /* Inclinado hacia la izquierda */
-  .pos-relative[data-tilt="left"] {
-    --pos-rotate: -12deg;
-    --pos-skew-x: 6deg;
-  }
-
-  /* Inclinado hacia la derecha */
-  .pos-relative[data-tilt="right"] {
-    --pos-rotate: 12deg;
-    --pos-skew-x: -6deg;
-  }
-
-  /* Perspectiva 3D hacia adelante */
-  .pos-relative[data-tilt="forward"] {
-    --pos-rotate-x: 8deg;
-    --pos-rotate-y: -4deg;
-    --pos-perspective: 800px;
-  }
-
-  /* Perspectiva 3D hacia atrás */
-  .pos-relative[data-tilt="backward"] {
-    --pos-rotate-x: -8deg;
-    --pos-rotate-y: 4deg;
-    --pos-perspective: 800px;
-  }
-
-  /* Zoom dramático */
-  .pos-relative[data-scale="zoom-in"] {
-    --pos-scale-x: 1.5;
-    --pos-scale-y: 1.5;
-  }
-
-  /* Reducción */
-  .pos-relative[data-scale="zoom-out"] {
-    --pos-scale-x: 0.7;
-    --pos-scale-y: 0.7;
-  }
-
-  /* ============================================================
-     PRESETS COMBINADOS (posición + transformación)
-     ============================================================ */
-
-  /* Firma en esquina inferior derecha, inclinada */
-  .pos-relative[data-preset="signature"] {
-    --pos-x: 92%;
-    --pos-y: 88%;
-    --pos-origin-x: right;
-    --pos-origin-y: bottom;
-    --pos-rotate: -8deg;
-    --pos-scale-x: 0.85;
-    --pos-scale-y: 0.85;
-  }
-
-  /* Sello en esquina superior izquierda */
-  .pos-relative[data-preset="stamp"] {
-    --pos-x: 8%;
-    --pos-y: 12%;
-    --pos-origin-x: left;
-    --pos-origin-y: top;
-    --pos-rotate: 6deg;
-  }
-
-  /* Título centrado, leve profundidad 3D */
-  .pos-relative[data-preset="title-3d"] {
-    --pos-x: 50%;
-    --pos-y: 45%;
-    --pos-origin-x: center;
-    --pos-origin-y: center;
-    --pos-rotate-x: 4deg;
-    --pos-perspective: 1000px;
+    scroll-margin-block-start: var(--pos-scroll-margin-block-start);
+    scroll-margin-block-end: var(--pos-scroll-margin-block-end);
+    scroll-margin-inline-start: var(--pos-scroll-margin-inline-start);
+    scroll-margin-inline-end: var(--pos-scroll-margin-inline-end);
+    scroll-snap-align: var(--pos-scroll-snap-align);
   }
 }

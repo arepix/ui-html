@@ -1,0 +1,43 @@
+@layer components {
+  /* ============================================================
+     PRESETS DE FORMA: design-container
+     ============================================================
+     Presets que definen la geometría y proporción del container.
+     Se activan con data-preset="nombre" en el HTML.
+     ============================================================ */
+
+  /* Celular portrait */
+  .design-container[data-preset="phone"] {
+    --container-ratio: 9/16;
+    --container-max-inline-size: 100%;
+    --container-overflow: hidden;
+    --container-radius: 12px;
+  }
+
+  /* Cuadrado */
+  .design-container[data-preset="square"] {
+    --container-ratio: 1;
+    --container-overflow: hidden;
+  }
+
+  /* Hero banner */
+  .design-container[data-preset="hero"] {
+    --container-ratio: 21/9;
+    --container-inline-size: 100%;
+    --container-overflow: hidden;
+  }
+
+  /* Tarjeta */
+  .design-container[data-preset="card"] {
+    --container-ratio: 4/5;
+    --container-overflow: hidden;
+    --container-radius: 10px;
+    --container-box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  /* Bento celda */
+  .design-container[data-preset="bento"] {
+    --container-overflow: hidden;
+    --container-radius: 8px;
+  }
+}
