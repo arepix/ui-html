@@ -31,8 +31,30 @@
   ─────────────────────────────────────────────────────────── */
   --token-color-aurora-primary:   var(--color-aurora-1); /* #7c5cff */
   --token-color-aurora-secondary: var(--color-aurora-2); /* #ff5c8a */
-  --token-color-aurora-tertiary:  var(--color-aurora-3); /* #5cf0ff */
+  --token-color-aurora-tertiary:  var(--color-aurora-3);
+  
+  --token-color-paleta-violeta:  var(--color-cypher-1);
+  --token-color-paleta-verde:  var(--color-cypher-2);
+  --token-color-paleta-azul:  var(--color-cypher-3);
+  --token-color-paleta-blanco:  var(--color-cypher-4);
+  --token-color-paleta-negro:  var(--color-cypher-5);
 
+--token-color-paleta-violeta-claro:  var(--color-cypher-1-1);
+--token-color-paleta-verde-claro:  var(--color-cypher-2-1);
+--token-color-paleta-azul-claro:  var(--color-cypher-3-1);
+--token-color-paleta-negro-claro:  var(--color-cypher-5-1);
+--token-color-paleta-negro-claro-claro:  var(--color-cypher-5-1-1);
+
+
+--token-color-paleta-violeta-oscuro:  var(--color-cypher-1-2);
+--token-color-paleta-verde-oscuro:  var(--color-cypher-2-2);
+--token-color-paleta-azul-oscuro:  var(--color-cypher-3-2);
+--token-color-paleta-blanco-oscuro:  var(--color-cypher-4-2);
+--token-color-paleta-blanco-oscuro-oscuro:  var(--color-cypher-4-2-2);
+--token-color-paleta-negro-oscuro:  var(--color-cypher-5-2);
+
+  
+  
   /* ─── Jerarquía Z (roles espaciales) ──────────────────────
      Los componentes no usan --z-bg-deep directamente.
      Usan estos roles para declarar su intención de profundidad.
