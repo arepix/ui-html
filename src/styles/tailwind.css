@@ -48,9 +48,9 @@
    THEME: registro de fuentes para Tailwind v4
    ============================================================ */
 @theme {
-  --font-5cent: var(--font-family-5cent);
-  --font-captions: var(--font-family-captions);
-  --font-magikMarker: var(--font-family-magikMarker);
+  --font-5cent: var(--font-family-5cent), sans-serif;
+  --font-captions: var(--font-family-captions), sans-serif;
+  --font-magikMarker: var(--font-family-magikMarker), sans-serif;
   --font-scrawler3rd: var(--font-family-scrawler3rd), cursive;
   --font-searFont: var(--font-family-searFont), sans-serif;
   --font-Writers_Bold: var(--font-family-Writers_Bold), sans-serif;
@@ -58,4 +58,23 @@
   --font-Writers_Original: var(--font-family-Writers_Original), sans-serif;
   --font-Writers2: var(--font-family-Writers2), sans-serif;
   --font-Writers3: var(--font-family-Writers3), sans-serif;
+  --font-a-another-tag: var(--font-family-a-another-tag), sans-serif;
+  --font-a-dripping-maker: var(--font-family-a-dripping-maker), sans-serif;
+  --font-aerosoldier: var(--font-family-aerosoldier), sans-serif;
+  --font-aerosoldier-symbol: var(--font-family-aerosoldier-symbol), sans-serif;
+  --font-brick: var(--font-family-brick), sans-serif;
+  --font-cosinek: var(--font-family-cosinek), sans-serif;
+  --font-digitag: var(--font-family-digitag), sans-serif;
+  --font-docallisme: var(--font-family-docallisme), sans-serif;
+  --font-dongrafitti: var(--font-family-dongrafitti), sans-serif;
+  --font-grafittiy: var(--font-family-grafittiy), sans-serif;
+  --font-mars: var(--font-family-mars), sans-serif;
+  --font-next-ups: var(--font-family-next-ups), sans-serif;
+  --font-over-quick: var(--font-family-over-quick), sans-serif;
+  --font-sister-spray: var(--font-family-sister-spray), sans-serif;
+  --font-smasher: var(--font-family-smasher), sans-serif;
+  --font-spartical: var(--font-family-spartical), sans-serif;
+  --font-splatink: var(--font-family-splatink), sans-serif;
+  --font-street-wars: var(--font-family-street-wars), sans-serif;
+  --font-urban-heroes: var(--font-family-urban-heroes), sans-serif;
 }

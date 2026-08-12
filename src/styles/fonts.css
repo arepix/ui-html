@@ -33,7 +33,7 @@
 /* ===== Familia: searFont ===== */
 @font-face {
   font-family: 'searFont';
-  src: url('/fonts/searFont/Searfont.otf') format('opentype');
+  src: url('/fonts/searfont/Searfont.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -74,6 +74,158 @@
 @font-face {
   font-family: 'Writers3';
   src: url('/fonts/WritersFamily/Writers3.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: a-another-tag ===== */
+@font-face {
+  font-family: 'a-another-tag';
+  src: url('/fonts/a_another_tag/aAnotherTag.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: a-dripping-maker ===== */
+@font-face {
+  font-family: 'a-dripping-maker';
+  src: url('/fonts/a_dripping_marker/adrip1.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: aerosoldier ===== */
+@font-face {
+  font-family: 'aerosoldier';
+  src: url('/fonts/aerosoldier/Aerosoldier_PERSONAL_USE_ONLY.oft') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: aerosoldier-symbol ===== */
+@font-face {
+  font-family: 'aerosoldier-symbol';
+  src: url('/fonts/aerosoldier/AerosoldierSymbol_PERSONAL_USE_ONLY.oft') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: brick ===== */
+@font-face {
+  font-family: 'brick';
+  src: url('/fonts/brick_3/Brick.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: cosinek ===== */
+@font-face {
+  font-family: 'cosinek';
+  src: url('/fonts/cosine-katie/cosinek.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: digitag ===== */
+@font-face {
+  font-family: 'digitag';
+  src: url('/fonts/digitag/Digitag.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: docallisme ===== */
+@font-face {
+  font-family: 'docallisme';
+  src: url('/fonts/docallisme_on_street/docallismeonstreet.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: dongrafitti ===== */
+@font-face {
+  font-family: 'dongrafitti';
+  src: url('/fonts/don_graffiti/DonGraffiti.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: grafittiy ===== */
+@font-face {
+  font-family: 'grafittiy';
+  src: url('/fonts/graffiti_youth/GraffitiYouth-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: mars ===== */
+@font-face {
+  font-family: 'mars';
+  src: url('/fonts/marsneveneksk/MARSNEVENEKSK-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: next-ups ===== */
+@font-face {
+  font-family: 'next-ups';
+  src: url('/fonts/next_ups/Next Ups.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: over-quick ===== */
+@font-face {
+  font-family: 'over-quick';
+  src: url('/fonts/over-quick/OverQuick-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: sister-spray ===== */
+@font-face {
+  font-family: 'sister-spray';
+  src: url('/fonts/sister_spray/Sister Spray.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: smasher ===== */
+@font-face {
+  font-family: 'smasher';
+  src: url('/fonts/smasher_312_custom/Smasher312Custom.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: spartical ===== */
+@font-face {
+  font-family: 'spartical';
+  src: url('/fonts/spartical_graffiti/SparticalGraffitiLine_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: splatink ===== */
+@font-face {
+  font-family: 'splatink';
+  src: url('/fonts/splatink_2/Splatink_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: street-wars ===== */
+@font-face {
+  font-family: 'street-wars';
+  src: url('/fonts/street_wars/Street Wars Demo.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* ===== Familia: urban-heroes ===== */
+@font-face {
+  font-family: 'urban-heroes';
+  src: url('/fonts/urban_heroes/Urban Heroes.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

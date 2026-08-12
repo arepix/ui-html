@@ -73,14 +73,33 @@
      Pasos: 0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100.
      Se activarán cuando se estandarice la escala de transparencia.
   ─────────────────────────────────────────────────────────── */
-   --font-family-5cent: '5cent', sans-serif;
+  --font-family-5cent: '5cent', sans-serif;
   --font-family-captions: 'captions', sans-serif;
   --font-family-magikMarker: 'magikMarker', sans-serif;
-  --font-family-scrawler3rd: 'scrawler3rd', cursive;
+  --font-family-scrawler3rd: 'scrawler3rd', sans-serif;
   --font-family-searFont: 'searFont', sans-serif;
   --font-family-Writers_Bold: 'Writers_Bold', sans-serif;
   --font-family-Writers_Condensed: 'Writers_Condensed', sans-serif;
   --font-family-Writers_Original: 'Writers_Original', sans-serif;
   --font-family-Writers2: 'Writers2', sans-serif;
   --font-family-Writers3: 'Writers3', sans-serif;
+  --font-family-a-another-tag: 'a-another-tag', sans-serif;
+  --font-family-a-dripping-maker: 'a-dripping-maker', sans-serif;
+  --font-family-aerosoldier: 'aerosoldier', sans-serif;
+  --font-family-aerosoldier-symbol: 'aerosoldier-symbol', sans-serif;
+  --font-family-brick: 'brick', sans-serif;
+  --font-family-cosinek: 'cosinek', sans-serif;
+  --font-family-digitag: 'digitag', sans-serif;
+  --font-family-docallisme: 'docallisme', sans-serif;
+  --font-family-dongrafitti: 'dongrafitti', sans-serif;
+  --font-family-grafittiy: 'grafittiy', sans-serif;
+  --font-family-mars: 'mars', sans-serif;
+  --font-family-next-ups: 'next-ups', sans-serif;
+  --font-family-over-quick: 'over-quick', sans-serif;
+  --font-family-sister-spray: 'sister-spray', sans-serif;
+  --font-family-smasher: 'smasher', sans-serif;
+  --font-family-spartical: 'spartical', sans-serif;
+  --font-family-splatink: 'splatink', sans-serif;
+  --font-family-street-wars: 'street-wars', sans-serif;
+  --font-family-urban-heroes: 'urban-heroes', sans-serif;
 }
