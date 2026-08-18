@@ -1,3 +1,7 @@
+Aquí tienes el `REGLAS.md` refactorizado. El cambio principal es la introducción explícita de la **separación entre Identidad (visuales) y Posición (layout/geométricos)**, adaptando las reglas de HTML y presets para soportar el patrón de variables locales (`--x`, `--y`, `--rot`) que estás usando en tus nuevas composiciones.
+
+---
+
 # Reglas de Arquitectura — Motor de Maquetación Composable
 
 ## 1. Tokens: tres capas, nunca mezcladas
@@ -14,67 +18,97 @@
 
 ---
 
-## 2. Interfaces vs. Implementaciones
+## 2. Identidad vs. Posición (La regla de oro)
+
+Los slots de un átomo se dividen estrictamente en dos categorías. Esta separación es fundamental para el sistema:
+
+| Categoría | Qué controla | Slots típicos | Dónde se define |
+|-----------|--------------|---------------|-----------------|
+| **IDENTIDAD** | El "qué" visual. Cómo se ve la capa. | `--ltb-color`, `--ltb-font`, `--ltb-blend`, `--ltb-text-shadow`, `--ltb-opacity` | Exclusivamente en CSS mediante `data-preset`. |
+| **POSICIÓN** | El "dónde" y "cómo" se acomoda. | `--ltb-translate-x`, `--ltb-translate-y`, `--ltb-rotation`, `--ltb-size`, `--ltb-z-index` | En el preset como *default*, pero **puede ser sobreescrita** en el HTML mediante variables locales (`--x`, `--y`, `--rot`). |
+
+**REGLA:** La identidad visual de una capa pertenece al preset. Su posición geométrica puede ser parametrizada para reutilizar el mismo preset en múltiples lugares sin acoplar la identidad al layout.
+
+---
+
+## 3. Interfaces vs. Implementaciones
 
 ### Interfaces (`interfaces/*.css`)
-- Declaran los slots con comentarios documentando dominio (LIBRE vs CERRADO).
-- NO contienen valores visuales por defecto, o si los tienen son neutros (`1`, `0deg`, `normal`).
+- Declaran todos los slots (Identidad y Posición) con comentarios documentando dominio (LIBRE vs CERRADO).
+- Contienen valores neutros por defecto (`0deg`, `1`, `0%`, `auto`, `inherit`).
 - NO deben ser editadas durante la experimentación.
-- Si un experimento necesita un slot nuevo, se PROPONE en la interfaz.
 
 ### Implementaciones (`implementations/*.css`)
 - Asignan valores a los slots.
-- Contienen los `data-preset` que son las combinaciones guardadas.
-- Son el territorio de experimentación. Se edita libremente.
-- Si un preset se usa en 2+ features, se promueve a `implementations/` global.
+- Definen la **Identidad** de forma estricta.
+- Exponen **Posición** mediante variables locales cuando se busca reutilizar el preset (ej: `--ltb-translate-x: var(--x, 0%);`).
 
-**REGLA:** Nunca pongas un valor visual en una interfaz. Nunca pongas lógica de layout en una implementación.
-
----
-
-## 3. HTML: prohibido `style="--slot: valor"`
-
-**ANTES (deprecado):**
-```html
-<span style="--ltb-opacity: 0.5; --ltb-color: red;">...</span>
-```
-
-**AHORA (válido):**
-```html
-<span data-preset="mi-experimento">...</span>
-```
-
-**REGLA:** El HTML no contiene valores de diseño en `style=""`. La única excepción son atributos de datos puros (`data-preset`, `data-mask`).
-
-**REGLA:** El HTML puede usar clases utilidad de Tailwind para cosas que el sistema de slots no maneja bien: fuentes (`font-magikMarker`), layout flex/grid (`flex`, `grid`, `gap-4`), spacing (`p-4`, `m-2`).
-
-**REGLA:** Si necesitás un nuevo preset, lo creás en CSS, no en HTML.
+**REGLA:** Nunca pongas un valor de Identidad en una interfaz. Nunca hardcodees un valor de Posición definitiva en un preset si querés reutilizarlo (usá variables locales).
 
 ---
 
-## 4. Presets: la unidad de iteración
+## 4. HTML: Prohibido editar Identidad, permitido ajustar Posición
 
-Un preset es un selector CSS que configura un conjunto de slots:
+El HTML no debe ensuciarse con valores visuales. Sin embargo, puede pasar parámetros de posición a los presets que lo soporten.
 
+**PROHIBIDO (Identidad en HTML):**
+```html
+<!-- JAMÁS: esto rompe el sistema de presets -->
+<span data-preset="neon" style="--ltb-color: red; --ltb-blend: overlay;">...</span>
+```
+
+**PERMITIDO (Posición parametrizada en HTML):**
+```html
+<!-- VÁLIDO: El preset "grid-mid-16-9-1Layer" expone --x, --y, --rot -->
+<span data-preset="grid-mid-16-9-1Layer" style="--x: 20%; --y: -15%; --rot: 5deg;">...</span>
+```
+
+**REGLA:** El HTML puede usar `style=""` **solo** para inyectar variables de layout (`--x`, `--y`, `--rot`, `--size`, `--op`) que el preset haya declarado como parametrizables.
+
+**REGLA:** El HTML puede usar clases utilidad de Tailwind para cosas que el sistema de slots no maneja bien: layout flex/grid (`flex`, `grid`, `gap-4`), spacing (`p-4`, `m-2`).
+
+---
+
+## 5. Presets: la unidad de iteración
+
+Un preset configura un conjunto de slots. Existen dos enfoques:
+
+### Presets Cerrados (Identidad + Layout fijo)
+Útiles para elementos atómicos específicos que no se mueven.
 ```css
-.layered-text-bg__layer[data-preset="neon-cyan"] {
-  --ltb-opacity: 0.9;
-  --ltb-blend: overlay;
+.layered-text-bg__layer[data-preset="ghost"] {
+  /* IDENTIDAD */
+  --ltb-opacity: 0.15;
+  --ltb-blend: screen;
   --ltb-color: var(--token-color-aurora-primary);
-  --ltb-size: 12cqi;
-  --ltb-tracking: 0.15em;
+  /* POSICIÓN FIJA */
+  --ltb-size: 18cqi;
+  --ltb-tracking: -0.05em;
 }
 ```
 
-**REGLA:** Los presets viven en `implementations/` o en `features/<nombre>/presets.css`.
-
-**REGLA:** El nombre del preset debe ser descriptivo: `ghost`, `neon-cyan`, `stamp-heavy`, `whisper-vertical`.
+### Presets Parametrizables (Identidad + Layout dinámico)
+Útiles para grids y composiciones donde la misma identidad se repite en distintos lugares.
+```css
+.layered-text-bg__layer[data-preset="grid-mid-16-9-1Layer"] {
+  /* IDENTIDAD */
+  --ltb-color: var(--token-color-paleta-negro-claro);
+  --ltb-transform: uppercase;
+  --ltb-font: var(--font-splatink);
+  
+  /* POSICIÓN PARAMETRIZABLE (con fallback) */
+  --ltb-size: var(--size, 10cqi);
+  --ltb-translate-x: var(--x, 0%);
+  --ltb-translate-y: var(--y, 0%);
+  --ltb-rotation: var(--rot, 0deg);
+}
+```
 
 **REGLA:** Si un preset es temporal (solo para un experimento), se guarda en `features/<nombre>/presets.css`. Si se vuelve reutilizable, migra a `implementations/`.
 
 ---
 
-## 5. Container queries y escala
+## 6. Container queries y escala
 
 **REGLA:** Todo componente que necesite escalar proporcionalmente usa `container-type: inline-size`.
 
@@ -82,23 +116,21 @@ Un preset es un selector CSS que configura un conjunto de slots:
 
 **REGLA:** El viewport (body) solo provee tema y espacio. No posiciona componentes.
 
-**REGLA:** Un padre de container debe tener `container-type: inline-size` para que `cqi` funcione. En los previews, esto se declara en un `<style>` local del lienzo (ej: `.canvas-wrapper { container-type: inline-size; }`).
+---
+
+## 7. Fuentes: Integración en Identidad
+
+A diferencia de iteraciones anteriores, las fuentes SÍ pueden ser parte de la Identidad del preset usando el slot `--ltb-font`.
+
+**REGLA:** Las fuentes se asignan dentro de los presets mediante `--ltb-font: var(--font-magikMarker);`.
+
+**REGLA:** También pueden asignarse mediante clases utilidad de Tailwind (`font-5cent`) directamente en el HTML si es un caso puntual que no merece un preset.
+
+**REGLA:** Si un preset define `--ltb-font`, no es necesario añadir la clase Tailwind en el HTML; el CSS se encarga de la identidad tipográfica.
 
 ---
 
-## 6. Fuentes: excepción al sistema de slots
-
-Las fuentes tipográficas NO se controlan por el slot `--ltb-font` en `style=""`.
-
-**REGLA:** Las fuentes se asignan mediante clases utilidad de Tailwind: `font-5cent`, `font-captions`, `font-magikMarker`, etc.
-
-**REGLA:** El slot `--ltb-font` debe tener `inherit` como default para no competir con las utilidades de Tailwind.
-
-**REGLA:** Si una fuente necesita ser parte de un preset, se documenta en el preset pero se aplica por clase HTML.
-
----
-
-## 7. Atomic Design en componentes
+## 8. Atomic Design en componentes
 
 | Nivel | Responsabilidad | Preview |
 |-------|----------------|---------|
@@ -107,23 +139,21 @@ Las fuentes tipográficas NO se controlan por el slot `--ltb-font` en `style=""`
 | **Organismo** | Composición de moléculas. Se evalúa relación espacial. | `organisms/_preview.html` |
 | **Página** | Producto final. Sin presets experimentales. | `pages/*.html` |
 
-**REGLA:** Los previews existen en cada nivel como laboratorio. Si refinás un átomo, bajás al preview de átomos. Si evaluás composición, subís al de moléculas.
-
-**REGLA:** Los previews pueden tener `<style>` local solo para layout del lienzo (ej: `container-type`, dimensiones de canvas). Nunca para estilo de componente.
+**REGLA:** Los previews pueden tener `<style>` local solo para layout del lienzo (ej: `container-type`, dimensiones de canvas, grid de Wordpress). Nunca para estilo de componente o Identidad.
 
 ---
 
-## 8. Flujo de trabajo: experimentación → consolidación
+## 9. Flujo de trabajo: experimentación → consolidación
 
-1. **Crear preset:** Editás `implementations/layered-text-defaults.css` (o `features/<nombre>/presets.css`) y agregás un `[data-preset="nuevo"]`.
-2. **Asignar en HTML:** Ponés `data-preset="nuevo"` en el elemento.
-3. **Iterar en CSS:** Ajustás valores del preset hasta que funcione.
-4. **Sintetizar:** Si el preset es bueno, lo dejás en `implementations/`. Si es específico de un experimento, lo dejás en `features/`.
-5. **Limpiar:** El HTML solo conserva `data-preset`. El CSS conserva el preset. Nada de hacks inline.
+1. **Crear preset:** Editás `implementations/*.css` y agregás un `[data-preset="nuevo"]`. Definís su Identidad y, si hace falta, exponés variables de Posición (`--x`, `--y`).
+2. **Asignar en HTML:** Ponés `data-preset="nuevo"`. Si tiene parámetros de posición, los pasás por `style="--x: 10%"`.
+3. **Iterar en CSS:** Ajustás los valores visuales del preset.
+4. **Sintetizar:** Si el preset es bueno, lo dejás en `implementations/`. Si es específico, lo dejás en `features/`.
+5. **Limpiar:** El HTML solo conserva `data-preset` y variables de posición (`--x`, `--y`). Nada de colores o opacidades inline.
 
 ---
 
-## 9. Entry point único
+## 10. Entry point único
 
 `tailwind.css` es el único archivo que importa todo. El orden es:
 
@@ -137,24 +167,6 @@ Las fuentes tipográficas NO se controlan por el slot `--ltb-font` en `style=""`
 
 **REGLA:** Ningún preview importa CSS suelto. Todos importan `tailwind.css`.
 
-**REGLA:** Si un `@import` falla (archivo no existe), Vite rompe todo el CSS. Verificar que todos los archivos importados existan físicamente.
-
----
-
-## 10. Reglas de estilo para previews (lienzos)
-
-**PERMITIDO en `<style>` local del preview:**
-- `container-type: inline-size` para el wrapper
-- Dimensiones del canvas (`width`, `height`, `aspect-ratio`)
-- Layout del lienzo (`grid`, `flex`, `gap`)
-
-**PROHIBIDO en `<style>` local del preview:**
-- Estilos de componente (`.layered-text-bg__layer`, `.design-container`)
-- Valores de slots (`--ltb-opacity`, `--ltb-color`)
-- Defaults que deberían vivir en `interfaces/` o `implementations/`
-
-**REGLA:** Si encontrás escribiendo más de 5 líneas de CSS en un preview, ese CSS debería estar en `interfaces/` o `implementations/`.
-
 ---
 
 ## 11. Nomenclatura
@@ -163,9 +175,10 @@ Las fuentes tipográficas NO se controlan por el slot `--ltb-font` en `style=""`
 |----------|-----------|---------|
 | Token primitivo | `--color-*`, `--space-*` | `--color-aurora-1` |
 | Token semántico | `--token-*` | `--token-color-accent` |
-| Slot de componente | `--<componente>-<atributo>` | `--ltb-opacity`, `--container-ratio` |
-| Preset | `data-preset="<nombre>"` | `data-preset="ghost"` |
-| Clase de componente | `.layered-text-bg`, `.design-container` | BEM simplificado |
+| Slot de componente (Identidad) | `--<componente>-<atributo>` | `--ltb-color`, `--ltb-blend` |
+| Slot de componente (Posición) | `--<componente>-<atributo>` | `--ltb-translate-x`, `--ltb-rotation` |
+| Variable local de posición | `--<nombre-corto>` | `--x`, `--y`, `--rot`, `--size`, `--op` |
+| Preset | `data-preset="<nombre>"` | `data-preset="grid-mid-16-9-1Layer"` |
 | Clase utilidad Tailwind | `font-*`, `bg-*`, `p-*` | `font-magikMarker`, `p-4` |
 
 ---
@@ -175,8 +188,7 @@ Las fuentes tipográficas NO se controlan por el slot `--ltb-font` en `style=""`
 | Síntoma | Causa probable | Solución |
 |---------|---------------|----------|
 | Fondo blanco | `base.css` apunta a variable inexistente | Verificar que `base.css` use `--token-color-bg` |
-| Texto sin fuente | Tailwind no registra la fuente | Verificar `@theme` en `tailwind.css` |
-| Container no escala | Padre no tiene `container-type` | Agregar `container-type: inline-size` al wrapper |
+| No toma la posición esperada | Falta el `style="--x:..."` en HTML o el preset no expone `var(--x)` | Revisar que el preset declare `--ltb-translate-x: var(--x, 0%)` |
+| La capa no rota o no se mueve | El mapeo CSS del transform no incluye el slot | Verificar que la implementación mapee `transform: translate(var(--ltb-translate-x)...)` |
 | Preset no aplica | Nombre mal escrito o CSS no importado | Verificar `data-preset` y que el archivo esté en `implementations/` |
-| Slot no funciona | La interfaz no declara el slot | Verificar `interfaces/<componente>.css` |
 | Todo el CSS roto | Un `@import` apunta a archivo inexistente | Revisar consola del navegador por errores 404 |
