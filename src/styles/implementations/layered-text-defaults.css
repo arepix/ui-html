@@ -9,17 +9,15 @@
 
      Estructura:
        1. Defaults neutros (fallback cuando no hay preset)
-       2. Presets declarativos (data-preset="nombre")
-       3. Presets de composición (combinaciones específicas de feature)
-       4. Mapeo a propiedades CSS
+       2. Presets globales (data-preset="nombre")
+       3. Familias de identidad (data-typo, data-palette, data-opacity, data-casing)
+       4. Presets de posición (data-preset="grid-mid-16-9", etc.)
+       5. Presets de composición back (posiciones únicas, no reutilizables)
+       6. Mapeo a propiedades CSS
      ============================================================ */
 
   /* ============================================================
      1. DEFAULTS
-     ============================================================
-     Valores por defecto para los slots del átomo tipográfico.
-     Una capa sin ningún preset usará estos valores.
-     Los presets sobrescriben subsets de estos defaults.
      ============================================================ */
 
   .layered-text-bg__layer {
@@ -89,8 +87,6 @@
 
     /* =========================================================
        MAPEO A PROPIEDADES CSS
-       =========================================================
-       Ningún valor hardcodeado debajo de esta línea.
        ========================================================= */
 
     position:               var(--ltb-position);
@@ -152,13 +148,8 @@
 
   /* ============================================================
      2. PRESETS GLOBALES
-     ============================================================
-     Combinaciones guardadas para iteración rápida.
-     Se activan con data-preset="nombre" en el HTML.
-     No son clases de utilidad; son configuraciones de slots.
      ============================================================ */
 
-  /* Ghost: capa de fondo fantasma, textura pura */
   .layered-text-bg__layer[data-preset="ghost"] {
     --ltb-opacity: 0.15;
     --ltb-blend: screen;
@@ -213,13 +204,117 @@
   }
 
   /* ============================================================
-     3. PRESETS DE COMPOSICIÓN: Grid Textural 9:16
+     3. FAMILIAS DE IDENTIDAD (data-* atributos)
      ============================================================
-     Presets específicos para la composición del preview 9:16.
-     Reemplazan los style="" inline del HTML original.
+     Separan la identidad visual (color, font, opacidad, casing)
+     de la posición (preset de grid). Se combinan libremente.
+
+     Regla: data-preset = POSICIÓN, data-* = IDENTIDAD
      ============================================================ */
 
-  /* Capa back del grid 9:16 — textura densa, color secundario */
+  /* ─── Tipografía ──────────────────────────────────────────── */
+  .layered-text-bg__layer[data-typo="splatink"]   { --ltb-font: var(--font-splatink); }
+  .layered-text-bg__layer[data-typo="docallisme"] { --ltb-font: var(--font-docallisme); }
+  .layered-text-bg__layer[data-typo="street"]     { --ltb-font: var(--font-street-wars); }
+  .layered-text-bg__layer[data-typo="mars"]       { --ltb-font: var(--font-mars); }
+  .layered-text-bg__layer[data-typo="grafittiy"]  { --ltb-font: var(--font-grafittiy); }
+  .layered-text-bg__layer[data-typo="another"]    { --ltb-font: var(--font-a-another-tag); }
+  .layered-text-bg__layer[data-typo="magik"]      { --ltb-font: var(--font-magikMarker); }
+  .layered-text-bg__layer[data-typo="cosinek"]    { --ltb-font: var(--font-cosinek); }
+  .layered-text-bg__layer[data-typo="sear"]       { --ltb-font: var(--font-searFont); }
+  .layered-text-bg__layer[data-typo="5cent"]      { --ltb-font: var(--font-5cent); }
+
+  /* ─── Paleta de color ─────────────────────────────────────── */
+  .layered-text-bg__layer[data-palette="negro"]       { --ltb-color: var(--token-color-paleta-negro); }
+  .layered-text-bg__layer[data-palette="negro-claro"] { --ltb-color: var(--token-color-paleta-negro-claro); }
+  .layered-text-bg__layer[data-palette="azul"]        { --ltb-color: var(--token-color-paleta-azul-oscuro); }
+  .layered-text-bg__layer[data-palette="verde"]       { --ltb-color: var(--token-color-paleta-verde-claro); }
+  .layered-text-bg__layer[data-palette="blanco"]      { --ltb-color: var(--token-color-paleta-blanco-oscuro); }
+  .layered-text-bg__layer[data-palette="violeta"]     { --ltb-color: var(--token-color-paleta-violeta); }
+
+  /* ─── Opacidad semántica ──────────────────────────────────── */
+  .layered-text-bg__layer[data-opacity="ghost"]  { --ltb-opacity: 0.15; }
+  .layered-text-bg__layer[data-opacity="faint"]  { --ltb-opacity: 0.4; }
+  .layered-text-bg__layer[data-opacity="mid"]    { --ltb-opacity: 0.6; }
+  .layered-text-bg__layer[data-opacity="solid"]  { --ltb-opacity: 0.9; }
+  .layered-text-bg__layer[data-opacity="full"]   { --ltb-opacity: 1; }
+
+  /* ─── Casing ──────────────────────────────────────────────── */
+  .layered-text-bg__layer[data-casing="upper"]  { --ltb-transform: uppercase; }
+  .layered-text-bg__layer[data-casing="lower"]  { --ltb-transform: lowercase; }
+  .layered-text-bg__layer[data-casing="none"]   { --ltb-transform: none; }
+
+  /* ============================================================
+     4. PRESETS DE POSICIÓN (solo layout, sin identidad)
+     ============================================================
+     Exponen variables locales --x, --y, --rot, --size, --op
+     para ser sobreescritas desde el HTML via style="".
+
+     El HTML combina: data-preset (posición) + data-typo/palette/opacity/casing (identidad)
+     ============================================================ */
+
+  /* Preset base para capas mid/front del grid 16:9 */
+  .layered-text-bg__layer[data-preset="grid-mid-16-9"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: var(--op, 1);
+    --ltb-tracking: -0.05em;
+    --ltb-white-space: nowrap;
+    --ltb-text-align: center;
+  }
+
+  .layered-text-bg__layer[data-preset="grid-front-16-9"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: var(--op, 1);
+    --ltb-tracking: -0.05em;
+    --ltb-white-space: nowrap;
+    --ltb-text-align: center;
+  }
+
+  /* Presets para split (herradura) */
+  .layered-text-bg__layer[data-preset="split-left"] {
+    --ltb-size: var(--size, 8cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, -90deg);
+    --ltb-opacity: var(--op, 1);
+    --ltb-tracking: -0.05em;
+    --ltb-white-space: nowrap;
+    --ltb-text-align: center;
+    --ltb-transform-origin: center;
+    --ltb-writing-mode: vertical-rl;
+    --ltb-text-orientation: sideways;
+    --ltb-transform-origin: center;
+    --ltb-rotation: var(--rot, 0deg);
+  }
+
+  .layered-text-bg__layer[data-preset="split-right"] {
+    --ltb-size: var(--size, 8cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 90deg);
+    --ltb-opacity: var(--op, 1);
+    --ltb-tracking: -0.05em;
+    --ltb-white-space: nowrap;
+    --ltb-text-align: center;
+    --ltb-transform-origin: center;
+    --ltb-writing-mode: vertical-rl;
+    --ltb-text-orientation: sideways;
+    --ltb-transform-origin: center;
+    --ltb-rotation: var(--rot, 0deg);
+  }
+
+  /* ============================================================
+     5. PRESETS DE COMPOSICIÓN: Grid Textural 9:16
+     ============================================================
+     (Mantener para compatibilidad con previews existentes)
+     ============================================================ */
+
   .layered-text-bg__layer[data-preset="grid-back-9-16"] {
     --ltb-overflow: auto;
     --ltb-translate-x: -50%;
@@ -232,7 +327,8 @@
     --ltb-font: var(--font-5cent);
     --ltb-text-orientation: sideways;
   }
-    .layered-text-bg__layer[data-preset="R-grid-back-9-16"] {
+
+  .layered-text-bg__layer[data-preset="R-grid-back-9-16"] {
     --ltb-overflow: auto;
     --ltb-translate-x: 50%;
     --ltb-size: 10cqi;
@@ -245,7 +341,6 @@
     --ltb-text-orientation: sideways;
   }
 
-  /* Capa mid del grid 9:16 — rotada 180°, color primario, denso */
   .layered-text-bg__layer[data-preset="grid-mid-9-16"] {
     --ltb-rotation: 180deg;
     --ltb-size: 8cqi;
@@ -258,7 +353,6 @@
     --ltb-font: var(--font-5cent);
   }
 
-  /* Capa front del grid 9:16 — texto legible, color terciario */
   .layered-text-bg__layer[data-preset="grid-front-9-16"] {
     --ltb-size: 5cqi;
     --ltb-color: var(--token-color-aurora-tertiary);
@@ -268,69 +362,38 @@
   }
 
   /* ============================================================
-     4. PRESETS DE COMPOSICIÓN: Grid Textural 16:9
+     6. PRESETS DE COMPOSICIÓN: Grid Textural 16:9 — CAPA BACK
      ============================================================
-     Presets específicos para la composición del preview 16:9.
-     Reemplazan los style="" inline del HTML original.
+     Estos presets SÍ son posiciones únicas (no reutilizables).
+     Cada uno tiene una posición fija (--translate-x/y) y una
+     identidad propia. No se desacoplan porque no se repiten.
      ============================================================ */
 
-  /* Capa back del grid 16:9 — textura fantasma, tamaño reducido */
-  .layered-text-bg__layer[data-preset="grid-back-16-9"] {
-    --ltb-size: 2.5cqi;
-    --ltb-color: var(--token-color-aurora-secondary);
-    --ltb-tracking: -0.1em;
-    --ltb-white-space: pre-line;
-    --ltb-text-align: center;
-    --ltb-font: var(--font-5cent);
-  }
-
-  /* Capa mid del grid 16:9 — rotada 180°, color primario */
-  .layered-text-bg__layer[data-preset="grid-mid-16-9"] {
-    --ltb-rotation: 180deg;
-    --ltb-size: 4cqi;
-    --ltb-color: var(--token-color-paleta-verde);
-    --ltb-tracking: -0.04em;
-    --ltb-leading: 0.55;
-    --ltb-white-space: pre-line;
-    --ltb-text-align: center;
-    --ltb-font: var(--font-magikMarker);
-  }
-
-  /* Capa front del grid 16:9 — texto legible, color terciario */
-  .layered-text-bg__layer[data-preset="grid-front-16-9"] {
-    --ltb-size: 4cqi;
-    --ltb-color: var(--token-color-paleta-azul);
-    --ltb-white-space: normal;
-    --ltb-text-align: center;
-    --ltb-font: var(--font-5cent);
-  }
-
-    /*--------------------------------------------------------*/
-    /*----------------COMPOSICION-FONDO-----------------------*/
-    /*--------------------------------------------------------*/
   .layered-text-bg__layer[data-preset="grid-back-16-9-1Layer"] {
     --ltb-translate-x: 0%;
     --ltb-translate-y: 0%;
     --ltb-size: 40cqi;
-    --ltb-opacity:0.5;
+    --ltb-opacity: 0.5;
     --ltb-color: var(--token-color-paleta-negro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: lowercase;
     --ltb-font: var(--font-magikMarker);
   }
+
   .layered-text-bg__layer[data-preset="grid-back-16-9-2Layer"] {
     --ltb-translate-x: 50%;
     --ltb-translate-y: 50%;
     --ltb-size: 30cqi;
     --ltb-color: var(--token-color-paleta-negro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: lowercase;
     --ltb-font: var(--font-cosinek);
   }
+
   .layered-text-bg__layer[data-preset="grid-back-16-9-3Layer"] {
     --ltb-translate-x: 55%;
     --ltb-translate-y: -40%;
@@ -338,128 +401,137 @@
     --ltb-rotation: 15deg;
     --ltb-color: var(--token-color-paleta-negro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: lowercase;
     --ltb-font: var(--font-magikMarker);
   }
-    .layered-text-bg__layer[data-preset="grid-back-16-9-4Layer"] {
+
+  .layered-text-bg__layer[data-preset="grid-back-16-9-4Layer"] {
     --ltb-translate-x: -50%;
     --ltb-translate-y: 40%;
     --ltb-rotation: 10deg;
     --ltb-size: 34cqi;
     --ltb-color: var(--token-color-paleta-negro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: lowercase;
     --ltb-font: var(--font-magikMarker);
   }
-    .layered-text-bg__layer[data-preset="grid-back-16-9-5Layer"] {
+
+  .layered-text-bg__layer[data-preset="grid-back-16-9-5Layer"] {
     --ltb-translate-x: -45%;
     --ltb-translate-y: -35%;
     --ltb-size: 25cqi;
     --ltb-rotation: -10deg;
     --ltb-color: var(--token-color-paleta-negro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: lowercase;
     --ltb-font: var(--font-searFont);
   }
-    /*--------------------------------------------------------*/
-    /*----------------COMPOSICION-2DA-CAPA--------------------*/
-    /*--------------------------------------------------------*/
-.layered-text-bg__layer[data-preset="grid-mid-16-9-1Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:1;
+
+  /* ============================================================
+     7. PRESETS LEGACY (mantenidos para compatibilidad)
+     ============================================================
+     Los presets grid-mid/front-16-9-*Layer antiguos se mantienen
+     como alias a la nueva combinación de preset + familias.
+     Se pueden deprecar en una versión futura.
+     ============================================================ */
+
+  .layered-text-bg__layer[data-preset="grid-mid-16-9-1Layer"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: 1;
     --ltb-color: var(--token-color-paleta-negro-claro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: uppercase;
     --ltb-font: var(--font-splatink);
   }
-.layered-text-bg__layer[data-preset="grid-mid-16-9-2Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:0.7;
+
+  .layered-text-bg__layer[data-preset="grid-mid-16-9-2Layer"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: 0.7;
     --ltb-color: var(--token-color-paleta-azul-oscuro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: uppercase;
     --ltb-font: var(--font-docallisme);
   }
-.layered-text-bg__layer[data-preset="grid-mid-16-9-3Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:0.5;
+
+  .layered-text-bg__layer[data-preset="grid-mid-16-9-3Layer"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: 0.5;
     --ltb-color: var(--token-color-paleta-negro-claro);
-    --ltb-tracking: -0.05em;  
-    --ltb-white-space: nowrap ;
+    --ltb-tracking: -0.05em;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-transform: uppercase;
     --ltb-font: var(--font-street-wars);
   }
 
-    /*--------------------------------------------------------*/
-    /*----------------COMPOSICION-3RA-CAPA--------------------*/
-    /*--------------------------------------------------------*/
-.layered-text-bg__layer[data-preset="grid-front-16-9-1Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:var(--op,1);
+  .layered-text-bg__layer[data-preset="grid-front-16-9-1Layer"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: var(--op, 1);
     --ltb-color: var(--token-color-paleta-verde-claro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-font: var(--font-a-another-tag);
   }
+
   .layered-text-bg__layer[data-preset="grid-front-16-9-2Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:var(--op,1);
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: var(--op, 1);
     --ltb-color: var(--token-color-paleta-blanco-oscuro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-font: var(--font-docallisme);
   }
-    .layered-text-bg__layer[data-preset="grid-front-16-9-3Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:var(--op,1);
+
+  .layered-text-bg__layer[data-preset="grid-front-16-9-3Layer"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: var(--op, 1);
     --ltb-color: var(--token-color-paleta-azul-oscuro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-font: var(--font-mars);
   }
-      .layered-text-bg__layer[data-preset="grid-front-16-9-4Layer"] {
-    --ltb-size: var(--size,10cqi);
-    --ltb-translate-x: var(--x,0%);
-    --ltb-translate-y: var(--y,0%);
-    --ltb-rotation: var(--rot,0deg);
-    --ltb-opacity:var(--op,1);
+
+  .layered-text-bg__layer[data-preset="grid-front-16-9-4Layer"] {
+    --ltb-size: var(--size, 10cqi);
+    --ltb-translate-x: var(--x, 0%);
+    --ltb-translate-y: var(--y, 0%);
+    --ltb-rotation: var(--rot, 0deg);
+    --ltb-opacity: var(--op, 1);
     --ltb-color: var(--token-color-paleta-negro-claro);
     --ltb-tracking: -0.05em;
-    --ltb-white-space: nowrap ;
+    --ltb-white-space: nowrap;
     --ltb-text-align: center;
     --ltb-font: var(--font-grafittiy);
   }
-
 }

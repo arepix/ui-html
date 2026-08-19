@@ -3,140 +3,239 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Layered Text BG — Lienzo de Moléculas</title>
+    <title>Layered Text BG — Lienzo de Moléculas (Refactor Split)</title>
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <style>
       /* ÚNICO hack aceptable: container query context para el lienzo */
       .canvas-wrapper { container-type: inline-size; }
-    </style>
-  </head>
-  <body class="min-h-screen">
-    <div class="relative isolate flex min-h-screen flex-col gap-8 p-6 md:p-10">
-      <div class="absolute inset-0 -z-20 "></div>
-      <div class="absolute inset-0 -z-10 "></div>
 
+      /* Debug: borde sutil para ver el app-container en desarrollo */
+      .app-container[data-debug="true"] {
+        outline: 1px dashed rgba(255,255,255,0.15);
+        outline-offset: -1px;
+      }
+    </style>
+  <base target="_blank">
+</head>
+  <body class="min-h-screen bg-[#0b0f17]">
+    <div class="relative isolate flex min-h-screen flex-col gap-8 p-6 md:p-10">
+
+      <!-- Background ambient (opcional, para que no sea negro puro) -->
+      <div class="absolute inset-0 -z-20 bg-[#0b0f17]"></div>
+      <div class="absolute inset-0 -z-10 opacity-30" style="background: radial-gradient(ellipse at 50% 0%, #1a1f2e 0%, transparent 70%);"></div>
+
+      <!-- HEADER -->
       <header class="relative z-10 flex flex-wrap items-center justify-between gap-4">
         <div class="space-y-1">
           <h1 class="text-2xl font-bold text-white">Layered Text BG</h1>
-          <p class="text-sm text-white/60">Lienzo de moléculas. Dos proporciones, mismos slots.</p>
+          <p class="text-sm text-white/60">Sistema Split: BG dinámico + App container estático.</p>
         </div>
         <a href="/index.html" class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white">
           ← Volver al inicio
         </a>
       </header>
 
-      <section class="relative z-10 grid grid-cols-1 gap-8 xl:grid-cols-2">
+      <section class="relative z-10 grid grid-cols-1 gap-8">
 
-        <!-- 9:16 -->
+        <!-- ============================================================
+             NUEVO: Canvas Split (pantalla completa simulada)
+             ============================================================ -->
         <article class="canvas-wrapper space-y-3">
           <div class="flex items-center justify-between">
             <h2 class="text-sm font-medium text-white/80">
-              Container <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">9:16</code>
+              Canvas <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">Split</code>
             </h2>
-            <span class="text-xs text-white/40">data-preset="phone" + data-mask="vignette" + data-surface="dark"</span>
+            <span class="text-xs text-white/40">canvas-split + app-container + data-typo/palette/opacity</span>
           </div>
-          <div
-            class="design-container mx-auto w-full max-w-[320px] overflow-hidden rounded-xl border border-white/10 bg-black/40"
-            data-preset="phone"
-            data-mask=""
-            data-surface="dark"
-          >
-            <section class="layered-text-bg flex h-full w-full items-center justify-center">
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="grid-back-9-16"
-              >
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-              </span>
-                            <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="R-grid-back-9-16"
-              >
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-              </span>
 
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid font-5cent"
-                data-preset="grid-mid-9-16"
-              >
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-qwertyqwertyqwerty
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--front font-5cent"
-                data-preset="grid-front-9-16"
-              >
-composition
-composition
-composition
-              </span>
-            </section>
+          <!-- 
+            El contenedor simula una pantalla grande.
+            En producción esto sería 100vw × 100vh.
+            Aquí lo limitamos para el preview.
+          -->
+          <div class="canvas-split mx-auto w-full max-w-1200px overflow-hidden rounded-xl border border-white/10"
+               style="height: 70vh; min-height: 500px;">
+
+            <!-- CAPA BACK: textura full-bleed -->
+            <div class="canvas-split__back">
+              <section class="layered-text-bg flex h-full w-full items-center justify-center">
+                <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                      data-preset="grid-back-16-9-1Layer">
+                  AFTERMATH
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                      data-preset="grid-back-16-9-2Layer">
+                  MELTDOWN
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                      data-preset="grid-back-16-9-3Layer">
+                  WILDFIRE
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                      data-preset="grid-back-16-9-4Layer">
+                  REBELLION
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                      data-preset="grid-back-16-9-5Layer">
+                  BLACKOUT
+                </span>
+              </section>
+            </div>
+
+            <!-- SPLIT LEFT: herradura izquierda -->
+            <div class="canvas-split__left">
+              <section class="layered-text-bg flex h-full w-full items-center justify-center">
+                <!-- Capa 1: elementos grandes, opacidad media -->
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-left"
+                      data-typo="splatink"
+                      data-palette="negro-claro"
+                      data-opacity="solid"
+                      data-casing="upper"
+                      style="--y: -60%; --size: 18cqi; --rot: -85deg;">
+                  WILD
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-left"
+                      data-typo="street"
+                      data-palette="azul"
+                      data-opacity="mid"
+                      data-casing="upper"
+                      style="--y: -20%; --size: 14cqi; --rot: -95deg;">
+                  FIRE
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-left"
+                      data-typo="mars"
+                      data-palette="verde"
+                      data-opacity="faint"
+                      data-casing="upper"
+                      style="--y: 20%; --size: 16cqi; --rot: -90deg;">
+                  BOMB
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-left"
+                      data-typo="grafittiy"
+                      data-palette="blanco"
+                      data-opacity="solid"
+                      data-casing="upper"
+                      style="--y: 60%; --size: 12cqi; --rot: -80deg;">
+                  RAGE
+                </span>
+                <!-- Capa 2: elementos pequeños, dispersos -->
+                <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                      data-preset="split-left"
+                      data-typo="docallisme"
+                      data-palette="negro-claro"
+                      data-opacity="faint"
+                      style="--y: -80%; --size: 8cqi; --rot: -100deg;">
+                  INK
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                      data-preset="split-left"
+                      data-typo="another"
+                      data-palette="verde"
+                      data-opacity="mid"
+                      style="--y: 80%; --size: 10cqi; --rot: -70deg;">
+                  VICE
+                </span>
+              </section>
+            </div>
+
+            <!-- SPLIT RIGHT: herradura derecha -->
+            <div class="canvas-split__right">
+              <section class="layered-text-bg flex h-full w-full items-center justify-center">
+                <!-- Capa 1: elementos grandes, opacidad media -->
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-right"
+                      data-typo="splatink"
+                      data-palette="negro-claro"
+                      data-opacity="solid"
+                      data-casing="upper"
+                      style="--y: -50%; --size: 16cqi; --rot: 85deg;">
+                  DARK
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-right"
+                      data-typo="docallisme"
+                      data-palette="azul"
+                      data-opacity="mid"
+                      data-casing="upper"
+                      style="--y: -10%; --size: 14cqi; --rot: 95deg;">
+                  SMOG
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-right"
+                      data-typo="street"
+                      data-palette="blanco"
+                      data-opacity="faint"
+                      data-casing="upper"
+                      style="--y: 30%; --size: 18cqi; --rot: 90deg;">
+                  CLASH
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                      data-preset="split-right"
+                      data-typo="mars"
+                      data-palette="verde"
+                      data-opacity="solid"
+                      data-casing="upper"
+                      style="--y: 70%; --size: 12cqi; --rot: 80deg;">
+                  VOID
+                </span>
+                <!-- Capa 2: elementos pequeños, dispersos -->
+                <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                      data-preset="split-right"
+                      data-typo="grafittiy"
+                      data-palette="negro-claro"
+                      data-opacity="faint"
+                      style="--y: -85%; --size: 9cqi; --rot: 100deg;">
+                  RAW
+                </span>
+                <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                      data-preset="split-right"
+                      data-typo="another"
+                      data-palette="azul"
+                      data-opacity="mid"
+                      style="--y: 85%; --size: 11cqi; --rot: 70deg;">
+                  HYPE
+                </span>
+              </section>
+            </div>
+
+            <!-- APP CONTAINER: pasillo central -->
+            <div class="app-container" data-debug="true">
+              <!-- Aquí iría la app real. Para el preview, mostramos un placeholder -->
+              <div class="flex h-full w-full flex-col items-center justify-center gap-4 text-white">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-sm">
+                  <h3 class="text-2xl font-bold">app-container</h3>
+                  <p class="mt-2 text-sm text-white/50">
+                    Pasillo central limpio.<br>
+                    Todo se mide en <code class="text-emerald-400">cqi</code> de este container.
+                  </p>
+                  <div class="mt-4 flex gap-2 justify-center">
+                    <span class="rounded bg-white/10 px-2 py-1 text-xs">Card</span>
+                    <span class="rounded bg-white/10 px-2 py-1 text-xs">Button</span>
+                    <span class="rounded bg-white/10 px-2 py-1 text-xs">Icon</span>
+                  </div>
+                </div>
+                <p class="text-xs text-white/30">
+                  En landscape: ancho = 50cqi del canvas<br>
+                  En portrait: inset = 5cqi del canvas
+                </p>
+              </div>
+            </div>
           </div>
         </article>
 
-        <!-- 16:9 -->
+        <!-- ============================================================
+             LEGACY: Grid 16:9 (referencia con nuevas familias de identidad)
+             ============================================================ -->
         <article class="canvas-wrapper space-y-3">
           <div class="flex items-center justify-between">
             <h2 class="text-sm font-medium text-white/80">
-              Container <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">16:9</code>
+              Legacy <code class="rounded bg-white/10 px-1.5 py-0.5 text-xs">16:9</code>
             </h2>
-            <span class="text-xs text-white/40">data-preset="hero" + data-mask="vignette" + data-surface="dark"</span>
+            <span class="text-xs text-white/40">data-preset="hero" + presets legacy (compatibilidad)</span>
           </div>
           <div
             class="design-container mx-auto w-full max-w-160 overflow-hidden rounded-xl border border-white/10 bg-black/40"
@@ -146,750 +245,151 @@ composition
           >
             <section class="layered-text-bg flex h-full w-full items-center justify-center">
 
-              
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="grid-back-16-9-1Layer"
-              >
-                AFTERMATH   
+              <!-- CAPA BACK (posiciones únicas, no reutilizables) -->
+              <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                    data-preset="grid-back-16-9-1Layer">
+                AFTERMATH
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="grid-back-16-9-2Layer"
-              >
-                MELTDOWN   
+              <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                    data-preset="grid-back-16-9-2Layer">
+                MELTDOWN
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="grid-back-16-9-3Layer"
-              >
+              <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                    data-preset="grid-back-16-9-3Layer">
                 WILDFIRE
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="grid-back-16-9-4Layer"
-              >
-                REBELLION   
+              <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                    data-preset="grid-back-16-9-4Layer">
+                REBELLION
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--back"
-                data-preset="grid-back-16-9-5Layer"
-              >
-                BLACKOUT   
+              <span class="layered-text-bg__layer layered-text-bg__layer--back"
+                    data-preset="grid-back-16-9-5Layer">
+                BLACKOUT
               </span>
 
+              <!-- CAPA MID (usando NUEVO sistema: preset de posición + familias de identidad) -->
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="street"
+                    data-palette="negro-claro"
+                    data-opacity="mid"
+                    data-casing="upper"
+                    style="--x: 110%; --y: 0%; --size:25cqi; --rot: -270deg">
+                WILDFIRE
+              </span>
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="street"
+                    data-palette="negro-claro"
+                    data-opacity="mid"
+                    data-casing="upper"
+                    style="--x: -110%; --y: 0%; --size:25cqi; --rot: 270deg">
+                WILDFIRE
+              </span>
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="street"
+                    data-palette="negro-claro"
+                    data-opacity="mid"
+                    data-casing="upper"
+                    style="--x: 0%; --y: 70%; --size:25cqi; --rot: 180deg">
+                WILDFIRE
+              </span>
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="street"
+                    data-palette="negro-claro"
+                    data-opacity="mid"
+                    data-casing="upper"
+                    style="--x: -15%; --y: -75%; --size:25cqi; --rot: 0deg">
+                WILDFIRE
+              </span>
 
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-3Layer"
-                style="--x: 110%;
-                       --y: 0%;
-                       --size:25cqi;
-                       --rot: -270deg">
-                WILDFIRE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-3Layer"
-                style="--x: -110%;
-                       --y: 0%;
-                       --size:25cqi;
-                       --rot: 270deg">
-                WILDFIRE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-3Layer"
-                style="--x: 0%;
-                       --y: 70%;
-                       --size:25cqi;
-                       --rot: 180deg">
-                WILDFIRE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-3Layer"
-                style="--x: -15%;
-                       --y: -75%;
-                       --size:25cqi;
-                       --rot: 0deg">
-                WILDFIRE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-2Layer"
-                style="--x: -70%;
-                       --y: -60%;
-                       --size: 26cqi;
-                       --rot: -10deg">
-                
+              <!-- Más elementos mid con nuevas familias -->
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="docallisme"
+                    data-palette="azul"
+                    data-opacity="solid"
+                    data-casing="upper"
+                    style="--x: -70%; --y: -60%; --size: 26cqi; --rot: -10deg">
                 BOMB
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-2Layer"
-                style="--x: 50%;
-                       --y: -70%;
-                       --size:30cqi; 
-                       --rot:5deg">
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="docallisme"
+                    data-palette="azul"
+                    data-opacity="solid"
+                    data-casing="upper"
+                    style="--x: 50%; --y: -70%; --size:30cqi; --rot:5deg">
                 SMOG
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-2Layer"
-                style="--x: -70%;
-                       --y: 60%;
-                       --size:27cqi; 
-                       --rot:0deg">
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="docallisme"
+                    data-palette="azul"
+                    data-opacity="solid"
+                    data-casing="upper"
+                    style="--x: -70%; --y: 60%; --size:27cqi; --rot:0deg">
                 WILD
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-2Layer"
-                style="--x: 50%;
-                       --y: 50%;
-                       --size:30cqi;
-                       --rot: -10deg;">
+              <span class="layered-text-bg__layer layered-text-bg__layer--mid"
+                    data-preset="grid-mid-16-9"
+                    data-typo="docallisme"
+                    data-palette="azul"
+                    data-opacity="solid"
+                    data-casing="upper"
+                    style="--x: 50%; --y: 50%; --size:30cqi; --rot: -10deg;">
                 CLASH
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-1Layer"
-                style="--x: -95%;
-                       --y: -95%;
-                       --size:15cqi;
-                       --rot: -10deg">
-                NIGHT
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-1Layer"
-                style="--x: 70%;
-                       --y: -110%;
-                       --size:14cqi;
-                       --rot: 5deg">
-                URBAN
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-1Layer"
-                style="--x: -90%;
-                       --y: 110%;
-                       --size:14cqi;
-                       --rot: 10deg">
-                STREET
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-mid-16-9-1Layer"
-                style="--x: 70%;
-                       --y: 110%;
-                       --size:14cqi;
-                       --rot: -9deg">
-                WRECK
-              </span>
 
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 20%;
-                       --y: -140%;
-                       --size:10cqi;
-                       --rot: 20deg;
-                       --op: 0.4; ">
+              <!-- CAPA FRONT (nuevo sistema) -->
+              <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                    data-preset="grid-front-16-9"
+                    data-typo="another"
+                    data-palette="verde"
+                    data-opacity="faint"
+                    data-casing="upper"
+                    style="--x: 20%; --y: -140%; --size:10cqi; --rot: 20deg; --op: 0.4;">
                 VICE
               </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 20%;
-                       --y: 140%;
-                       --size:10cqi;
-                       --rot: -20deg;
-                       --op: 0.4; ">
+              <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                    data-preset="grid-front-16-9"
+                    data-typo="another"
+                    data-palette="verde"
+                    data-opacity="faint"
+                    data-casing="upper"
+                    style="--x: 20%; --y: 140%; --size:10cqi; --rot: -20deg; --op: 0.4;">
                 INK
               </span>
-                            <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -70%;
-                       --y: -220%;
-                       --size:7cqi;
-                       --rot: -20deg;
-                       --op: 0.5; ">
-                INK  
-              </span  >
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -70%;
-                       --y: 180%;
-                       --size:7cqi;
-                       --rot: 20deg;
-                       --op: 0.5; ">
+              <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                    data-preset="grid-front-16-9"
+                    data-typo="another"
+                    data-palette="verde"
+                    data-opacity="faint"
+                    data-casing="upper"
+                    style="--x: -70%; --y: -220%; --size:7cqi; --rot: -20deg; --op: 0.5;">
+                INK
+              </span>
+              <span class="layered-text-bg__layer layered-text-bg__layer--front"
+                    data-preset="grid-front-16-9"
+                    data-typo="another"
+                    data-palette="verde"
+                    data-opacity="faint"
+                    data-casing="upper"
+                    style="--x: -70%; --y: 180%; --size:7cqi; --rot: 20deg; --op: 0.5;">
                 FURY
               </span>
 
-
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 110%;
-                       --y: -130%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.5; ">
-                CLASH
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 110%;
-                       --y: 130%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.5; ">
-                WILD  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -110%;
-                       --y: -130%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.5; ">
-                BOMB  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -110%;
-                       --y: 130%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.5; ">
-                CLASH    
-              </span>
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 50%;
-                       --y: -180%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.6; ">
-                GRIT  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -60%;
-                       --y: 180%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.6; ">
-                WILD  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -50%;
-                       --y: -180%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.6; ">
-                VOLT    
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 60%;
-                       --y: 180%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.6; ">
-                RAGE  
-              </span>
-
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: 140%;
-                       --y: -130%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.6; ">
-                CHAOS  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: 140%;
-                       --y: 130%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.6; ">
-                VOID
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: -150%;
-                       --y: -130%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.6; ">
-                VOID    
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: -140%;
-                       --y: 130%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.6; ">
-                GRIT  
-              </span>
-
-
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: 100%;
-                       --y: -170%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.9; ">
-                SICK
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: 100%;
-                       --y: 170%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.9; ">
-                DARK  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: -100%;
-                       --y: -170%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.9; ">
-                DARK
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: -100%;
-                       --y: 170%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.9; ">
-                FLUX  
-              </span>
-
-              
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 150%;
-                       --y: -170%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.7; ">
-                RAW
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 150%;
-                       --y: 170%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.7; ">
-                RAW
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -150%;
-                       --y: -170%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.8; ">
-                RAW
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -150%;
-                       --y: 170%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.7; ">
-                DUSK  
-              </span>
-
-              
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 240%;
-                       --y: -90%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.3; ">
-                RUST
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 240%;
-                       --y: 90%;
-                       --size:10cqi;
-                       --rot: -30deg;
-                       --op: 0.3; ">
-                SICK
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -180%;
-                       --y: -100%;
-                       --size:10cqi;
-                       --rot: 30deg;
-                       --op: 0.3; ">
-                BLAST
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -150%;
-                       --y: 90%;
-                       --size:10cqi;
-                       --rot: 10deg;
-                       --op: 0.3; ">
-                SHADOW  
-              </span>
-
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: 220%;
-                       --y: -120%;
-                       --size:10cqi;
-                       --rot: 20deg;
-                       --op: 0.8; ">
-                HYPE
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: 220%;
-                       --y: 120%;
-                       --size:10cqi;
-                       --rot: -20deg;
-                       --op: 0.8; ">
-                KILL
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: -220%;
-                       --y: -120%;
-                       --size:10cqi;
-                       --rot: -20deg;
-                       --op: 0.8; ">
-                HYPE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: -220%;
-                       --y: 120%;
-                       --size:10cqi;
-                       --rot: 20deg;
-                       --op: 0.8; ">
-                VICE  
-              </span>
-              
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 210%;
-                       --y: -165%;
-                       --size:11cqi;
-                       --rot: 10deg;
-                       --op: 0.6; ">
-                DARK
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 200%;
-                       --y: 195%;
-                       --size:11cqi;
-                       --rot: -10deg;
-                       --op: 0.6; ">
-                TRAP
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -210%;
-                       --y: -165%;
-                       --size:11cqi;
-                       --rot: -10deg;
-                       --op: 0.6; ">
-                WILD 
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -200%;
-                       --y: 190%;
-                       --size:11cqi;
-                       --rot: 10deg;
-                       --op: 0.6; ">
-                SMOG  
-              </span>
-
-              
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: 240%;
-                       --y: -120%;
-                       --size:11cqi;
-                       --rot: 10deg;
-                       --op: 0.8; ">
-                VOID
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: 240%;
-                       --y: 120%;
-                       --size:11cqi;
-                       --rot: -10deg;
-                       --op: 0.8; ">
-                HYPE
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: -240%;
-                       --y: -120%;
-                       --size:11cqi;
-                       --rot: -10deg;
-                       --op: 0.8; ">
-                NIGHT  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-4Layer"
-                style="--x: -240%;
-                       --y: 120%;
-                       --size:11cqi;
-                       --rot: 10deg;
-                       --op: 0.8; ">
-                 RAW  
-              </span>
-
-              
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 170%;
-                       --y: -145%;
-                       --size:12cqi;
-                       --rot: -20deg;
-                       --op: 0.8; ">
-                BOMB
-              </span>
-                            <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 170%;
-                       --y: 145%;
-                       --size:12cqi;
-                       --rot: 20deg;
-                       --op: 0.8; ">
-                VICE
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -170%;
-                       --y: -145%;
-                       --size:12cqi;
-                       --rot: 20deg;
-                       --op: 0.8; ">
-                VICE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -170%;
-                       --y: 140%;
-                       --size:12cqi;
-                       --rot: -20deg;
-                       --op: 0.8; ">
-                BOMB  
-              </span>
-
-              
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 240%;
-                       --y: -50%;
-                       --size:12cqi;
-                       --rot: 60deg;
-                       --op: 0.6; ">
-                DUSK
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: 230%;
-                       --y: 50%;
-                       --size:12cqi;
-                       --rot: -60deg;
-                       --op: 0.6; ">
-                SMOG
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -270%;
-                       --y: -50%;
-                       --size:12cqi;
-                       --rot: -60deg;
-                       --op: 0.6; ">
-                DUSK  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-2Layer"
-                style="--x: -210%;
-                       --y: 50%;
-                       --size:12cqi;
-                       --rot: 60deg;
-                       --op: 0.6; ">
-                SMOG
-              </span>
-
-
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: 260%;
-                       --y: -110%;
-                       --size:11cqi;
-                       --rot: 30deg;
-                       --op: 0.8; ">
-                RAGE
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: 240%;
-                       --y: 80%;
-                       --size:11cqi;
-                       --rot: -30deg;
-                       --op: 0.8; ">
-                RUST
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: -260%;
-                       --y: -110%;
-                       --size:11cqi;
-                       --rot: -30deg;
-                       --op: 0.8; ">
-                FLUX  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-3Layer"
-                style="--x: -260%;
-                       --y: 110%;
-                       --size:11cqi;
-                       --rot: 30deg;
-                       --op: 0.8; ">
-                KILL  
-              </span>
-              
-              
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 330%;
-                       --y: -150%;
-                       --size:12cqi;
-                       --rot: 10deg;
-                       --op: 0.6; ">
-                WILD
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: 330%;
-                       --y: 150%;
-                       --size:12cqi;
-                       --rot: -10deg;
-                       --op: 0.6; ">
-                DUSK
-              </span> 
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -330%;
-                       --y: -140%;
-                       --size:12cqi;
-                       --rot: -10deg;
-                       --op: 0.6; ">
-                RAGE  
-              </span>
-              <span
-                class="layered-text-bg__layer layered-text-bg__layer--mid"
-                data-preset="grid-front-16-9-1Layer"
-                style="--x: -310%;
-                       --y: 150%;
-                       --size:12cqi;
-                       --rot: 10deg;
-                       --op: 0.6; ">
-                BOMB
-              </span> 
-
-
-
-
-              
             </section>
           </div>
         </article>
 
       </section>
 
-      <!-- checklist de slots -->
+      <!-- ============================================================
+           CHECKLIST DE SLOTS (actualizado)
+           ============================================================ -->
       <section class="relative z-10 space-y-4 text-sm text-white/80">
         <h2 class="text-lg font-semibold text-white">Arquitectura del sistema</h2>
         <p class="text-white/50">
@@ -899,12 +399,32 @@ composition
           <code class="rounded bg-white/10 px-1 py-0.5 text-xs">presets</code>.
           Interfaces declaran slots. Implementaciones asignan valores.
         </p>
+
+        <!-- Nuevo: explicación del sistema split -->
+        <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+          <h3 class="mb-2 text-xs font-medium uppercase tracking-wider text-emerald-400">Nuevo: Sistema Split</h3>
+          <div class="grid grid-cols-1 gap-2 text-xs text-white/60 md:grid-cols-3">
+            <div>
+              <strong class="text-white/80">canvas-split__back</strong>
+              <p>Textura full-bleed. Cubre todo el canvas.</p>
+            </div>
+            <div>
+              <strong class="text-white/80">canvas-split__left / __right</strong>
+              <p>Herradura. Overflow hidden. Solo en landscape.</p>
+            </div>
+            <div>
+              <strong class="text-white/80">app-container</strong>
+              <p>Pasillo central. Container query propio.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-4">
           <div class="space-y-1">
             <h3 class="text-xs font-medium uppercase tracking-wider text-white/40">Tokens</h3>
             <ul class="space-y-0.5 text-xs">
               <li><code class="text-emerald-400">●</code> primitives.css</li>
-              <li><code class="text-emerald-400">●</code> semantic.css</li>
+              <li><code class="text-emerald-400">●</code> semantic.css <span class="text-emerald-400">(nuevos: --token-safe-area-*, --token-split-width)</span></li>
               <li><code class="text-emerald-400">●</code> motion.css</li>
             </ul>
           </div>
@@ -913,7 +433,7 @@ composition
             <ul class="space-y-0.5 text-xs">
               <li><code class="text-amber-400">●</code> container.css</li>
               <li><code class="text-amber-400">●</code> position-system.css</li>
-              <li><code class="text-amber-400">●</code> layered-text.css</li>
+              <li><code class="text-amber-400">●</code> layered-text.css <span class="text-emerald-400">(docs: --x, --y, --rot, --size, --op)</span></li>
             </ul>
           </div>
           <div class="space-y-1">
@@ -922,7 +442,8 @@ composition
               <li><code class="text-emerald-400">●</code> container-defaults.css</li>
               <li><code class="text-emerald-400">●</code> container-presets-*.css</li>
               <li><code class="text-emerald-400">●</code> position-defaults.css</li>
-              <li><code class="text-emerald-400">●</code> layered-text-defaults.css</li>
+              <li><code class="text-emerald-400">●</code> layered-text-defaults.css <span class="text-emerald-400">(familias: data-typo, data-palette, data-opacity, data-casing)</span></li>
+              <li><code class="text-emerald-400">●</code> <strong>canvas-split.css</strong> <span class="text-emerald-400">(nuevo)</span></li>
             </ul>
           </div>
           <div class="space-y-1">
@@ -936,12 +457,50 @@ composition
         </div>
       </section>
 
+      <!-- ============================================================
+           REFERENCIA RÁPIDA: Familias de identidad
+           ============================================================ -->
+      <section class="relative z-10 space-y-4 text-sm text-white/80">
+        <h2 class="text-lg font-semibold text-white">Familias de identidad</h2>
+        <p class="text-white/50">Separan la identidad visual (color, font, opacidad, casing) de la posición (preset).</p>
+
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+            <h3 class="mb-2 text-xs font-medium uppercase tracking-wider text-amber-400">data-typo</h3>
+            <code class="block text-xs text-white/60">splatink, docallisme, street, mars, grafittiy, another, magik, cosinek, sear, 5cent</code>
+          </div>
+          <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+            <h3 class="mb-2 text-xs font-medium uppercase tracking-wider text-amber-400">data-palette</h3>
+            <code class="block text-xs text-white/60">negro, negro-claro, azul, verde, blanco, violeta</code>
+          </div>
+          <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+            <h3 class="mb-2 text-xs font-medium uppercase tracking-wider text-amber-400">data-opacity</h3>
+            <code class="block text-xs text-white/60">ghost (0.15), faint (0.4), mid (0.6), solid (0.9), full (1)</code>
+          </div>
+          <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+            <h3 class="mb-2 text-xs font-medium uppercase tracking-wider text-amber-400">data-casing</h3>
+            <code class="block text-xs text-white/60">upper, lower, none</code>
+          </div>
+        </div>
+
+        <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+          <h3 class="mb-2 text-xs font-medium uppercase tracking-wider text-emerald-400">Ejemplo de uso combinado</h3>
+          <pre class="overflow-x-auto text-xs text-white/70"><code>&lt;span data-preset="grid-mid-16-9"
+      data-typo="splatink"
+      data-palette="negro-claro"
+      data-opacity="solid"
+      data-casing="upper"
+      style="--x: 20%; --y: -15%; --size: 12cqi; --rot: 5deg"&gt;
+  WILDFIRE
+&lt;/span&gt;</code></pre>
+        </div>
+      </section>
+
       <footer class="relative z-10 mt-auto border-t border-white/10 pt-6 text-xs text-white/40">
         <p>
-          Sistema: <code class="text-white/60">design-container</code> + <code class="text-white/60">layered-text-bg</code>.
-          Tokens: <code class="text-white/60">cqi</code> para escala, <code class="text-white/60">data-preset</code> para combinaciones.
-          Reglas: <code class="text-white/60">sin style inline</code>, <code class="text-white/60">fuentes por clase Tailwind</code>,
-          <code class="text-white/60">interfaces sin valores visuales</code>.
+          Sistema: <code class="text-white/60">canvas-split</code> + <code class="text-white/60">layered-text-bg</code>.
+          Tokens: <code class="text-white/60">cqi</code> para escala, <code class="text-white/60">data-preset</code> para posición, <code class="text-white/60">data-typo/palette/opacity/casing</code> para identidad.
+          Reglas: <code class="text-white/60">sin style inline de identidad</code>, <code class="text-white/60">solo variables de posición (--x, --y, --rot, --size, --op)</code>.
         </p>
       </footer>
     </div>

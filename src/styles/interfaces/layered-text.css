@@ -313,7 +313,37 @@
     --ltb-transform-origin: center;
 
     /* =========================================================
-       6. EFECTOS VISUALES
+       6. VARIABLES LOCALES DE POSICIÓN PARAMETRIZABLE
+       =========================================================
+       Estas variables NO son slots de la interfaz formal,
+       sino "puentes" que ciertos presets exponen para ser
+       sobreescritas desde el HTML via style="".
+
+       Regla: Solo presets de posición (grid-mid-16-9, split-left,
+       split-right) las exponen. Presets cerrados (ghost, stamp)
+       no lo hacen.
+
+       Uso válido en HTML:
+         <span data-preset="grid-mid-16-9" 
+               data-typo="splatink"
+               style="--x: 20%; --y: -15%; --rot: 5deg; --size: 12cqi; --op: 0.7">
+
+       Mapeo en preset:
+         --ltb-translate-x: var(--x, 0%);
+         --ltb-translate-y: var(--y, 0%);
+         --ltb-rotation:    var(--rot, 0deg);
+         --ltb-size:        var(--size, 10cqi);
+         --ltb-opacity:     var(--op, 1);
+       ========================================================= */
+
+    /* --x: Desplazamiento horizontal (sobreescribe --ltb-translate-x) */
+    /* --y: Desplazamiento vertical (sobreescribe --ltb-translate-y) */
+    /* --rot: Rotación (sobreescribe --ltb-rotation) */
+    /* --size: Tamaño de fuente (sobreescribe --ltb-size) */
+    /* --op: Opacidad (sobreescribe --ltb-opacity) */
+
+    /* =========================================================
+       7. EFECTOS VISUALES
        ========================================================= */
 
     /* --ltb-text-shadow
@@ -323,7 +353,7 @@
     --ltb-text-shadow: none;
 
     /* =========================================================
-       7. COMPORTAMIENTO E INTERACCIÓN
+       8. COMPORTAMIENTO E INTERACCIÓN
        ========================================================= */
 
     /* --ltb-pointer-events

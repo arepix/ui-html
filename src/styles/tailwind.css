@@ -36,6 +36,7 @@
 @import './implementations/container-presets-surface.css';
 @import './implementations/position-defaults.css';
 @import './implementations/layered-text-defaults.css';
+@import './implementations/canvas-split.css'; 
 
 /* ============================================================
    SURFACES: backgrounds puros (texturas, no componentes)

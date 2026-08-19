@@ -1,0 +1,150 @@
+@layer components {
+  /* ============================================================
+     IMPLEMENTATION: canvas-split
+     ============================================================
+     Sistema de layout dividido para BG graffiti + App container.
+
+     Arquitectura:
+       • canvas-split          (wrapper, 100vw × 100vh, container-type)
+       • canvas-split__back    (capa textura, full-bleed, z-index deep)
+       • canvas-split__left    (herradura izquierda, overflow hidden)
+       • canvas-split__right   (herradura derecha, overflow hidden)
+       • app-container         (pasillo central, container-type propio)
+
+     Modos:
+       • Portrait (aspect-ratio <= 1/1): split mínimo, app full-width
+       • Landscape (aspect-ratio > 1/1): split activo, app centrado
+     ============================================================ */
+
+  /* ============================================================
+     1. WRAPPER PRINCIPAL
+     ============================================================ */
+
+  .canvas-split {
+    container-type: inline-size;
+    container-name: canvas;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* ============================================================
+     2. CAPA BACK (textura full-bleed)
+     ============================================================
+     Siempre visible, cubre todo el canvas.
+     El graffiti denso de fondo vive aquí.
+     ============================================================ */
+
+  .canvas-split__back {
+    position: absolute;
+    inset: -5%; /* Escapa ligeramente para evitar bordes duros */
+    z-index: var(--token-layer-background-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ============================================================
+     3. SPLIT LEFT / RIGHT (herradura)
+     ============================================================
+     En landscape: ocupan los laterales, overflow hidden.
+     En portrait: se ocultan (el back cubre todo).
+     ============================================================ */
+
+  @container canvas (aspect-ratio > 1/1) {
+    /* ─── Landscape: Split activo ─── */
+
+    .canvas-split__left,
+    .canvas-split__right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: var(--token-split-width);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: var(--token-layer-bg-split);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .canvas-split__left {
+      left: 0;
+      /* Origen de transform: borde derecho (toque con app-container) */
+      justify-content: flex-end;
+    }
+
+    .canvas-split__right {
+      right: 0;
+      /* Origen de transform: borde izquierdo (toque con app-container) */
+      justify-content: flex-start;
+    }
+
+    /* ─── App Container (pasillo central) ─── */
+
+    .app-container {
+      position: absolute;
+      left: var(--token-split-width);
+      width: var(--token-safe-area-inline-landscape);
+      height: var(--token-safe-area-block);
+      top: calc((100cqb - var(--token-safe-area-block)) / 2);
+      z-index: var(--token-layer-content);
+
+      /* Container query propio para que los componentes internos
+         usen cqi/cqb de ESTE container, no del canvas */
+      container-type: inline-size;
+      container-name: app;
+
+      /* Debug: borde sutil para desarrollo */
+      /* outline: 1px dashed rgba(255,255,255,0.1); */
+    }
+  }
+
+  @container canvas (aspect-ratio <= 1/1) {
+    /* ─── Portrait: Split oculto, app full-width ─── */
+
+    .canvas-split__left,
+    .canvas-split__right {
+      display: none;
+    }
+
+    .app-container {
+      position: absolute;
+      inset: 5cqi;
+      z-index: var(--token-layer-content);
+      container-type: inline-size;
+      container-name: app;
+    }
+  }
+
+  /* ============================================================
+     4. VARIANTE: Cover forzado 9:16 (modo legacy)
+     ============================================================
+     Cuando se necesita forzar proporción 9:16 con recorte,
+     como en el bg-grafitti.html original.
+     Se activa con data-mode="cover" en el wrapper.
+     ============================================================ */
+
+  .canvas-split[data-mode="cover"] {
+    width: max(100vw, calc(100vh * 9 / 16));
+    height: max(100vh, calc(100vw * 16 / 9));
+  }
+
+  .canvas-split[data-mode="cover"] .canvas-split__left,
+  .canvas-split[data-mode="cover"] .canvas-split__right {
+    display: none;
+  }
+
+  .canvas-split[data-mode="cover"] .app-container {
+    position: absolute;
+    inset: 5cqi;
+    z-index: var(--token-layer-content);
+    container-type: inline-size;
+    container-name: app;
+  }
+}
